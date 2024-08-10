@@ -85,7 +85,10 @@ echo 'export LANGUAGE=en_US.UTF-8' >> ~/.bashrc
 
 
 
-# 2. Submit batch jobs
+
+
+
+# 3. Submit batch jobs
 
 To submit a job to the cluster you can use the `sbatch` command. An example job script is provided in `job.sh` and you can submit it using `sbatch job.sh`.
 
@@ -101,7 +104,10 @@ To debug the scripts , you can create the conda environment using `conda env cre
 
 
 
-# 3. Debugging and Prototyping
+
+
+
+# 4. Debugging and Prototyping
 
 Job scripts don't show the output in real time.
 
