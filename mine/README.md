@@ -78,6 +78,13 @@ echo 'export LANG=en_US.UTF-8' >> ~/.bashrc
 echo 'export LANGUAGE=en_US.UTF-8' >> ~/.bashrc
 ```
 
+
+
+
+
+
+
+
 # 2. Submit batch jobs
 
 To submit a job to the cluster you can use the `sbatch` command. An example job script is provided in `job.sh` and you can submit it using `sbatch job.sh`.
@@ -85,6 +92,10 @@ To submit a job to the cluster you can use the `sbatch` command. An example job 
 Similarly if you have lots of jobs, you can use an array job to start them all and make sure that only x of them are running at the same time. An example job script is provided in `job_array.sh` and you can submit it using `sbatch job_array.sh`.
 
 To debug the scripts , you can create the conda environment using `conda env create -f env.yml` activate it with `conda activate cluster-tutorial` and call `python job.py`.
+
+
+
+
 
 
 
