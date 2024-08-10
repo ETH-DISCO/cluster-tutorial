@@ -178,6 +178,7 @@ green_title 'Installation of conda is complete. Follow the instructions below to
 
 title 'Initialize conda immediately'
 echo "eval \"\$(${CONDA_INSTALL_DIR}/bin/conda shell.bash hook)\""
+
 title 'Automatically initialize conda for future shell sessions'
 echo "echo '[[ -f ${CONDA_INSTALL_DIR}/bin/conda ]] && eval \"\$(${CONDA_INSTALL_DIR}/bin/conda shell.bash hook)\"' >> ${HOME}/.bashrc"
 
