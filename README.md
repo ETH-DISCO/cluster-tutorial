@@ -115,7 +115,7 @@ The following are patches for common isses experienced when using the cluster.
 
 ---
 
-Fix: Ran out of memory while downloading dependencies.
+Fix: Ran out of memory.
 
 ```bash
 df -Th
