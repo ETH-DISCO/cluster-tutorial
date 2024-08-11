@@ -2,4 +2,4 @@ There have been issues using the cluster recently, as net_scratch (the main stor
 
 One option is that you built an apptainer (formerly called singularity) package locally, and put it on the cluster. I have shared a repo with some examples - it is similar to docker, but intended for ai/hpc. 
 
-You can then put these on /scratch/$USERNAME and run them from SLURM. Note that /scratch is a local storage for each of the nodes tikgpu02-tikgpu10 etc. So if you have transferred it to tikgpu03's /scratch, then your job needs to run on this node. 
+You can then put these on /scratch/$USERNAME and run them from SLURM. Note that /scratch is a local storage for each of the nodes tikgpu02-tikgpu10 etc. So if you have transferred it to tikgpu03's /scratch, then your job needs to run on this node.

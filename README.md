@@ -112,9 +112,9 @@ The output will then show you at which link you can access the notebook.
 Make sure to deactivate the conda environment after you're done:
 
 ```bash
-conda remove --yes --name jupyternb --all
-conda env list
 conda deactivate
+conda env list
+conda remove --all --yes --name jupyternb
 exit # back to login node
 ```
 
