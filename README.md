@@ -150,6 +150,8 @@ As of August 2024, Google Colab's free tier offers a Tesla T4 with 15GB of RAM (
 
 # References
 
+Documentation:
+
 - outdated tutorial: https://hackmd.io/hYACdY2aR1-F3nRdU8q5dA
 - up-to-date tutorial: https://gitlab.ethz.ch/disco-students/cluster
 - conda install: https://computing.ee.ethz.ch/Programming/Languages/Conda
