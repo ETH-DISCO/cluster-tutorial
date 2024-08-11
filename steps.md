@@ -38,17 +38,7 @@ Keep in mind:
 
 # 2. Setup
 
-To set up your environment first install conda using the `conda_install.sh` script.
-
-Optionally set up the "libmamba" solver for faster dependency resolution:
-
-```bash
-conda update -n base conda
-conda install -n base conda-libmamba-solver
-conda config --set solver libmamba
-```
-
-Next add the following instructions to your `~/.bashrc.<username>` file and then run `source ~/.bashrc.<username>`:
+First add the following instructions to your `~/.bashrc.<username>` file and then run `source ~/.bashrc.<username>`:
 
 ```bash
 # convenience commands for slurm
@@ -65,6 +55,9 @@ export LC_CTYPE=UTF-8
 export LANG=C.UTF-8
 ```
 
+Next:
+
+- Run the `install_conda.sh` script to install Conda.
 
 
 
