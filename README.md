@@ -47,7 +47,7 @@ alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"g
 Next we will run our little MNIST example written with Pytorch:
 
 ```bash
-# clone this repository (uses ntfs, so it's very slow)
+# clone this repository
 cd /itet-stor/$USER/net_scratch/cluster
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 mv ./cluster-tutorial .
