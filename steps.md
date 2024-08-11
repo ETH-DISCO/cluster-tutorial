@@ -14,7 +14,6 @@ Then ssh into the tik42 or j2tik login node and use your default password (also 
 
 ```bash
 ssh <username>@tik42x.ethz.ch
-ssh <username>@j2tik.ethz.ch
 ```
 
 Once you're in you'll have access to:
@@ -60,9 +59,10 @@ alias watch_smon_free="watch --interval 300 --no-title --differences --color \"g
 alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt\""
 
 # troubleshooting for common issues
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=UTF-8
+export LANG=C.UTF-8
 ```
 
 
