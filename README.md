@@ -19,7 +19,7 @@ ssh <username>@tik42x.ethz.ch
 Once you're in you'll have access to:
 
 - Compute: The login node is only for file management and job submission. Do not run any computation on the login node. Run batch jobs on the compute nodes using the SLURM system.
-- Storage: Use `/itet-stor/<username>/net_scratch` on the login node and `/scratch/<username>` on the compute nodes for temporary storage.
+- Storage: Use `/itet-stor/<username>/net_scratch` on the login-node and `/scratch/<username>` on the compute-nodes for temporary storage.
 
 Keep in mind:
 
