@@ -122,9 +122,9 @@ srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 mkdir -p /scratch/<username>
 cd /scratch/<username>
 
-# run demo
-# apptainer build --sandbox tensorflow_sandbox docker://tensorflow/tensorflow:latest-gpu
+# run cuda pytorch from jupyter notebook
 apptainer build --sandbox pytorch_sandbox docker://pytorch/pytorch:latest
+apptainer shell --nv pytorch_sandbox
 ```
 
 
