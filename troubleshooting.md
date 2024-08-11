@@ -16,7 +16,6 @@ Fix: Can't install pip dependencies.
 ```bash
 pip install <dependency> --upgrade --no-cache-dir --user --verbose
 
-# fix paths
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
