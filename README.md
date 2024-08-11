@@ -135,7 +135,7 @@ Fallback: If you're on a tight schedule and things aren't working out, you can a
 - https://cloud-gpus.com/
 - https://getdeploying.com/reference/cloud-gpu
 
-Documentation:
+General documentation:
 
 - common patches: [troubleshooting.md](./troubleshooting.md)
 - outdated tutorial: https://hackmd.io/hYACdY2aR1-F3nRdU8q5dA
