@@ -165,11 +165,12 @@ conda update -n 'base' --update-all --yes
 title 'Removing unused packages and caches'
 conda clean --all --yes
 
-# Update conda to use libmamba solver
-title 'Updating conda to use libmamba solver'
+# Improve perf
+title 'Configuring conda'
 conda update -n base conda
 conda install -n base conda-libmamba-solver
 conda config --set solver libmamba
+conda config --set default_threads $(nproc)
 
 # Display information about this conda installation
 title 'Information about this conda installation'
