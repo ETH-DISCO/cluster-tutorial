@@ -65,9 +65,6 @@ Next:
 
 
 
-
-
-
 # 3. Submit batch jobs
 
 To submit a job to the cluster you can use the `sbatch` command. An example job script is provided in `job.sh` and you can submit it using `sbatch job.sh`.

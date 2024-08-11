@@ -40,6 +40,13 @@ conda-clean:
 	conda env list
 	$(CONDA_DEACTIVATE)
 
+.PHONY: up # pull and push to git
+up:
+	git pull
+	git add .
+	git commit -m "up"
+	git push
+
 .PHONY: help # generate help message
 help:
 	@grep '^.PHONY: .* #' Makefile | sed 's/\.PHONY: \(.*\) # \(.*\)/\1	\2/' | expand -t20
