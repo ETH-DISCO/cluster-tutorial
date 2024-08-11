@@ -124,8 +124,8 @@ mkdir -p /scratch/$USER
 cd /scratch/$USER
 
 # enter pytorch container
-apptainer build --sandbox /scratch/yjabary/pytorch_sandbox docker://pytorch/pytorch:latest
-apptainer shell --nv --bind /scratch/yjabary:/scratch/yjabary /scratch/yjabary/pytorch_sandbox
+apptainer build --sandbox /scratch/$USER/pytorch_sandbox docker://pytorch/pytorch:latest
+apptainer shell --nv --bind /scratch/$USER:/scratch/$USER /scratch/$USER/pytorch_sandbox
 
 # set up venv
 python -m venv /scratch/$USER/pytorch_env
