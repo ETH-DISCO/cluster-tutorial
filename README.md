@@ -129,7 +129,6 @@ Documentation:
 - jupyter notebook docs: https://computing.ee.ethz.ch/FAQ/JupyterNotebook?highlight=%28notebook%29
 - apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
 - apptainer example: https://gitlab.ethz.ch/disco/social/apptainer-examples/
-- troubleshooting: (troubleshooting.md)[./troubleshooting.md]
 
 Thanks to:
 
