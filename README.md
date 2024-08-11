@@ -132,28 +132,13 @@ cd /scratch/$USER
 
 # download sif (we don't have sudo privileges do build a .def file ourselves)
 apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
-
-
-
-
-
-apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvidia/cuda:11.8.0-base-ubuntu22.04
-
-# modify container (you can't combine --nv with --writable)
-apptainer shell --writable /scratch/$USER/cuda_sandbox
-export LC_ALL=C
-apt-get update
-apt-get install -y python3 python3-pip
-python3 --version
-exit
-
 apptainer shell --nv /scratch/$USER/cuda_sandbox
 nvidia-smi
 
 pip install --upgrade pip
-pip install --no-cache-dir jupyter
 
 # run notebook
+pip install --no-cache-dir jupyter
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
