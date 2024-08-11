@@ -23,7 +23,7 @@ Once you're in you'll have access to:
 
 Keep in mind:
 
-- to use >8 GPUs you need your supervisor's permission and reserve the nodes in advance in the shared calendar
+- to use >8 GPUs you need your supervisor's permission and must reserve the nodes in advance in the shared calendar
 - only submit jobs to `arton[01-08]`
 	- see all available nodes using `sinfo`
 	- the A100s with 80GB on `tikgpu10` need special privileges
