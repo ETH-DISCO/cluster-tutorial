@@ -37,7 +37,6 @@ alias watch_smon_free="watch --interval 300 --no-title --differences --color \"g
 alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt\""
 ```
 
-
 # a) Running Slurm jobs
 
 First we will run our little MNIST example written with Pytorch using Slurm jobs.
@@ -140,6 +139,8 @@ pip install --no-cache-dir jupyter
 echo -e "replace 'hostname' in jupyter link with: $(hostname -f)"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
+
+This should make working on the cluster feel like a breeze.
 
 # References
 
