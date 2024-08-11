@@ -129,11 +129,11 @@ exit # back to login node
 
 
 
+
+
 # Containerization using Singularity / Apptainer (optional)
 
 ... to be continued ...
-
-
 
 
 
