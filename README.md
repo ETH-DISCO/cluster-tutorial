@@ -102,6 +102,10 @@ exit # back to login node
 
 # Troubleshooting
 
+The following are patches for common isses experienced when using the cluster.
+
+---
+
 Fix: Error messages because of misconfigured locale.
 	
 ```bash
