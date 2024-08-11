@@ -100,6 +100,10 @@ conda remove --all --yes --name jupyternb
 exit # back to login node
 ```
 
+# Apptainer
+
+...
+
 # Troubleshooting
 
 The following are patches for common isses experienced when using the cluster.
@@ -109,6 +113,7 @@ The following are patches for common isses experienced when using the cluster.
 Fix: Ran out of memory while downloading dependencies.
 
 ```bash
+df -Th
 df -h /itet-stor/<username>/net_scratch/
 
 rm -rf ./itet-stor/<username>/net_scratch/*
