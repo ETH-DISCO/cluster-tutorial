@@ -139,7 +139,13 @@ pip install --no-cache-dir jupyter
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
+To tear everything down:
 
+```bash
+deactivate # exit venv
+exit # exit apptainer
+rm -rf ./* # wipe all dependencies
+```
 
 # References
 
