@@ -131,7 +131,7 @@ exit # back to login node
 
 
 
-# Containerization using Singularity / Apptainer (optional)
+# Apptainer for single file containerization
 
 ... to be continued ...
 
