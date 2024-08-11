@@ -21,7 +21,7 @@ ssh <username>@tik42x.ethz.ch
 Once you're in you'll have access to:
 
 - Compute: The login node is only for file management and job submission. Do not run any computation on the login node. Run batch jobs on the compute nodes using the SLURM system.
-- Storage: Use `/itet-stor/<username>/net_scratch` on the login-node and `/scratch/<username>` on the compute-nodes for temporary storage.
+- Storage: Use `/scratch/$USER` on the compute-nodes for temporary storage.
 
 Keep in mind:
 
@@ -47,7 +47,7 @@ alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"g
 Next we will run our little MNIST example written with Pytorch:
 
 ```bash
-# clone this repository into netscratch
+# clone this repository (uses ntfs, so it's very slow)
 cd /itet-stor/$USER/net_scratch/cluster
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 mv ./cluster-tutorial .
