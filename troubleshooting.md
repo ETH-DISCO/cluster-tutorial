@@ -9,6 +9,8 @@ export LC_CTYPE=UTF-8
 export LANG=C.UTF-8
 ```
 
+---
+
 Problem: Pip dependencies take too long to resolve.
 
 ```bash
