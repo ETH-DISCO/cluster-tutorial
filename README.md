@@ -122,8 +122,9 @@ srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 mkdir -p /scratch/<username>
 cd /scratch/<username>
 
-#
-...
+# run demo
+export APPTAINER_CACHEDIR=/scratch/<username>/.apptainer_cache
+
 ```
 
 
