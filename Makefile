@@ -8,19 +8,21 @@ CONDA_ACTIVATE_CON = source $$(conda info --base)/etc/profile.d/conda.sh ; conda
 
 .PHONY: conda-get-yaml # generate an environment yaml file
 conda-get-yaml:
-	conda update -n base conda
+	conda update -n base conda --yes
 	# conda config --env --set subdir osx-64
 	# conda config --env --set subdir osx-arm64
 	conda config --set auto_activate_base false
 	conda info
 
 	$(CONDA_ACTIVATE_BASE)
-	conda create --yes --name con python=3.11
-
+	conda create --yes --name con python=3.9
+	
 	$(CONDA_ACTIVATE_CON)
-	conda install --yes --file requirements.txt
+	# conda install --yes --file requirements.txt
+	# conda install pytorch torchvision torchaudio cpuonly -c pytorch
+	conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 
-	conda env export --name con > conda-environment.yml
+	conda env export --no-builds > conda-environment.yml
 
 	$(CONDA_DEACTIVATE)
 	conda remove --yes --name con --all
