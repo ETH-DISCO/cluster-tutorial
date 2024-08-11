@@ -42,7 +42,7 @@ alias watch_smon_free="watch --interval 300 --no-title --differences --color \"g
 alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt\""
 ```
 
-Next we will run a simple MNIST Pytorch example through the SLURM system.
+Next we will run our little MNIST example written with Pytorch:
 
 ```bash
 # upload your files using scp or clone this repository
@@ -65,13 +65,11 @@ sbatch job_array.sh
 watch -n 1 "squeue | grep '<username>'"
 ```
 
-Once you're done you can check the output in `check output in /itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. The output will be in the form of `<jobid>.out` or `<jobid>.err`.
+Once you're done you can check the output in `check output in /itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. The output will be in the form of `<jobid>.out` or `<jobid>.err` depending on which filepointer you've written to.
 
 # Debugging and Prototyping
 
-Job scripts don't show the output in real time.
-
-For debugging or prototyping purposes it might make sense to attach your terminal to individual compute nodes.
+Job scripts don't show the output in real time. For debugging or prototyping purposes it might make sense to attach your terminal to individual compute nodes.
 
 ```bash
 # check node availability
