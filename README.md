@@ -47,9 +47,10 @@ alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"g
 Next we will run our little MNIST example written with Pytorch:
 
 ```bash
-# upload your files using scp or clone this repository
-scp -r /path/to/local/folder <username>@tik42x.ethz.ch:/itet-stor/<username>/net_scratch/cluster
-cd /itet-stor/<username>/net_scratch/cluster
+# clone this repository into netscratch
+cd /itet-stor/$USER/net_scratch/cluster
+git clone https://github.com/ETH-DISCO/cluster-tutorial/
+mv ./cluster-tutorial .
 
 # install conda
 ./conda_install.sh
@@ -64,7 +65,7 @@ sbatch job.sh
 sbatch job_array.sh
 
 # check progress
-watch -n 1 "squeue | grep '<username>'"
+watch -n 1 "squeue | grep $USER"
 ```
 
 Once you're done you can check the output in `check output in /itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. The output will be in the form of `<jobid>.out` or `<jobid>.err` depending on which filepointer you've written to.
