@@ -118,26 +118,6 @@ conda remove --all --yes --name jupyternb
 exit # back to login node
 ```
 
-
-
-
-
-
-
-
-
-# Apptainer for single file containerization
-
-... to be continued ...
-
-
-
-
-
-
-
-
-
 # References
 
 Fallback: If you're on a tight schedule and things aren't working out, you can always fall back to cloud GPU providers. The best free option is Google Colab with a Tesla T4 and 12 hours of runtime per session (as of August 2024). Other options include:
@@ -152,6 +132,7 @@ Documentation:
 - conda install: https://computing.ee.ethz.ch/Programming/Languages/Conda
 - slurm docs: https://computing.ee.ethz.ch/Services/SLURM
 - jupyter notebook docs: https://computing.ee.ethz.ch/FAQ/JupyterNotebook?highlight=%28notebook%29
+- apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
 
 Thanks to:
 
