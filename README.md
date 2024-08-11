@@ -140,6 +140,7 @@ pip install --upgrade pip
 
 # run notebook
 pip install --no-cache-dir jupyter
+echo -e "replace 'hostname' in jupyter link with: $(hostname -f)"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
