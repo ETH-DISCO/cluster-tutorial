@@ -1,36 +1,26 @@
-This guide will help you getting started with the TIK cluster at ETH Zurich.
+This guide will help you get started with the TIK cluster at ETH Zurich.
 
 # 1. SSH into the cluster
 
-First enable your VPN connection to the ETH network.
+First, enable your VPN connection to the ETH network.
 
 - VPN documentation: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
-- Based on my experience the openconnect CLI doesn't work. So i suggest downloading the the cisco anyconnect client and using the following settings:
+- Based on my experience the openconnect CLI doesn't work. So I suggest downloading the the Cisco-Anyconnect client and using the following settings:
 	- server: `https://sslvpn.ethz.ch`
 	- username: `<username>@student-net.ethz.ch`
 	- password: your network password (also called Radius password, see: https://www.password.ethz.ch/)
 
-Then ssh into the tik42 login node and use your default password (also called LDAPS/AD password).
+Then ssh into the tik42 or j2tik login node and use your default password (also called LDAPS/AD password).
 
 ```bash
 ssh <username>@tik42x.ethz.ch
-```
-
-You can also configure a shortcut in your `~/.ssh/config` file to be able to ssh using just `ssh j2tik` or `ssh tik42x` in the future.
-
-```
-Host j2tik
-  HostName j2tik.ethz.ch
-  User <username>
-Host tik42x
-  HostName tik42x.ethz.ch
-  User <username>
+ssh <username>@j2tik.ethz.ch
 ```
 
 Once you're in you'll have access to:
 
-- Compute: The login node is only for file management and job submission. do not run any computation on the login node. Run batch jobs on the compute nodes using the SLURM system. SLURM is a common job scheduler used in many HPC systems so mastering it is time well spent. You'll find plenty of resources online.
-- Storage: Use `/itet-stor/<username>/net_scratch` to store your data.
+- Compute: The login node is only for file management and job submission. Do not run any computation on the login node. Run batch jobs on the compute nodes using the SLURM system.
+- Storage: Use `/itet-stor/<username>/net_scratch` on the login node and `/scratch/<username>` on the compute nodes for temporary storage.
 
 To upload your files to the storage you can use `scp` or clone your git repository directly on the cluster:
 
@@ -40,12 +30,12 @@ scp -r /path/to/local/folder <username>@tik42x.ethz.ch:/itet-stor/<username>/net
 
 Keep in mind:
 
-- to use >8 GPUs you need your supervisor's permission and reserve the nodes in advance in the shared calendar.
+- to use >8 GPUs you need your supervisor's permission and reserve the nodes in advance in the shared calendar
 - only submit jobs to `arton[01-08]`
 	- see all available nodes using `sinfo`
 	- the A100s with 80GB on `tikgpu10` need special privileges
 	- the A6000s with 48GB on `tikgpu08` need special privileges
-- set friendly `nice` values to your jobs and keep them short and efficient.
+- set friendly `nice` values to your jobs, keep them small and preferably as array jobs
 
 # 2. Setup
 
@@ -89,9 +79,9 @@ export LANGUAGE=en_US.UTF-8
 
 To submit a job to the cluster you can use the `sbatch` command. An example job script is provided in `job.sh` and you can submit it using `sbatch job.sh`.
 
-Similarly if you have lots of jobs, you can use an array job to start them all and make sure that only x of them are running at the same time. An example job script is provided in `job_array.sh` and you can submit it using `sbatch job_array.sh`.
+Similarly, if you have lots of jobs, you can use an array job to start them all and make sure that only x of them are running at the same time. An example job script is provided in `job_array.sh` and you can submit it using `sbatch job_array.sh`.
 
-To debug the scripts , you can create the conda environment using `conda env create -f env.yml` activate it with `conda activate cluster-tutorial` and call `python job.py`.
+To debug the scripts, you can create the conda environment using `conda env create -f env.yml` activate it with `conda activate cluster-tutorial` and call `python job.py`.
 
 
 
