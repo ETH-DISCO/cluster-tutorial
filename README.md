@@ -54,9 +54,9 @@ cd /itet-stor/<username>/net_scratch/cluster
 # install conda
 ./conda_install.sh
 
-# replace {{USERNAME}} with your <username> in the job script
-sed 's/{{USERNAME}}/<username>/g' job.sh > job.sh
-sed 's/{{USERNAME}}/<username>/g' job_array.sh > job_array.sh
+# replace {{USERNAME}} placeholder with your actual username
+sed 's/{{USERNAME}}/$USER/g' job.sh > job.sh
+sed 's/{{USERNAME}}/$USER/g' job_array.sh > job_array.sh
 
 # create job environment, dispatch job
 conda env create -f conda-environment.yml
