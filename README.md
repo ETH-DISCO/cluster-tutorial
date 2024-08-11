@@ -123,8 +123,7 @@ mkdir -p /scratch/<username>
 cd /scratch/<username>
 
 # run demo
-export APPTAINER_CACHEDIR=/scratch/<username>/.apptainer_cache
-
+apptainer build --sandbox tensorflow_sandbox docker://tensorflow/tensorflow:latest-gpu
 ```
 
 
