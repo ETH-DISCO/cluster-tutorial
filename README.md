@@ -59,9 +59,9 @@ Next run the `install_conda.sh` script to install Conda.
 
 # 3. Submit batch jobs
 
-To submit a job you need to create a job script and then submit it using `sbatch`.
+Job submission works through the Slurm `sbatch` command.
 
-Here's a simple example on how to run a pytorch script on the cluster both as a single job and as an array job:
+Here's a simple example on how to run a simple MNIST Pytorch script both on the cluster as a single job and as an array job:
 
 ```bash
 cd /itet-stor/<username>/net_scratch/cluster # ... copy your files here
