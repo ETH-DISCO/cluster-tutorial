@@ -123,7 +123,8 @@ mkdir -p /scratch/<username>
 cd /scratch/<username>
 
 # run demo
-apptainer build --sandbox tensorflow_sandbox docker://tensorflow/tensorflow:latest-gpu
+# apptainer build --sandbox tensorflow_sandbox docker://tensorflow/tensorflow:latest-gpu
+apptainer build --sandbox pytorch_sandbox docker://pytorch/pytorch:latest
 ```
 
 
