@@ -130,9 +130,10 @@ srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 mkdir -p /scratch/$USER
 cd /scratch/$USER
 
-# attach terminal to container (you can't combine --nv with --writable)
+# download sif (we don't have sudo privileges do build a .def file ourselves)
 apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvidia/cuda:11.8.0-base-ubuntu22.04
 
+# modify container (you can't combine --nv with --writable)
 apptainer shell --writable /scratch/$USER/cuda_sandbox
 export LC_ALL=C
 apt-get update
