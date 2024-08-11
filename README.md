@@ -64,9 +64,8 @@ To submit a job you need to create a job script and then submit it using `sbatch
 Here's a simple example on how to run a pytorch script on the cluster both as a single job and as an array job:
 
 ```bash
-# copy your files to the ./cluster folder in your storage
-cd /itet-stor/<username>/net_scratch/
-mkdir -p cluster
+cd /itet-stor/<username>/net_scratch/cluster
+# ... copy your code and data to this folder
 
 # replace {{USERNAME}} with your username in the job script
 sed 's/{{USERNAME}}/<username>/g' job.sh > job.sh
@@ -78,7 +77,7 @@ conda activate cluster-tutorial
 
 # submit the jobs
 sbatch job.sh
-sbatch job-array.sh
+sbatch job_array.sh
 
 # check progress
 squeue
