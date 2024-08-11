@@ -130,9 +130,16 @@ srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 mkdir -p /scratch/$USER
 cd /scratch/$USER
 
-# attach terminal to container
+# attach terminal to container (you can't combine --nv with --writable)
 apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvidia/cuda:11.8.0-base-ubuntu22.04
-apptainer shell --nv --bind /scratch/$USER:/scratch/$USER /scratch/$USER/cuda_sandbox
+
+apptainer shell --writable /scratch/$USER/cuda_sandbox
+apt-get update
+apt-get install -y python3 python3-pip
+python3 --version
+exit
+
+apptainer shell --nv /scratch/$USER/cuda_sandbox
 nvidia-smi
 
 
