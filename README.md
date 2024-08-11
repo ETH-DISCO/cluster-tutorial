@@ -144,14 +144,6 @@ echo -e "replace 'hostname' in jupyter link with: $(hostname -f)"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
-To tear everything down:
-
-```bash
-deactivate # exit venv
-exit # exit apptainer
-rm -rf ./* # wipe all dependencies
-```
-
 # References
 
 Fallback: If you're on a tight schedule and things aren't working out, you can always fall back to cloud GPU providers. The best free option is Google Colab with a Tesla T4 and 12 hours of runtime per session (as of August 2024). Other options include:
