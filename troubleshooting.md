@@ -14,5 +14,8 @@ export LANG=C.UTF-8
 Fix: Pip dependencies take too long to resolve.
 
 ```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+
 pip install <dependency> --upgrade --no-cache-dir --user --verbose
 ```
