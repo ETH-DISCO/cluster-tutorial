@@ -1,0 +1,97 @@
+Bootstrap: docker
+From: nvidia/cuda:11.8.0-devel-ubuntu22.04
+
+%files
+    ./run_training.sh /usr/local/bin/run_training.sh
+
+%post
+    # Set timezone and locale
+    TZ=Europe/Berlin
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+    echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+
+    # Update and install system packages
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        libgsl-dev \
+        ffmpeg \
+        libsm6 \
+        libxext6 \
+        libboost-all-dev \
+        vim \
+        software-properties-common \
+        wget \
+        ninja-build \
+        git  \
+        curl
+    # Get Python 3.7
+    # Add PPA to install Python 3.7 and g++-11
+    add-apt-repository ppa:deadsnakes/ppa -y
+    add-apt-repository ppa:ubuntu-toolchain-r/test -y
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        python3.7 \
+        python3.7-venv \
+        python3.7-dev \
+        g++-11
+
+    # Find the path to Python 3.7 and set it as the default python3
+    PYTHON37_PATH=$(which python3.7)
+    if [ -z "$PYTHON37_PATH" ]; then
+        echo "Python 3.7 not found"
+        exit 1
+    fi
+    update-alternatives --install /usr/bin/python3 python3 $PYTHON37_PATH 1
+    update-alternatives --set python3 $PYTHON37_PATH
+
+    # Ensure pip is installed for Python 3.7
+    curl -sS https://bootstrap.pypa.io/pip/3.7/get-pip.py | python3.7
+    # python3.7 -m ensurepip
+    python3.7 -m pip --version
+    python3.7 -m pip install --upgrade pip
+    python3.7 -m pip install --upgrade setuptools
+
+    # Install PyTorch and other required packages
+    python3.7 -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+    export SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
+    python3.7 -m pip install \
+        loguru==0.5.3 \
+        numpy==1.19.5 \
+        sknw==0.14 \
+        scikit_image==0.17.2 \
+        monai==0.7.0 \
+        matplotlib==3.2.1 \
+        vtk==9.0.3 \
+        pyvista==0.33.2 \
+        scipy==1.5.4 \
+        open3d==0.11.2 \
+        MedPy==0.4.0 \
+        timm==0.4.12 \
+        tqdm==4.62.3 \
+        ignite==1.1.0 \
+        einops==0.3.2 \
+        PyYAML==6.0 \
+        pytorch-ignite==0.4.9 \
+        tensorboard \
+        openmim \
+        simpleitk==2.2.1
+
+    # Installing the mmcv packages with mim instead of pip, much faster
+    mim install mmcv==1.6.0
+
+    # Make the run_training.sh script executable
+    chmod +x /usr/local/bin/run_training.sh
+
+    # Clean up
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
+
+%environment
+    export CUDA_HOME="/usr/local/cuda"
+    export LC_ALL=C
+    export PYTHONPATH=/vesselformer:$PYTHONPATH
+    export SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
+
+%runscript
+    /usr/local/bin/run_training.sh
