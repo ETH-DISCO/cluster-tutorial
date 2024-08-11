@@ -25,9 +25,8 @@ Keep in mind:
 
 - to use >8 GPUs you need your supervisor's permission and must reserve the nodes in advance in the shared calendar
 - only submit jobs to `arton[01-08]`
-	- see all available nodes using `sinfo`
-	- the A100s with 80GB on `tikgpu10` need special privileges
-	- the A6000s with 48GB on `tikgpu08` need special privileges
+- the A100s with 80GB on `tikgpu10` need special privileges
+- the A6000s with 48GB on `tikgpu08` need special privileges
 - set friendly `nice` values to your jobs, keep them small and preferably as array jobs
 
 # Running SLURM jobs
