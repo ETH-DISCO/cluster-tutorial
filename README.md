@@ -74,11 +74,11 @@ sed 's/{{USERNAME}}/<username>/g' job_array.sh > job_array.sh
 
 # create a conda environment for your job to run in
 conda env create -f conda-environment.yml
-conda activate cluster tutorial
+conda activate cluster-tutorial
 
 # submit the jobs
 sbatch job.sh
-sbatch job_array.sh
+sbatch job-array.sh
 
 # check progress
 squeue
