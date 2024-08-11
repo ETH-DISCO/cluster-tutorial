@@ -4,12 +4,15 @@ First, create the conda environment using `conda env create -f env.yml` then you
 
 Afterwards you can simply call `python main.py` and your MNIST training should start, double check the output on what type of GPU are you running?
 
+<!-- sed 's/{{USERNAME}}/John/g' test.txt > test2.txt -->
+
 ## Submit your first job
 
 We only use interactive sessions for debugging or prototyping and submit the rest of the jobs using jobscripts.
 A simple sample jobscript is provided in `job.sh`. NOTE: You have to adjust some parameters inside the script such as your username and the right directories!
 
 Then you can submit it using `sbatch job.sh`.
+
 ## Submit your first array job
 
 Similarly if you have lots of jobs, you can use an array job to start them all and make sure that only x of them are running at the same time.
