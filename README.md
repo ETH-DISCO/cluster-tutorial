@@ -55,7 +55,7 @@ mv ./cluster-tutorial .
 # install conda
 ./conda_install.sh
 
-# replace {{USERNAME}} placeholder with your actual username
+# replace the placeholders with your actual username
 sed 's/{{USERNAME}}/$USER/g' job.sh > job.sh
 sed 's/{{USERNAME}}/$USER/g' job_array.sh > job_array.sh
 
