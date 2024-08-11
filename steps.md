@@ -1,4 +1,4 @@
-This guide will help you get started with using the TIK cluster at ETH Zurich.
+This guide will help you getting started with the TIK cluster at ETH Zurich.
 
 # 1. SSH into the cluster
 
