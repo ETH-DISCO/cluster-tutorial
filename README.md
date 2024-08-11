@@ -118,7 +118,7 @@ squeue --Format=jobarrayid:9,state:10,partition:14,reasonlist:16,username:10,tre
 # attach to a tikgpu06 node assuming it's free
 srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
-# set up storage
+# set up storage (filesystem should be ext4, so a lot faster)
 mkdir -p /scratch/<username>
 cd /scratch/<username>
 
