@@ -120,8 +120,8 @@ squeue --Format=jobarrayid:9,state:10,partition:14,reasonlist:16,username:10,tre
 srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
 # set up storage (filesystem should be ext4, so a lot faster)
-mkdir -p /scratch/<username>
-cd /scratch/<username>
+mkdir -p /scratch/$USER
+cd /scratch/$USER
 
 # run cuda pytorch from jupyter notebook
 apptainer build --sandbox pytorch_sandbox docker://pytorch/pytorch:latest
