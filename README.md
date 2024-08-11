@@ -68,7 +68,7 @@ sbatch job_array.sh
 watch -n 1 "squeue | grep $USER"
 ```
 
-Once you're done you can check the output in `check output in /itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. The output will be in the form of `<jobid>.out` or `<jobid>.err` depending on which filepointer you've written to.
+Once you're done you can check the output in `check output in /itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. Each filepointer your script writes to (ie. stderr, stdout) will have its own file).
 
 ## 1.3. Debugging and Prototyping
 
@@ -83,8 +83,8 @@ squeue --Format=jobarrayid:9,state:10,partition:14,reasonlist:16,username:10,tre
 srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
 # set up storage
-mkdir -p /scratch/<username>
-cd /scratch/<username>
+mkdir -p /scratch/$USER
+cd /scratch/$USER
 
 # deploy notebook
 conda create --name jupyternb notebook --channel conda-forge
