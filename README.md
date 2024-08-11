@@ -125,6 +125,7 @@ cd /scratch/$USER
 
 # run notebook
 apptainer build --sandbox /scratch/$USER/pytorch_sandbox docker://pytorch/pytorch:latest
+apptainer shell --nv --bind /scratch/$USER:/scratch/$USER /scratch/$USER/pytorch_sandbox
 ```
 
 
