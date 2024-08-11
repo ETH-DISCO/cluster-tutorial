@@ -142,17 +142,6 @@ exit
 apptainer shell --nv /scratch/$USER/cuda_sandbox
 nvidia-smi
 
-
-
-
-apptainer build --sandbox /scratch/$USER/pytorch_sandbox docker://pytorch/pytorch:latest
-apptainer shell --nv --bind /scratch/$USER:/scratch/$USER /scratch/$USER/pytorch_sandbox
-
-# set up venv
-python -m venv /scratch/$USER/pytorch_env
-source /scratch/$USER/pytorch_env/bin/activate
-
-# install dependencies
 pip install --upgrade pip
 pip install --no-cache-dir jupyter
 
