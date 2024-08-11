@@ -3,20 +3,20 @@ import mnist_dataloader
 import torch
 from tqdm import tqdm
 
-def main():
 
+def main():
     # Get device
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     train_loader, test_loader = mnist_dataloader.get_dataloader()
     # Get a batch of training data and print the shape, dtype and device
     for x_batch, y_batch in train_loader:
-        print('x_batch.shape:', x_batch.shape)
-        print('x_batch.dtype:', x_batch.dtype)
-        print('x_batch.device:', x_batch.device)
-        print('y_batch.shape:', y_batch.shape)
-        print('y_batch.dtype:', y_batch.dtype)
-        print('y_batch.device:', y_batch.device)
+        print("x_batch.shape:", x_batch.shape)
+        print("x_batch.dtype:", x_batch.dtype)
+        print("x_batch.device:", x_batch.device)
+        print("y_batch.shape:", y_batch.shape)
+        print("y_batch.dtype:", y_batch.dtype)
+        print("y_batch.device:", y_batch.device)
         break
 
     model = mnist_classifier.MnistClassifier()
@@ -35,7 +35,7 @@ def main():
     for t in range(10):
         # Training pass
         iteration = 0
-        for x_batch, y_batch in tqdm(train_loader, desc=f'Epoch {t}', total=len(train_loader)):
+        for x_batch, y_batch in tqdm(train_loader, desc=f"Epoch {t}", total=len(train_loader)):
             # Move data to the device
             x_batch = x_batch.to(device)
             y_batch = y_batch.to(device)
@@ -65,10 +65,10 @@ def main():
                 total += y_batch.size(0)
                 correct += (predicted == y_batch).sum().item()
 
-        print(f'Epoch {t}: Accuracy: {correct / total}')
-        
-    print('Done!')
+        print(f"Epoch {t}: Accuracy: {correct / total}")
+
+    print("Done!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

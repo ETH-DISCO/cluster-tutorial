@@ -58,6 +58,7 @@ export LANG=C.UTF-8
 Next:
 
 - Run the `install_conda.sh` script to install Conda.
+- ...
 
 
 

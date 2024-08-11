@@ -1,3 +1,5 @@
+# --------------------------------------------------------------- conda
+
 .ONESHELL:
 SHELL = /bin/bash
 CONDA_DEACTIVATE = source $$(conda info --base)/etc/profile.d/conda.sh ; conda deactivate
@@ -6,7 +8,7 @@ CONDA_ACTIVATE_CON = source $$(conda info --base)/etc/profile.d/conda.sh ; conda
 
 .PHONY: conda-get-yaml # generate an environment yaml file
 conda-get-yaml:
-	conda config --env --set subdir osx-64
+	# conda config --env --set subdir osx-64
 	# conda config --env --set subdir osx-arm64
 	conda config --set auto_activate_base false
 	conda info
@@ -16,6 +18,7 @@ conda-get-yaml:
 
 	$(CONDA_ACTIVATE_CON)
 	pip install --upgrade pip setuptools wheel
+	pip install torch torchvision
 
 	# install packages
 	# ...
@@ -32,7 +35,8 @@ conda-get-yaml:
 conda-install-env:
 	$(CONDA_ACTIVATE_BASE)
 	conda env create --file conda-environment.yml
-	@echo -e "\033[0;32mcreated new conda environment. 'conda activate con' / 'conda deactivate'\033[0m"
+
+	@echo -e "\033[0;32mcreated new conda environment. to use, run 'conda activate con' or 'conda deactivate'.\033[0m"
 
 .PHONY: conda-clean # remove conda environment
 conda-clean:
@@ -40,7 +44,33 @@ conda-clean:
 	conda env list
 	$(CONDA_DEACTIVATE)
 
-.PHONY: up # pull and push to git
+# --------------------------------------------------------------- utils
+
+.PHONY: fmt # format and remove unused imports
+fmt:
+	pip install isort
+	isort .
+	pip install autoflake
+	autoflake --remove-all-unused-imports --recursive --in-place .
+
+	pip install ruff
+	ruff format --config line-length=500 .
+
+.PHONY: sec # check for common vulnerabilities
+sec:
+	pip install bandit
+	pip install safety
+	
+	bandit -r .
+	safety check --full-report
+
+.PHONY: reqs # generate requirements.txt file
+reqs:
+	pip install pipreqs
+	rm -rf requirements.txt
+	pipreqs .
+
+.PHONY: up # pull remote changes and push local changes
 up:
 	git pull
 	git add .

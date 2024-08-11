@@ -17,6 +17,7 @@ else:
     device = torch.device("cpu")
     print("No GPU available. Using CPU.")
 
+
 # Define a simple neural network
 class SimpleNet(nn.Module):
     def __init__(self):
@@ -32,10 +33,11 @@ class SimpleNet(nn.Module):
         x = self.fc2(x)
         return x
 
+
 # Load the MNIST dataset
 transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
 
-trainset = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)
+trainset = torchvision.datasets.MNIST(root="./data", train=True, download=True, transform=transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=64, shuffle=True)
 
 # Initialize the model and move it to the GPU if available
@@ -52,16 +54,16 @@ for epoch in range(num_epochs):
     for i, data in enumerate(trainloader, 0):
         inputs, labels = data
         inputs, labels = inputs.to(device), labels.to(device)
-        
+
         optimizer.zero_grad()
-        
+
         outputs = net(inputs)
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
-        
+
         running_loss += loss.item()
-        
+
     print(f"Epoch {epoch+1}/{num_epochs}, Loss: {running_loss/len(trainloader)}")
 
 print("Finished Training")

@@ -3,6 +3,7 @@ import torch
 # Images are 28x28 pixels
 # There are 10 classes (0-9)
 
+
 # Define the model
 class MnistClassifier(torch.nn.Module):
     def __init__(self):
@@ -13,7 +14,7 @@ class MnistClassifier(torch.nn.Module):
         self.conv4 = torch.nn.Conv2d(128, 128, kernel_size=5)
         self.fc1 = torch.nn.Linear(4608, 128)
         self.fc2 = torch.nn.Linear(128, 10)
-    
+
     def forward(self, x):
         x = torch.relu(self.conv1(x))
         x = torch.relu(self.conv2(x))
