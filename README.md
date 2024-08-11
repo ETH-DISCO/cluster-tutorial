@@ -121,11 +121,22 @@ srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
 # set up storage (filesystem should be ext4, so a lot faster)
 mkdir -p /scratch/$USER
+mkdir -p /scratch/$USER/pytorch_sandbox
 cd /scratch/$USER
 
+# enter pytorch container
+apptainer build --sandbox /scratch/yjabary/pytorch_sandbox docker://pytorch/pytorch:latest
+apptainer shell --nv --bind /scratch/yjabary:/scratch/yjabary /scratch/yjabary/pytorch_sandbox
+
+# set up venv
+python -m venv /scratch/$USER/pytorch_env
+source /scratch/$USER/pytorch_env/bin/activate
+
+# install dependencies
+pip install --no-cache-dir jupyter
+
 # run notebook
-apptainer build --sandbox /scratch/$USER/pytorch_sandbox docker://pytorch/pytorch:latest
-apptainer shell --nv --bind /scratch/$USER:/scratch/$USER /scratch/$USER/pytorch_sandbox
+jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
 
