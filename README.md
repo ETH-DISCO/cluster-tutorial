@@ -90,7 +90,7 @@ jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900
 
 The last instruction will display a public link that you can then use to access the notebook.
 
-To add additional dependencies you will need to add the following flags:
+To add additional dependencies once you're in the conda environment you will need to the following flags:
 
 ```bash
 pip install <dependency> --upgrade --no-cache-dir --user --verbose
@@ -99,7 +99,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-Make sure to deactivate the Conda environment once you're done:
+Make sure to deactivate the Conda environment when you're done:
 
 ```bash
 conda deactivate
