@@ -130,7 +130,14 @@ srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 mkdir -p /scratch/$USER
 cd /scratch/$USER
 
-# enter pytorch container
+# attach terminal to container
+apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvidia/cuda:11.8.0-base-ubuntu22.04
+apptainer shell --nv --bind /scratch/$USER:/scratch/$USER /scratch/$USER/cuda_sandbox
+nvidia-smi
+
+
+
+
 apptainer build --sandbox /scratch/$USER/pytorch_sandbox docker://pytorch/pytorch:latest
 apptainer shell --nv --bind /scratch/$USER:/scratch/$USER /scratch/$USER/pytorch_sandbox
 
