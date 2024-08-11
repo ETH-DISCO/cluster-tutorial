@@ -1,8 +1,6 @@
 This guide will help you get started with the TIK cluster at ETH Zurich.
 
-# 1. Introduction
-
-## 1.1. SSHing into the cluster
+# 1. SSHing into the cluster
 
 First, enable your VPN connection to the ETH network.
 
@@ -94,6 +92,15 @@ jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900
 
 The last instruction will display a public link that you can then use to access the notebook.
 
+To add additional dependencies you will need to add the following flags:
+
+```bash
+pip install <dependency> --upgrade --no-cache-dir --user --verbose
+
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
 Make sure to deactivate the conda environment after you're done:
 
 ```bash
@@ -156,7 +163,6 @@ Fallback: If you're on a tight schedule and things aren't working out, you can a
 
 General documentation:
 
-- common patches: [troubleshooting.md](./troubleshooting.md)
 - outdated tutorial: https://hackmd.io/hYACdY2aR1-F3nRdU8q5dA
 - up-to-date tutorial: https://gitlab.ethz.ch/disco-students/cluster
 - conda install: https://computing.ee.ethz.ch/Programming/Languages/Conda
