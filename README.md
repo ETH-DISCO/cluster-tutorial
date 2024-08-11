@@ -72,7 +72,7 @@ Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratc
 
 ## 1.3. Debugging and Prototyping
 
-By running Slurm scripts you won't see the logs in real-time which makes it hard to iterate fast over your projects. For debugging or prototyping purposes it might make sense to attach your terminal to individual compute nodes and then 
+By running Slurm scripts you won't see the logs in real-time which can slow you down during development. For debugging or prototyping purposes it might make sense to attach your terminal to individual compute nodes and then 
 
 ```bash
 # check node availability
