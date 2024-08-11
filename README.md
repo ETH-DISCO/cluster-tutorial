@@ -110,29 +110,7 @@ conda remove --all --yes --name jupyternb
 exit # back to login node
 ```
 
-# Troubleshooting
-
-Error messages because of misconfigured locale:
-
-```bash
-export LANGUAGE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export LC_CTYPE=UTF-8
-export LANG=C.UTF-8
-```
-
-Pip dependencies take too long to resolve:
-
-```bash
-pip install <dependency> --upgrade --no-cache-dir --user --verbose
-```
-
 # References
-
-Fallback: If you're on a tight schedule and things aren't working out, you can always fall back to cloud GPU providers. The best free option is Google Colab with a Tesla T4 and 12 hours of runtime per session (as of August 2024). Other options include:
-
-- https://cloud-gpus.com/
-- https://getdeploying.com/reference/cloud-gpu
 
 Documentation:
 
