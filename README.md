@@ -109,6 +109,8 @@ The following are patches for common isses experienced when using the cluster.
 Fix: Ran out of memory while downloading dependencies.
 
 ```bash
+df -h /itet-stor/<username>/net_scratch/
+
 rm -rf ./itet-stor/<username>/net_scratch/*
 ```
 
