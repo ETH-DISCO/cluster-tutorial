@@ -64,26 +64,22 @@ To submit a job you need to create a job script and then submit it using `sbatch
 Here's a simple example on how to run a pytorch script on the cluster both as a single job and as an array job:
 
 ```bash
-cd /itet-stor/<username>/net_scratch/cluster
-# ... copy your code and data to this folder
+cd /itet-stor/<username>/net_scratch/cluster # ... copy your files here
 
 # replace {{USERNAME}} with your username in the job script
 sed 's/{{USERNAME}}/<username>/g' job.sh > job.sh
 sed 's/{{USERNAME}}/<username>/g' job_array.sh > job_array.sh
 
-# create a conda environment for your job to run in
+# create job environment, dispatch job
 conda env create -f conda-environment.yml
-conda activate cluster-tutorial
-
-# submit the jobs
 sbatch job.sh
 sbatch job_array.sh
 
 # check progress
 squeue
-
-# check output in /itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/
 ```
+
+Once you're done you can check the output in `check output in /itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. The output will be in the form of `<jobid>.out` or `<jobid>.err`.
 
 # Debugging and Prototyping
 
