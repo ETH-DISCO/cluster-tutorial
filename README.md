@@ -33,7 +33,7 @@ Keep in mind:
 
 ## 1.2. Running SLURM jobs
 
-Before running a demo job, let's first add the following aliases to your `~/.bashrc.<username>`. Don't forget to run `source ~/.bashrc.<username>` afterwards:
+Before running a demo job, let's first add the following aliases to your `~/.bashrc.$USER`. Don't forget to run `source ~/.bashrc.$USER` afterwards:
 
 ```bash
 # convenience commands for slurm
