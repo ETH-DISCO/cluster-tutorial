@@ -27,12 +27,9 @@ Keep in mind:
 - the A6000s with 48GB on `tikgpu08` need special privileges
 - set friendly `nice` values to your jobs, keep them small and preferably as array jobs
 
-# a) Running SLURM jobs
-
-Before running a demo job, let's first add the following aliases to your `~/.bashrc.$USER` using the editor of your choice (ie. vim or nano). Don't forget to run `source ~/.bashrc.$USER` afterwards:
+It's also recommended to use the following aliases to figure out which machines are still free. Add them to your `~/.bashrc.$USER` using the editor of your choice (ie. vim or nano). Don't forget to run `source ~/.bashrc.$USER` afterwards:
 
 ```bash
-# convenience commands for slurm
 export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 alias smon_free="grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt"
 alias smon_mine="grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt"
@@ -40,7 +37,10 @@ alias watch_smon_free="watch --interval 300 --no-title --differences --color \"g
 alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt\""
 ```
 
-Next we will run our little MNIST example written with Pytorch:
+
+# a) Running Slurm jobs
+
+First we will run our little MNIST example written with Pytorch using Slurm jobs.
 
 ```bash
 # clone this repository
