@@ -121,7 +121,6 @@ srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
 # set up storage (filesystem should be ext4, so a lot faster)
 mkdir -p /scratch/$USER
-mkdir -p /scratch/$USER/pytorch_sandbox
 cd /scratch/$USER
 
 # enter pytorch container
