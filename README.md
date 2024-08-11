@@ -99,7 +99,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-Make sure to deactivate the conda environment after you're done:
+Make sure to deactivate the Conda environment once you're done:
 
 ```bash
 conda deactivate
