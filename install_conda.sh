@@ -165,10 +165,10 @@ title 'Removing unused packages and caches'
 conda clean --all --yes
 
 # Update conda to use libmamba solver
-title 'Updating conda to use libmamba solver'
-conda update -n base conda
-conda install -n base conda-libmamba-solver
-conda config --set solver libmamba
+# title 'Updating conda to use libmamba solver'
+# conda update -n base conda
+# conda install -n base conda-libmamba-solver
+# conda config --set solver libmamba
 
 # Display information about this conda installation
 title 'Information about this conda installation'
