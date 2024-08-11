@@ -11,7 +11,7 @@ export LANG=C.UTF-8
 
 ---
 
-Fix: Pip dependencies take too long to resolve.
+Fix: Can't install pip dependencies.
 
 ```bash
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
