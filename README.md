@@ -136,5 +136,6 @@ Documentation:
 
 Thanks to:
 
-- Andreas Plesner for the Apptainer examples
-- Joel Mathys for the initial guide and demo script
+- [Joel Mathys](https://github.com/iJorl) for the Slurm scripts
+- [Andreas Plesner](https://github.com/aplesner) for the Apptainer scripts and Hackmd tutorial
+
