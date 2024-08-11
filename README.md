@@ -66,7 +66,7 @@ Here's a simple example on how to run a simple MNIST Pytorch script both on the 
 ```bash
 cd /itet-stor/<username>/net_scratch/cluster # ... copy your files here
 
-# replace {{USERNAME}} with your username in the job script
+# replace {{USERNAME}} with your <username> in the job script
 sed 's/{{USERNAME}}/<username>/g' job.sh > job.sh
 sed 's/{{USERNAME}}/<username>/g' job_array.sh > job_array.sh
 
