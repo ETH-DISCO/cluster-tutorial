@@ -76,7 +76,7 @@ sbatch job.sh
 sbatch job_array.sh
 
 # check progress
-squeue
+watch -n 1 "squeue | grep '<username>'"
 ```
 
 Once you're done you can check the output in `check output in /itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. The output will be in the form of `<jobid>.out` or `<jobid>.err`.
