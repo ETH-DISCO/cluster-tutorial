@@ -138,17 +138,12 @@ exit # back to login node
 
 
 
+# References
 
-# Fallback
-
-If you're on a tight schedule and things aren't working out, you can always fall back to Google Colab or other cloud GPU providers. Here are some pricing comparisons:
+Fallback: If you're on a tight schedule and things aren't working out, you can always fall back to cloud GPU providers. The best free option is Google Colab with a Tesla T4 and 12 hours of runtime per session (as of August 2024). Other options include:
 
 - https://cloud-gpus.com/
 - https://getdeploying.com/reference/cloud-gpu
-
-As of August 2024, Google Colab's free tier offers a Tesla T4 with 15GB of RAM (the highest tier you can get for free) and 12 hours of runtime.
-
-# References
 
 Documentation:
 
