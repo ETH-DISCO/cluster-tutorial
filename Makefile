@@ -1,44 +1,39 @@
 # --------------------------------------------------------------- conda
 
-.ONESHELL:
-SHELL = /bin/bash
-CONDA_DEACTIVATE = source $$(conda info --base)/etc/profile.d/conda.sh ; conda deactivate
-CONDA_ACTIVATE_BASE = source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate base
-CONDA_ACTIVATE_CON = source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate con
-
 .PHONY: conda-get-yaml # generate an environment yaml file
 conda-get-yaml:
-	conda update -n base conda --yes
+	conda update -n base -c defaults conda
 	# conda config --env --set subdir osx-64
 	# conda config --env --set subdir osx-arm64
 	conda config --set auto_activate_base false
 	conda info
 
-	$(CONDA_ACTIVATE_BASE)
-	conda create --yes --name con python=3.9
-	
-	$(CONDA_ACTIVATE_CON)
-	# conda install --yes --file requirements.txt
-	# conda install pytorch torchvision torchaudio cpuonly -c pytorch
-	conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
-
-	conda env export --no-builds > conda-environment.yml
-
-	$(CONDA_DEACTIVATE)
-	conda remove --yes --name con --all
+	@bash -c '\
+		source $$(conda info --base)/etc/profile.d/conda.sh; conda activate base; \
+		conda create --yes --name con python=3.11; \
+		source $$(conda info --base)/etc/profile.d/conda.sh; conda activate con; \
+		\
+		pip install -r requirements.txt; \
+		\
+		conda env export --no-builds | grep -v "prefix:" > conda-environment.yml; \
+		source $$(conda info --base)/etc/profile.d/conda.sh; conda deactivate; \
+		conda remove --yes --name con --all; \
+	'
 
 .PHONY: conda-install # install conda environment from yaml file
 conda-install:
-	$(CONDA_ACTIVATE_BASE)
-	conda env create --file conda-environment.yml --verbose
-
-	@echo -e "\033[0;32mcreated new conda environment. to use, run 'conda activate con' or 'conda deactivate'.\033[0m"
+	@bash -c '\
+		source $$(conda info --base)/etc/profile.d/conda.sh; conda activate base; \
+		conda env create --file conda-environment.yml; \
+	'
 
 .PHONY: conda-clean # remove conda environment
 conda-clean:
-	conda remove --yes --name con --all
-	conda env list
-	$(CONDA_DEACTIVATE)
+	@bash -c '\
+		source $$(conda info --base)/etc/profile.d/conda.sh; conda activate base; \
+		conda remove --yes --name con --all; \
+		source $$(conda info --base)/etc/profile.d/conda.sh; conda deactivate; \
+	'
 
 # --------------------------------------------------------------- utils
 
@@ -70,7 +65,7 @@ reqs:
 up:
 	git pull
 	git add .
-	git commit -m "up"
+	if [ -z "$(msg)" ]; then git commit -m "up"; else git commit -m "$(msg)"; fi
 	git push
 
 .PHONY: help # generate help message
