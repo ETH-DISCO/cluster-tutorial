@@ -86,7 +86,7 @@ srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 mkdir -p /scratch/$USER
 cd /scratch/$USER
 
-# deploy notebook
+# run notebook
 conda create --name jupyternb notebook --channel conda-forge
 conda activate jupyternb
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
@@ -123,9 +123,8 @@ srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 mkdir -p /scratch/$USER
 cd /scratch/$USER
 
-# run cuda pytorch from jupyter notebook
-apptainer build --sandbox pytorch_sandbox docker://pytorch/pytorch:latest
-apptainer shell --nv pytorch_sandbox
+# run notebook
+apptainer build --sandbox /scratch/$USER/pytorch_sandbox docker://pytorch/pytorch:latest
 ```
 
 
