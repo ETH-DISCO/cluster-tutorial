@@ -105,7 +105,6 @@ Make sure to deactivate the Conda environment when you're done:
 conda deactivate
 conda env list
 conda remove --all --yes --name jupyternb
-exit # back to login node
 ```
 
 # c) Using Apptainer 🔥
