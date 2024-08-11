@@ -47,12 +47,6 @@ alias smon_free="grep --color=always --extended-regexp 'free|$' /home/sladmitet/
 alias smon_mine="grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt"
 alias watch_smon_free="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt\""
 alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt\""
-
-# troubleshooting for common issues
-export LANGUAGE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export LC_CTYPE=UTF-8
-export LANG=C.UTF-8
 ```
 
 Next run the `install_conda.sh` script to install Conda.
@@ -116,6 +110,23 @@ conda remove --all --yes --name jupyternb
 exit # back to login node
 ```
 
+# Troubleshooting
+
+Error messages because of misconfigured locale:
+
+```bash
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=UTF-8
+export LANG=C.UTF-8
+```
+
+Pip dependencies take too long to resolve:
+
+```bash
+pip install <dependency> --upgrade --no-cache-dir --user --verbose
+```
+
 # References
 
 Fallback: If you're on a tight schedule and things aren't working out, you can always fall back to cloud GPU providers. The best free option is Google Colab with a Tesla T4 and 12 hours of runtime per session (as of August 2024). Other options include:
@@ -131,6 +142,7 @@ Documentation:
 - slurm docs: https://computing.ee.ethz.ch/Services/SLURM
 - jupyter notebook docs: https://computing.ee.ethz.ch/FAQ/JupyterNotebook?highlight=%28notebook%29
 - apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
+- apptainer example: https://gitlab.ethz.ch/disco/social/apptainer-examples/
 
 Thanks to:
 
