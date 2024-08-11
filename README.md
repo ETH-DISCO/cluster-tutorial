@@ -59,36 +59,32 @@ Next run the `install_conda.sh` script to install Conda.
 
 # 3. Submit batch jobs
 
+To submit a job you need to create a job script and then submit it using `sbatch`.
+
+Here's a simple example on how to run a pytorch script on the cluster both as a single job and as an array job:
+
 ```bash
+# copy your files to the ./cluster folder in your storage
 cd /itet-stor/<username>/net_scratch/
+mkdir -p cluster
+
+# replace {{USERNAME}} with your username in the job script
+sed 's/{{USERNAME}}/<username>/g' job.sh > job.sh
+sed 's/{{USERNAME}}/<username>/g' job_array.sh > job_array.sh
+
+# create a conda environment for your job to run in
+conda env create -f conda-environment.yml
+conda activate cluster tutorial
+
+# submit the jobs
+sbatch job.sh
+sbatch job_array.sh
+
+# check progress
+squeue
+
+# check output in /itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/
 ```
-
-
-
-<!-- This repository contains a sample MNIST script in `main.py`. 
-
-First, create the conda environment using `conda env create -f env.yml` then you can activate it using `conda activate intro-cluster`.
-
-Afterwards you can simply call `python main.py` and your MNIST training should start, double check the output on what type of GPU are you running?
-
------- sed 's/{{USERNAME}}/John/g' test.txt > test2.txt
-
-## Submit your first job
-
-We only use interactive sessions for debugging or prototyping and submit the rest of the jobs using jobscripts.
-A simple sample jobscript is provided in `job.sh`. NOTE: You have to adjust some parameters inside the script such as your username and the right directories!
-
-Then you can submit it using `sbatch job.sh`.
-
-## Submit your first array job
-
-Similarly if you have lots of jobs, you can use an array job to start them all and make sure that only x of them are running at the same time.
-A similar sample script is proivded and you can use `sbatch array_job.sh` to try it.
-
- -->
-
-
-
 
 # Debugging and Prototyping
 
@@ -164,3 +160,8 @@ As of August 2024, Google Colab's free tier offers a Tesla T4 with 15GB of RAM (
 - conda install: https://computing.ee.ethz.ch/Programming/Languages/Conda
 - slurm docs: https://computing.ee.ethz.ch/Services/SLURM
 - jupyter notebook docs: https://computing.ee.ethz.ch/FAQ/JupyterNotebook?highlight=%28notebook%29
+
+Thanks to:
+
+- Andreas Plesner for the Apptainer examples
+- Joel Mathys for the initial guide and demo script

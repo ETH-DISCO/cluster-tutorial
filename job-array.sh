@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --mail-type=NONE # mail configuration: NONE, BEGIN, END, FAIL, REQUEUE, ALL
-#SBATCH --output=/itet-stor/TODO_USERNAME/net_scratch/cluster/jobs/%A-%a.out # where to store the output (%j is the JOBID), subdirectory "log" must exist
-#SBATCH --error=/itet-stor/TODO_USERNAME/net_scratch/cluster/jobs/%A-%a.err # where to store error messages
+#SBATCH --output=/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/%A-%a.out # where to store the output (%j is the JOBID), subdirectory "log" must exist
+#SBATCH --error=/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/%A-%a.err # where to store error messages
 #SBATCH --mem=20G
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=4
@@ -12,14 +12,14 @@
 #CommentSBATCH --account=tik-internal
 #CommentSBATCH --constraint='titan_rtx|tesla_v100|titan_xp|a100_80gb'
 
+ETH_USERNAME={{USERNAME}}
 
+# ------------------------------------------ end of configuration ------------------------------------------
 
-ETH_USERNAME=TODO_USERNAME
 PROJECT_NAME=cluster
 DIRECTORY=/itet-stor/${ETH_USERNAME}/net_scratch/${PROJECT_NAME}
 CONDA_ENVIRONMENT=cluster-tutorial
 mkdir -p ${DIRECTORY}/jobs
-#TODO: change your ETH USERNAME and other stuff from above according + in the #SBATCH output and error the path needs to be double checked!
 
 # Exit on errors
 set -o errexit
@@ -53,7 +53,7 @@ cd ${DIRECTORY}
 
 # Execute your code
 # Here you want to use a different configuration depending on $SLUM_ARRAY_TASK_ID
-python main_array.py ${SLURM_ARRAY_TASK_ID}
+python job_array.py ${SLURM_ARRAY_TASK_ID}
 
 # Send more noteworthy information to the output log
 echo "Finished at: $(date)"
