@@ -134,6 +134,7 @@ cd /scratch/$USER
 apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvidia/cuda:11.8.0-base-ubuntu22.04
 
 apptainer shell --writable /scratch/$USER/cuda_sandbox
+export LC_ALL=C
 apt-get update
 apt-get install -y python3 python3-pip
 python3 --version
