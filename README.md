@@ -131,6 +131,12 @@ mkdir -p /scratch/$USER
 cd /scratch/$USER
 
 # download sif (we don't have sudo privileges do build a .def file ourselves)
+apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
+
+
+
+
+
 apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvidia/cuda:11.8.0-base-ubuntu22.04
 
 # modify container (you can't combine --nv with --writable)
