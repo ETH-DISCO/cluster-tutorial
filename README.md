@@ -1,6 +1,6 @@
 This guide will help you get started with the TIK cluster at ETH Zurich.
 
-# 1. SSH into the cluster
+# SSHing into the cluster
 
 First, enable your VPN connection to the ETH network.
 
@@ -30,9 +30,9 @@ Keep in mind:
 	- the A6000s with 48GB on `tikgpu08` need special privileges
 - set friendly `nice` values to your jobs, keep them small and preferably as array jobs
 
-# 2. Setup
+# Running SLURM jobs
 
-First add the following instructions to your `~/.bashrc.<username>` file and then run `source ~/.bashrc.<username>`:
+Before running a demo job, let's first add the following aliases to your `~/.bashrc.<username>`. Don't forget to run `source ~/.bashrc.<username>` afterwards:
 
 ```bash
 # convenience commands for slurm
@@ -43,9 +43,7 @@ alias watch_smon_free="watch --interval 300 --no-title --differences --color \"g
 alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt\""
 ```
 
-# 3. Submit batch jobs
-
-Here's a simple example on how to run a simple MNIST Pytorch script through Slurm:
+Next we will run a simple MNIST Pytorch example through the SLURM system.
 
 ```bash
 # upload your files using scp or clone this repository
