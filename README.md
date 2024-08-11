@@ -68,7 +68,7 @@ sbatch job_array.sh
 watch -n 1 "squeue | grep $USER"
 ```
 
-Once you're done you can check the output in `check output in /itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. Each filepointer your script writes to (ie. stderr, stdout) will have its own file).
+Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. Each filepointer your script writes to (ie. stderr, stdout) will have its own file).
 
 ## 1.3. Debugging and Prototyping
 
