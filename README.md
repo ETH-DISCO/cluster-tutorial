@@ -109,6 +109,7 @@ Fallback: If you're on a tight schedule and things aren't working out, you can a
 
 Documentation:
 
+- common patches: [troubleshooting.md](./troubleshooting.md)
 - outdated tutorial: https://hackmd.io/hYACdY2aR1-F3nRdU8q5dA
 - up-to-date tutorial: https://gitlab.ethz.ch/disco-students/cluster
 - conda install: https://computing.ee.ethz.ch/Programming/Languages/Conda
@@ -116,7 +117,6 @@ Documentation:
 - jupyter notebook docs: https://computing.ee.ethz.ch/FAQ/JupyterNotebook?highlight=%28notebook%29
 - apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
 - apptainer example: https://gitlab.ethz.ch/disco/social/apptainer-examples/
-- common patches: [troubleshooting.md](./troubleshooting.md)
 
 Thanks to:
 
