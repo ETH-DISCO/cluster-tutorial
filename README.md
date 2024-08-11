@@ -110,7 +110,6 @@ conda remove --all --yes --name jupyternb
 exit # back to login node
 ```
 
-
 # Troubleshooting
 
 Error messages because of misconfigured locale:
