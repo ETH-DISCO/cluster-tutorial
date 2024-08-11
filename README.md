@@ -135,6 +135,7 @@ apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/py
 apptainer shell --nv /scratch/$USER/cuda_sandbox
 nvidia-smi
 
+python -m pip install --upgrade pip
 pip install --upgrade pip
 
 # run notebook
