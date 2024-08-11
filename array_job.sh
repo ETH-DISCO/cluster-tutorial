@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --mail-type=NONE # mail configuration: NONE, BEGIN, END, FAIL, REQUEUE, ALL
-#SBATCH --output=/itet-stor/yjabary/net_scratch/cluster/jobs/%A-%a.out # where to store the output (%j is the JOBID), subdirectory "log" must exist
-#SBATCH --error=/itet-stor/yjabary/net_scratch/cluster/jobs/%A-%a.err # where to store error messages
+#SBATCH --output=/itet-stor/TODO_USERNAME/net_scratch/cluster/jobs/%A-%a.out # where to store the output (%j is the JOBID), subdirectory "log" must exist
+#SBATCH --error=/itet-stor/TODO_USERNAME/net_scratch/cluster/jobs/%A-%a.err # where to store error messages
 #SBATCH --mem=20G
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=4
@@ -14,10 +14,10 @@
 
 
 
-ETH_USERNAME=yjabary
+ETH_USERNAME=TODO_USERNAME
 PROJECT_NAME=cluster
 DIRECTORY=/itet-stor/${ETH_USERNAME}/net_scratch/${PROJECT_NAME}
-CONDA_ENVIRONMENT=intro-cluster
+CONDA_ENVIRONMENT=cluster-tutorial
 mkdir -p ${DIRECTORY}/jobs
 #TODO: change your ETH USERNAME and other stuff from above according + in the #SBATCH output and error the path needs to be double checked!
 
