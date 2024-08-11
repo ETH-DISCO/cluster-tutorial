@@ -132,6 +132,7 @@ python -m venv /scratch/$USER/pytorch_env
 source /scratch/$USER/pytorch_env/bin/activate
 
 # install dependencies
+pip install --upgrade pip
 pip install --no-cache-dir jupyter
 
 # run notebook
