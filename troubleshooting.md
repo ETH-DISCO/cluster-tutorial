@@ -1,6 +1,4 @@
-The following are patches for common isses experienced when using the cluster.
-
-<br><br>
+# Conda issues
 
 Fix: Ran out of memory.
 
