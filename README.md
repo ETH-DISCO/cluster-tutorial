@@ -44,8 +44,7 @@ First we will run our little MNIST example written with Pytorch using Slurm jobs
 ```bash
 # clone this repository
 cd /itet-stor/$USER/net_scratch/cluster
-git clone https://github.com/ETH-DISCO/cluster-tutorial/
-mv ./cluster-tutorial .
+git clone https://github.com/ETH-DISCO/cluster-tutorial/ .
 
 # install conda
 ./conda_install.sh
