@@ -126,7 +126,7 @@ srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 mkdir -p /scratch/$USER
 cd /scratch/$USER
 
-# download sif (we don't have sudo privileges do build a .def file ourselves)
+# download sif (we don't have sudo privileges to build a .def file ourselves)
 apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 apptainer shell --nv /scratch/$USER/cuda_sandbox
 nvidia-smi
