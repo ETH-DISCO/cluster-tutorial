@@ -74,7 +74,7 @@ smon_free
 squeue --Format=jobarrayid:9,state:10,partition:14,reasonlist:16,username:10,tres-alloc:47,timeused:11,command:140,nodelist:20
 
 # attach to a tikgpu06 node assuming it's free
-srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
+srun --mem=50GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
 # set up storage
 mkdir -p /scratch/$USER
@@ -119,7 +119,7 @@ smon_free
 squeue --Format=jobarrayid:9,state:10,partition:14,reasonlist:16,username:10,tres-alloc:47,timeused:11,command:140,nodelist:20
 
 # attach to a tikgpu06 node assuming it's free
-srun --mem=250GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
+srun --mem=50GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
 # set up storage (filesystem should be ext4, so a lot faster)
 mkdir -p /scratch/$USER
