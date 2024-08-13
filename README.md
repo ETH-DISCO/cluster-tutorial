@@ -150,6 +150,7 @@ Fallback: If you're on a tight schedule and things aren't working out, you can a
 
 General documentation:
 
+- best practice: https://computing.ee.ethz.ch/Services/HPCStorageIOBestPracticeGuidelines
 - outdated tutorial: https://hackmd.io/hYACdY2aR1-F3nRdU8q5dA
 - up-to-date tutorial: https://gitlab.ethz.ch/disco-students/cluster
 - conda install: https://computing.ee.ethz.ch/Programming/Languages/Conda
