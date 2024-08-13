@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --mail-type=NONE # mail configuration: NONE, BEGIN, END, FAIL, REQUEUE, ALL
-#SBATCH --output=/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/%j.out # where to store the output (%j is the JOBID), subdirectory "jobs" must exist
+#SBATCH --output=/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/%j.out # where to store the output (%j is the JOBID), subdirectories must exist
 #SBATCH --error=/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/%j.err # where to store error messages
 #SBATCH --mem=20G
 #SBATCH --nodes=1
