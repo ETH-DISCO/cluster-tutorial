@@ -141,7 +141,8 @@ rm -rf /scratch_net/$USER/*
 mkdir -p /scratch/$USER
 cd /scratch/$USER
 
-# redirect cache
+# setup cache
+apptainer cache clean
 rm -rf "$PWD/.apptainer/cache"
 rm -rf "$PWD/.apptainer/tmp"
 mkdir -p "$PWD/.apptainer/cache"
