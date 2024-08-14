@@ -144,16 +144,36 @@ cd /scratch/$USER
 apptainer cache clean
 rm -rf "$PWD/.apptainer/cache"
 rm -rf "$PWD/.apptainer/tmp"
+rm -rf "$PWD/.apptainer/work"
 mkdir -p "$PWD/.apptainer/cache"
 mkdir -p "$PWD/.apptainer/tmp"
+mkdir -p "$PWD/.apptainer/work"
 export APPTAINER_CACHEDIR=/scratch/$USER/.apptainer/cache
 export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
+export APPTAINER_WORKDIR="/scratch/$USER/.apptainer/work"
+export APPTAINER_BINDPATH="/scratch/$USER:/scratch/$USER"
+export APPTAINER_CONTAIN=1
 
 # download sif (we don't have sudo privileges to build a .def file ourselves)
 # apptainer build --tmpdir /scratch/$USER/.apptainer/tmp --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
-apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
-apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
-apptainer shell --nv /scratch/$USER/cuda_sandbox
+# apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
+# apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
+
+apptainer build --sandbox \
+  --bind "/scratch/$USER:/scratch/$USER" \
+  --workdir "/scratch/$USER/.apptainer/work" \
+  --contain \
+  /scratch/$USER/cuda_sandbox \
+  docker://nvcr.io/nvidia/pytorch:23.08-py3
+
+# apptainer shell --nv /scratch/$USER/cuda_sandbox
+
+apptainer shell --nv \
+  --bind "/scratch/$USER:/scratch/$USER" \
+  --workdir "/scratch/$USER/.apptainer/work" \
+  --contain \
+  /scratch/$USER/cuda_sandbox
+
 nvidia-smi
 
 python -m pip install --upgrade pip
