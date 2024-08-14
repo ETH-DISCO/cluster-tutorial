@@ -115,6 +115,8 @@ Here's how:
 ```bash
 # clean up storage
 find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
+rm -rf /scratch/$USER/*
+rm -rf /scratch_net/$USER/*
 
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
