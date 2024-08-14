@@ -118,6 +118,14 @@ find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
 
+# fix locale issues
+unset LANG
+unset LANGUAGE
+unset LC_ALL
+unset LC_CTYPE
+echo 'export LANG=C.UTF-8' >> ~/.bashrc
+export LANG=C.UTF-8
+
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
