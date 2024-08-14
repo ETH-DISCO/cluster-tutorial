@@ -113,6 +113,9 @@ Fortunately, our admins provide Apptainer, a containerization tool similar to Do
 Here's how:
 
 ```bash
+# clean up storage
+find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
+
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
