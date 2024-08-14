@@ -152,16 +152,22 @@ export APPTAINER_BINDPATH="/scratch/$USER:/scratch/$USER"
 export APPTAINER_CONTAIN=1
 
 # download sif (we don't have sudo privileges to build a .def file ourselves)
-# apptainer build --tmpdir /scratch/$USER/.apptainer/tmp --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 # apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 # apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
+# apptainer shell --nv /scratch/$USER/cuda_sandbox
 
 apptainer build --sandbox \
   --bind "/scratch/$USER:/scratch/$USER" \
   /scratch/$USER/cuda_sandbox \
   docker://nvcr.io/nvidia/pytorch:23.08-py3
 
-# apptainer shell --nv /scratch/$USER/cuda_sandbox
+
+apptainer shell --nv \
+  --bind "/scratch/$USER:/scratch/$USER" \
+  --home /scratch/$USER/.apptainer/home:/home/$USER \
+  --pwd /scratch/$USER \
+  /scratch/$USER/cuda_sandbox
+
 
 nvidia-smi
 
