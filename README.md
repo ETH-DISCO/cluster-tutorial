@@ -151,7 +151,7 @@ export APPTAINER_CACHEDIR=/scratch/$USER/.apptainer/cache
 export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
 
 # download sif (we don't have sudo privileges to build a .def file ourselves)
-# else also use: --disable-cache
+# alternatively also use: --disable-cache
 apptainer build --tmpdir /scratch/$USER/.apptainer/tmp --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 apptainer shell --nv /scratch/$USER/cuda_sandbox
