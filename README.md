@@ -135,12 +135,10 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
 # set up storage (filesystem should be ext4, so a lot faster)
-find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
 mkdir -p /scratch/$USER
 cd /scratch/$USER
-
 apptainer cache clean
 rm -rf "$PWD/.apptainer/cache"
 rm -rf "$PWD/.apptainer/tmp"
@@ -159,7 +157,6 @@ apptainer build --sandbox \
   --bind "/scratch/$USER:/scratch/$USER" \
   /scratch/$USER/cuda_sandbox \
   docker://nvcr.io/nvidia/pytorch:23.08-py3
-
 
 apptainer shell --nv \
   --bind "/scratch/$USER:/scratch/$USER" \
