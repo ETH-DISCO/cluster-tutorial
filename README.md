@@ -11,8 +11,8 @@ First, enable your VPN connection to the ETH network.
 Then ssh into the tik42 or j2tik login node and use your default password (also called LDAPS/AD password) and set the `SLURM_CONF` variable.
 
 ```bash
-export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 ssh <username>@tik42x.ethz.ch
+export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 ```
 
 Once you're in you'll have access to:
