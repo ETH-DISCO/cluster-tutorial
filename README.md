@@ -130,13 +130,19 @@ export LANG=C.UTF-8
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
 # attach to a tikgpu06 node assuming it's free
-srun --mem=50GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
+srun --mem=100GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
+
+# clean up storage
+find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
+rm -rf /scratch/$USER/*
+rm -rf /scratch_net/$USER/*
 
 # set up storage (filesystem should be ext4, so a lot faster)
 mkdir -p /scratch/$USER
 cd /scratch/$USER
 
 # download sif (we don't have sudo privileges to build a .def file ourselves)
+export APPTAINER_CACHEDIR="$PWD/.apptainer_cache"
 apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 apptainer shell --nv /scratch/$USER/cuda_sandbox
 nvidia-smi
