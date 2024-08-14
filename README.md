@@ -70,8 +70,7 @@ By running Slurm scripts you won't see the logs in real-time which can slow you 
 
 ```bash
 # check node availability
-smon_free
-squeue --Format=jobarrayid:9,state:10,partition:14,reasonlist:16,username:10,tres-alloc:47,timeused:11,command:140,nodelist:20
+grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
 # attach to a tikgpu06 node assuming it's free
 srun --mem=50GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
@@ -115,8 +114,7 @@ Here's how:
 
 ```bash
 # check node availability
-smon_free
-squeue --Format=jobarrayid:9,state:10,partition:14,reasonlist:16,username:10,tres-alloc:47,timeused:11,command:140,nodelist:20
+grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
 # attach to a tikgpu06 node assuming it's free
 srun --mem=50GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
