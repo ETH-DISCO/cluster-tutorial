@@ -8,11 +8,35 @@ First, enable your VPN connection to the ETH network.
 	- username: `<username>@student-net.ethz.ch`
 	- password: your network password (also called Radius password, see: https://www.password.ethz.ch/)
 
-Then ssh into the tik42 or j2tik login node and use your default password (also called LDAPS/AD password) and set the `SLURM_CONF` variable.
+Then ssh into the tik42 or j2tik login node and use your default password (also called LDAPS/AD password) and do some initial setup:
 
 ```bash
 ssh <username>@tik42x.ethz.ch
+
+# set slurm path
 export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
+
+# clean up storage
+find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
+rm -rf /scratch/$USER/*
+rm -rf /scratch_net/$USER/*
+
+# fix locale issues
+unset LANG
+unset LANGUAGE
+unset LC_ALL
+unset LC_CTYPE
+echo 'export LANG=C.UTF-8' >> ~/.bashrc
+export LANG=C.UTF-8
+```
+
+It's also recommended to use the following aliases to figure out which machines are still free. Add them to your `~/.bashrc.$USER` using the editor of your choice (ie. vim or nano). Don't forget to run `source ~/.bashrc.$USER` afterwards:
+
+```bash
+alias smon_free="grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt"
+alias smon_mine="grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt"
+alias watch_smon_free="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt\""
+alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt\""
 ```
 
 Once you're in you'll have access to:
@@ -27,15 +51,6 @@ Keep in mind:
 - the A100s with 80GB on `tikgpu10` need special privileges
 - the A6000s with 48GB on `tikgpu08` need special privileges
 - set friendly `nice` values to your jobs, keep them small and preferably as array jobs
-
-It's also recommended to use the following aliases to figure out which machines are still free. Add them to your `~/.bashrc.$USER` using the editor of your choice (ie. vim or nano). Don't forget to run `source ~/.bashrc.$USER` afterwards:
-
-```bash
-alias smon_free="grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt"
-alias smon_mine="grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt"
-alias watch_smon_free="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt\""
-alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt\""
-```
 
 # a) Running Slurm jobs
 
@@ -113,19 +128,6 @@ Fortunately, our admins provide Apptainer, a containerization tool similar to Do
 Here's how:
 
 ```bash
-# clean up storage
-find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
-rm -rf /scratch/$USER/*
-rm -rf /scratch_net/$USER/*
-
-# fix locale issues
-unset LANG
-unset LANGUAGE
-unset LC_ALL
-unset LC_CTYPE
-echo 'export LANG=C.UTF-8' >> ~/.bashrc
-export LANG=C.UTF-8
-
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
