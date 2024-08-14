@@ -8,9 +8,10 @@ First, enable your VPN connection to the ETH network.
 	- username: `<username>@student-net.ethz.ch`
 	- password: your network password (also called Radius password, see: https://www.password.ethz.ch/)
 
-Then ssh into the tik42 or j2tik login node and use your default password (also called LDAPS/AD password).
+Then ssh into the tik42 or j2tik login node and use your default password (also called LDAPS/AD password) and set the `SLURM_CONF` variable.
 
 ```bash
+export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 ssh <username>@tik42x.ethz.ch
 ```
 
@@ -30,7 +31,6 @@ Keep in mind:
 It's also recommended to use the following aliases to figure out which machines are still free. Add them to your `~/.bashrc.$USER` using the editor of your choice (ie. vim or nano). Don't forget to run `source ~/.bashrc.$USER` afterwards:
 
 ```bash
-export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 alias smon_free="grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt"
 alias smon_mine="grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt"
 alias watch_smon_free="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt\""
