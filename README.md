@@ -151,16 +151,12 @@ export APPTAINER_CONTAIN=1
 
 # download sif (we don't have sudo privileges to build a .def file ourselves)
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
-
-# apptainer shell --nv /scratch/$USER/cuda_sandbox --containall
 apptainer shell --nv \
   --bind "/scratch/$USER:/scratch/$USER" \
   --home /scratch/$USER/.apptainer/home:/home/$USER \
   --pwd /scratch/$USER \
   /scratch/$USER/cuda_sandbox \
   --containall
-
-
 nvidia-smi
 
 python -m pip install --upgrade pip
