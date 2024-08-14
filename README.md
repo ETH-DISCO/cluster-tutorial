@@ -153,7 +153,6 @@ export APPTAINER_CONTAIN=1
 
 # download sif (we don't have sudo privileges to build a .def file ourselves)
 # apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
-# apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 # apptainer shell --nv /scratch/$USER/cuda_sandbox
 
 apptainer build --sandbox \
