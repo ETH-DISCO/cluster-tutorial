@@ -158,18 +158,10 @@ export APPTAINER_CONTAIN=1
 
 apptainer build --sandbox \
   --bind "/scratch/$USER:/scratch/$USER" \
-  --workdir "/scratch/$USER/.apptainer/work" \
-  --contain \
   /scratch/$USER/cuda_sandbox \
   docker://nvcr.io/nvidia/pytorch:23.08-py3
 
 # apptainer shell --nv /scratch/$USER/cuda_sandbox
-
-apptainer shell --nv \
-  --bind "/scratch/$USER:/scratch/$USER" \
-  --workdir "/scratch/$USER/.apptainer/work" \
-  --contain \
-  /scratch/$USER/cuda_sandbox
 
 nvidia-smi
 
