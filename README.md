@@ -144,13 +144,10 @@ cd /scratch/$USER
 apptainer cache clean
 rm -rf "$PWD/.apptainer/cache"
 rm -rf "$PWD/.apptainer/tmp"
-rm -rf "$PWD/.apptainer/work"
 mkdir -p "$PWD/.apptainer/cache"
 mkdir -p "$PWD/.apptainer/tmp"
-mkdir -p "$PWD/.apptainer/work"
 export APPTAINER_CACHEDIR=/scratch/$USER/.apptainer/cache
 export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
-export APPTAINER_WORKDIR="/scratch/$USER/.apptainer/work"
 export APPTAINER_BINDPATH="/scratch/$USER:/scratch/$USER"
 export APPTAINER_CONTAIN=1
 
