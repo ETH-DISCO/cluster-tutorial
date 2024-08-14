@@ -140,9 +140,12 @@ mkdir -p /scratch/$USER
 cd /scratch/$USER
 
 # redirect cache
-rm -rf "$PWD/.apptainer_cache"
-mkdir -p "$PWD/.apptainer_cache"
-export APPTAINER_CACHEDIR="$PWD/.apptainer_cache"
+rm -rf "$PWD/.apptainer/cache"
+rm -rf "$PWD/.apptainer/tmp"
+mkdir -p "$PWD/.apptainer/cache"
+mkdir -p "$PWD/.apptainer/tmp"
+export APPTAINER_CACHEDIR=/scratch/$USER/.apptainer/cache
+export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
 
 # download sif (we don't have sudo privileges to build a .def file ourselves)
 apptainer build --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
