@@ -149,8 +149,7 @@ export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
 export APPTAINER_BINDPATH="/scratch/$USER:/scratch/$USER"
 export APPTAINER_CONTAIN=1
 
-# download sif (we don't have sudo privileges to build a .def file ourselves)
-# alternatively build it via the cloud: https://cloud.sylabs.io/builder
+# download sif (we don't have sudo privileges to build a .def file ourselves -> but there is a cloud service: https://cloud.sylabs.io/builder)
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 apptainer shell --nv \
   --bind "/scratch/$USER:/scratch/$USER" \
