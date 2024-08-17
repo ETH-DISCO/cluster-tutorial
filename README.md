@@ -152,6 +152,11 @@ export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
 export APPTAINER_BINDPATH="/scratch/$USER:/scratch/$USER"
 export APPTAINER_CONTAIN=1
 
+# keep dependencies local
+export PYTHONUSERBASE=/scratch/$USER/.local
+export PYTHONNOUSERSITE=1
+export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
+
 # download sif (we don't have the privileges to build a .def file ourselves - but there is a cloud service: https://cloud.sylabs.io/builder)
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 apptainer shell --nv \
@@ -162,15 +167,22 @@ apptainer shell --nv \
   --containall
 nvidia-smi
 
-# install dependencies only locally
+# keep dependencies local
+export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
+export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
+
 python -m venv --no-site-packages venv
 source venv/bin/activate
 
-# run notebook
 python -m pip install --upgrade pip
 pip install --upgrade pip
-pip install --no-cache-dir jupyter
+
+# run notebook
+export JUPYTER_CONFIG_DIR=/scratch/$USER/.jupyter
+export IPYTHONDIR=/scratch/$USER/.ipython
+pip install --no-cache-dir --target=/scratch/$USER/site-packages jupyter
+# pip install --no-cache-dir jupyter
 echo -e "replace 'hostname' in jupyter link with: '$(hostname -f):5998'"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
