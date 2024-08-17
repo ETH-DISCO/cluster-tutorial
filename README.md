@@ -167,7 +167,7 @@ apptainer shell --nv \
   --containall
 nvidia-smi
 
-# venv to make sure dependencies stay local
+# venv to store dependencies locally
 export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
 export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
