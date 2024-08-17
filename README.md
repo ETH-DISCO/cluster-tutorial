@@ -172,7 +172,7 @@ export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
 export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
 
-python -m venv --no-site-packages venv
+python -m venv venv
 source venv/bin/activate
 
 python -m pip install --upgrade pip
