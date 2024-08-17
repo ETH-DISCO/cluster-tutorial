@@ -189,7 +189,9 @@ This should make working on the cluster feel like a breeze.
 
 # References
 
-Fallback: If you're on a tight schedule and things aren't working out, you can always fall back to cloud GPU providers. The best free option is Google Colab with a Tesla T4 and 12 hours of runtime per session (as of August 2024). Other options include:
+Fallback: If you're on a tight schedule and things aren't working out, you can always fall back to cloud GPU providers. The best free option is Google Colab with a Tesla T4 and 12 hours of runtime per session (as of August 2024).
+
+Cloud GPU options include:
 
 - https://cloud-gpus.com/
 - https://getdeploying.com/reference/cloud-gpu
