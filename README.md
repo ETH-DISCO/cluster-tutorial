@@ -167,7 +167,7 @@ pip install --upgrade pip
 
 # create venv to store dependencies local only
 python -m venv venv
-source venv/bin/activate;
+source venv/bin/activate
 
 # run notebook
 pip install --no-cache-dir jupyter
