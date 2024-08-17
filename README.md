@@ -167,24 +167,19 @@ apptainer shell --nv \
   --containall
 nvidia-smi
 
-# keep dependencies local
+# venv to make sure dependencies stay local
 export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
 export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
 export PYTHONPATH=$PYTHONPATH:/scratch/$USER/site-packages
 pip install --no-cache-dir --target=/scratch/$USER/site-packages virtualenv
 /scratch/$USER/site-packages/bin/virtualenv ./venv
-
-
-
-
+pip install --upgrade pip
 
 # run notebook
 export JUPYTER_CONFIG_DIR=/scratch/$USER/.jupyter
 export IPYTHONDIR=/scratch/$USER/.ipython
-
-pip install --no-cache-dir --target=/scratch/$USER/site-packages jupyter
-# pip install --no-cache-dir jupyter
+pip install --no-cache-dir jupyter
 echo -e "replace 'hostname' in jupyter link with: '$(hostname -f):5998'"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
