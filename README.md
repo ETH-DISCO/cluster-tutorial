@@ -157,7 +157,7 @@ export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
 export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
 
-# download sif (we don't have the privileges to build a .def file ourselves - but there is a cloud service: https://cloud.sylabs.io/builder)
+# download sif (we can't build .def without root. but there is `https://cloud.sylabs.io/builder`)
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 apptainer shell --nv \
   --bind "/scratch/$USER:/scratch/$USER" \
