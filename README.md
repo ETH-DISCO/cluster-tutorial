@@ -162,14 +162,14 @@ apptainer shell --nv \
   --containall
 nvidia-smi
 
-python -m pip install --upgrade pip
-pip install --upgrade pip
-
-# create venv to store dependencies local only
-python -m venv venv
+# install dependencies only locally
+export PYTHONNOUSERSITE=1
+python -m venv --no-site-packages venv
 source venv/bin/activate
 
 # run notebook
+python -m pip install --upgrade pip
+pip install --upgrade pip
 pip install --no-cache-dir jupyter
 echo -e "replace 'hostname' in jupyter link with: '$(hostname -f):5998'"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
