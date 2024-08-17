@@ -165,13 +165,15 @@ nvidia-smi
 python -m pip install --upgrade pip
 pip install --upgrade pip
 
+# create venv to store dependencies local only
+python -m venv venv
+source venv/bin/activate;
+
 # run notebook
 pip install --no-cache-dir jupyter
 echo -e "replace 'hostname' in jupyter link with: '$(hostname -f):5998'"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
-
-> Note: you might run out of storage at some point while installing pip dependencies inside the Apptainer. I recommend wiping the content of your home directory. Use `conda info --envs` or `$HOME` to find it. Alternatively you can also create a `venv` environment within the apptainer to make sure that nothing is stored outside the compute node you've attached your temrinal to.
 
 This should make working on the cluster feel like a breeze.
 
