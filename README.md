@@ -147,6 +147,7 @@ rm -rf "$PWD/.apptainer/cache"
 rm -rf "$PWD/.apptainer/tmp"
 mkdir -p "$PWD/.apptainer/cache"
 mkdir -p "$PWD/.apptainer/tmp"
+pip config set global.no-cache-dir false
 export APPTAINER_CACHEDIR=/scratch/$USER/.apptainer/cache
 export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
 export APPTAINER_BINDPATH="/scratch/$USER:/scratch/$USER"
@@ -169,12 +170,15 @@ apptainer shell --nv \
 nvidia-smi
 
 # venv to store dependencies locally
+pip config set global.no-cache-dir false
 export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
 export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
 export PYTHONPATH=$PYTHONPATH:/scratch/$USER/site-packages
 pip install --no-cache-dir --target=/scratch/$USER/site-packages virtualenv
 /scratch/$USER/site-packages/bin/virtualenv ./venv
+pip cache purge
+pip cache dir # check if empty
 pip install --upgrade pip
 
 # run notebook
