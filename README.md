@@ -189,7 +189,7 @@ echo -e "replace 'hostname' in jupyter link with: '$(hostname -f):5998'"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
-This should make working on the cluster feel like a breeze.
+In my opinion this is the most productive workflow on the cluster.
 
 # References
 
