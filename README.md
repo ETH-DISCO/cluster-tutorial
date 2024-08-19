@@ -210,7 +210,6 @@ General documentation:
 - jupyter notebook docs: https://computing.ee.ethz.ch/FAQ/JupyterNotebook?highlight=%28notebook%29
 - apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
 - apptainer example: https://gitlab.ethz.ch/disco/social/apptainer-examples/
-- python dep management tutorial: https://m.youtube.com/watch?v=YDUJh8AZD1A
 
 Thanks to:
 
