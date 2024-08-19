@@ -147,13 +147,13 @@ rm -rf "$PWD/.apptainer/cache"
 rm -rf "$PWD/.apptainer/tmp"
 mkdir -p "$PWD/.apptainer/cache"
 mkdir -p "$PWD/.apptainer/tmp"
-pip config set global.no-cache-dir false
-export APPTAINER_CACHEDIR=/scratch/$USER/.apptainer/cache
+APPTAINER_CACHEDIR=/scratch/$USER/.apptainer/cache
 export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
 export APPTAINER_BINDPATH="/scratch/$USER:/scratch/$USER"
 export APPTAINER_CONTAIN=1
 
 # keep dependencies local
+pip config set global.no-cache-dir false
 export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
 export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
