@@ -176,7 +176,6 @@ export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
 export PYTHONPATH=$PYTHONPATH:/scratch/$USER/site-packages
 pip install --no-cache-dir --target=/scratch/$USER/site-packages virtualenv
 /scratch/$USER/site-packages/bin/virtualenv ./venv
-pip cache purge
 pip cache dir # check if empty
 pip install --upgrade pip
 
