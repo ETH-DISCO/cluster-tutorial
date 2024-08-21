@@ -210,5 +210,6 @@ General documentation:
 
 Thanks to:
 
-- [Joel Mathys](https://github.com/iJorl) for the Slurm scripts
-- [Andreas Plesner](https://github.com/aplesner) for introducing me to Apptainer
+- [@ijorl](https://github.com/iJorl) for the initial slurm scripts
+- [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and for reviewing
+- [@tkz10](https://github.com/TKZ10) for reviewing
