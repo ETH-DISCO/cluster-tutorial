@@ -170,7 +170,6 @@ apptainer shell --nv \
 nvidia-smi
 
 # venv to store dependencies locally
-pip config set global.no-cache-dir false
 export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
 export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
