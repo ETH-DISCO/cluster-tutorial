@@ -186,7 +186,9 @@ echo -e "replace 'hostname' in jupyter link with: '$(hostname -f):5998'"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
-In my opinion this is the most productive workflow on the cluster.
+If you run out of storage due to large dependencies it's most likely because they get redirected to some other directory with limited storage such as the `/tmp/` path. You can observe this by using the `--log` flag when using `pip install`.
+
+This setup will hopefully enable you to be more productive on the cluster.
 
 # References
 
