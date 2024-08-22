@@ -210,6 +210,6 @@ General documentation:
 
 Thanks to:
 
-- [@ijorl](https://github.com/iJorl) for the initial slurm scripts
+- [@tkz10](https://github.com/TKZ10) for finding the pip redirection hack and for reviewing
 - [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and for reviewing
-- [@tkz10](https://github.com/TKZ10) for reviewing
+- [@ijorl](https://github.com/iJorl) for the initial slurm scripts
