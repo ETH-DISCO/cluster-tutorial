@@ -188,7 +188,7 @@ jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900
 
 If you run out of storage when calling `pip install` make sure to use the `--log` flag to trace where additional dependencies get stored. You need to redirect them back to the current directory.
 
-Some helpful flags to do so are:
+Some helpful commands to do so are:
 
 ```bash
 python -m ipykernel install --user --name=venv
