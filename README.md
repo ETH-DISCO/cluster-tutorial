@@ -91,6 +91,7 @@ By running Slurm scripts you won't see the logs in real-time which can slow you 
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
 # attach to a tikgpu06 node assuming it's free
+# note: `gpu:01` stands for the number of GPUs you're using, not the index
 srun --mem=50GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
 # set up storage
