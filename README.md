@@ -188,7 +188,18 @@ jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900
 
 If you run out of storage when using `pip install` make sure to use the `--log` file to see where additional dependencies get stored and redirect them back to the current directory.
 
-To redirect the cache of Pytorch and Huggingface see:
+Some helpful flags:
+
+```bash
+python -m ipykernel install --user --name=venv
+export JUPYTER_DATA_DIR=/scratch/$USER/venv/jupyter_dir
+export HF_HOME=/scratch/$USER/venv/HG_tmp
+export TRANSFORMERS_CACHE=/scratch/$USER/venv/HG_tmp
+export HUGGINGFACE_HUB_CACHE=/scratch/$USER/venv/HG_tmp
+export TORCH_HOME=/scratch/$USER/venv/torch_tmp
+```
+
+For Pytorch and Huggingface also see:
 
 - https://github.com/huggingface/pytorch-image-models/discussions/790
 - https://huggingface.co/docs/transformers/v4.38.1/en/installation#cache-setup
