@@ -186,7 +186,7 @@ echo -e "replace 'hostname' in jupyter link with: '$(hostname -f):5998'"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
-If you run out of storage when using `pip install` make sure to use the `--log` file to see where additional dependencies get stored and redirect them back to the current directory.
+If you run out of storage when calling `pip install` make sure to use the `--log` file to see where additional dependencies get stored and redirect them back to the current directory.
 
 Some helpful flags:
 
