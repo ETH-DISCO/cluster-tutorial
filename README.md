@@ -188,7 +188,7 @@ jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900
 
 If you run out of storage when using `pip install` make sure to use the `--log` file to see where additional dependencies get stored and redirect them back to the current directory.
 
-To redirect the cache of pytorch and huggingface see:
+To redirect the cache of Pytorch and Huggingface see:
 
 - https://github.com/huggingface/pytorch-image-models/discussions/790
 - https://huggingface.co/docs/transformers/v4.38.1/en/installation#cache-setup
