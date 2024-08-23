@@ -171,7 +171,7 @@ apptainer shell --nv \
 # check if gpu is accessible
 nvidia-smi
 
-# set environment variables for various caches and directories for dependencies
+# set a bunch of env variables
 mkdir -p /scratch/$USER/apptainer_env/{sandbox,home,pip_cache,site_packages,venv,jupyter_data,hf_cache,torch_cache,jupyter_config,ipython_config}
 export TMPDIR=/scratch/$USER/apptainer_env/venv/.local
 export PYTHONUSERBASE=/scratch/$USER/apptainer_env/.local
@@ -184,22 +184,20 @@ export TRANSFORMERS_CACHE=/scratch/$USER/apptainer_env/hf_cache
 export HUGGINGFACE_HUB_CACHE=/scratch/$USER/apptainer_env/hf_cache
 export TORCH_HOME=/scratch/$USER/apptainer_env/torch_cache
 
-# install virtualenv and create virtual environment
+# make venv
 pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages virtualenv
 /scratch/$USER/apptainer_env/site_packages/bin/virtualenv /scratch/$USER/apptainer_env/venv
 source /scratch/$USER/apptainer_env/venv/bin/activate
 
-# example: install dependency with verbose output
+# example: install a dependency with verbose output
 pip install --upgrade pip
 pip install --no-cache-dir open_clip_torch --log /scratch/$USER/piplog.txt
 
-# install and configure Jupyter
+# run jupyter notebook (accessible through public url)
 export JUPYTER_CONFIG_DIR=/scratch/$USER/apptainer_env/jupyter_config
 export IPYTHONDIR=/scratch/$USER/apptainer_env/ipython_config
 pip install --no-cache-dir jupyter
 python -m ipykernel install --user --name=venv
-
-# run Jupyter notebook
 echo -e "\033[32mReplace 'hostname' in jupyter link with: '$(hostname -f):5998'\033[0m"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
