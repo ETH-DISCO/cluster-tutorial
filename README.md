@@ -169,7 +169,7 @@ apptainer shell --nv \
   --containall
 nvidia-smi
 
-# store dependencies locally
+# configure pip
 export TMPDIR=/scratch/$USER/venv/.local
 export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
