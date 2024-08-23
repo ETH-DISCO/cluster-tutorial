@@ -156,6 +156,9 @@ export APPTAINER_CONTAIN=1
 # disable pip cache
 pip config set global.no-cache-dir false
 
+# make all necessary subdirs
+mkdir -p /scratch/$USER/apptainer_env/{sandbox,home,pip_cache,site_packages,venv,jupyter_data,hf_cache,torch_cache,jupyter_config,ipython_config}
+
 # download apptainer sif
 # for .def files see: `https://cloud.sylabs.io/builder`
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
@@ -170,47 +173,40 @@ apptainer shell --nv \
 nvidia-smi
 
 # configure pip
-export TMPDIR=/scratch/$USER/venv/.local
-export PYTHONUSERBASE=/scratch/$USER/.local
+export TMPDIR=/scratch/$USER/apptainer_env/venv/.local
+export PYTHONUSERBASE=/scratch/$USER/apptainer_env/.local
 export PYTHONNOUSERSITE=1
-export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
-export PYTHONPATH=$PYTHONPATH:/scratch/$USER/site-packages
+export PIP_CACHE_DIR=/scratch/$USER/apptainer_env/pip_cache
+export PYTHONPATH=$PYTHONPATH:/scratch/$USER/apptainer_env/site_packages
 
-pip install --no-cache-dir --target=/scratch/$USER/site-packages virtualenv
-/scratch/$USER/site-packages/bin/virtualenv ./venv
+# install virtualenv and create virtual environment
+pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages virtualenv
+/scratch/$USER/apptainer_env/site_packages/bin/virtualenv /scratch/$USER/apptainer_env/venv
+source /scratch/$USER/apptainer_env/venv/bin/activate
 pip install --upgrade pip
 
+# set environment variables for various caches and directories
+export JUPYTER_DATA_DIR=/scratch/$USER/apptainer_env/jupyter_data
+export HF_HOME=/scratch/$USER/apptainer_env/hf_cache
+export TRANSFORMERS_CACHE=/scratch/$USER/apptainer_env/hf_cache
+export HUGGINGFACE_HUB_CACHE=/scratch/$USER/apptainer_env/hf_cache
+export TORCH_HOME=/scratch/$USER/apptainer_env/torch_cache
 
+# install example dependency
+pip install --no-cache-dir open_clip_torch --log /scratch/$USER/apptainer_env/piplog.txt
 
-
-# example dependency
-pip install open_clip_torch --log piplog.txt
-
-
-
-
-# run notebook
-export JUPYTER_CONFIG_DIR=/scratch/$USER/.jupyter
-export IPYTHONDIR=/scratch/$USER/.ipython
+# install and configure Jupyter
+export JUPYTER_CONFIG_DIR=/scratch/$USER/apptainer_env/jupyter_config
+export IPYTHONDIR=/scratch/$USER/apptainer_env/ipython_config
 pip install --no-cache-dir jupyter
 python -m ipykernel install --user --name=venv
 
-# access via public ports
-echo -e "\033[32mreplace 'hostname' in jupyter link with: '$(hostname -f):5998'\033[0m"
+# run Jupyter notebook
+echo -e "\033[32mReplace 'hostname' in jupyter link with: '$(hostname -f):5998'\033[0m"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
 If you run out of storage when calling `pip install` make sure to use the `--log` flag to trace where additional dependencies get stored. You need to redirect them back to the current directory.
-
-Some helpful commands to do so are:
-
-```bash
-export JUPYTER_DATA_DIR=/scratch/$USER/venv/jupyter_dir
-export HF_HOME=/scratch/$USER/venv/HG_tmp
-export TRANSFORMERS_CACHE=/scratch/$USER/venv/HG_tmp
-export HUGGINGFACE_HUB_CACHE=/scratch/$USER/venv/HG_tmp
-export TORCH_HOME=/scratch/$USER/venv/torch_tmp
-```
 
 Also see:
 
