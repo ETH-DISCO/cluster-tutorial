@@ -172,17 +172,24 @@ apptainer shell --nv \
 nvidia-smi
 
 # set a bunch of env variables
-mkdir -p /scratch/$USER/apptainer_env/{sandbox,home,pip_cache,site_packages,venv,jupyter_data,hf_cache,torch_cache,jupyter_config,ipython_config}
 mkdir -p /scratch/$USER/apptainer_env/venv/.local
 export TMPDIR=/scratch/$USER/apptainer_env/venv/.local
+mkdir -p /scratch/$USER/apptainer_env/.local
 export PYTHONUSERBASE=/scratch/$USER/apptainer_env/.local
 export PYTHONNOUSERSITE=1
+mkdir -p /scratch/$USER/apptainer_env/pip_cache
 export PIP_CACHE_DIR=/scratch/$USER/apptainer_env/pip_cache
+mkdir -p /scratch/$USER/apptainer_env/site_packages
 export PYTHONPATH=$PYTHONPATH:/scratch/$USER/apptainer_env/site_packages
+mkdir -p /scratch/$USER/apptainer_env/jupyter_data
 export JUPYTER_DATA_DIR=/scratch/$USER/apptainer_env/jupyter_data
+mkdir -p /scratch/$USER/apptainer_env/hf_cache
 export HF_HOME=/scratch/$USER/apptainer_env/hf_cache
+mkdir -p /scratch/$USER/apptainer_env/hf_cache
 export TRANSFORMERS_CACHE=/scratch/$USER/apptainer_env/hf_cache
+mkdir -p /scratch/$USER/apptainer_env/hf_cache
 export HUGGINGFACE_HUB_CACHE=/scratch/$USER/apptainer_env/hf_cache
+mkdir -p /scratch/$USER/apptainer_env/torch_cache
 export TORCH_HOME=/scratch/$USER/apptainer_env/torch_cache
 
 # make venv
@@ -195,7 +202,9 @@ pip install --upgrade pip
 pip install --no-cache-dir open_clip_torch --log /scratch/$USER/piplog.txt
 
 # run jupyter notebook (accessible through public url)
+mkdir -p /scratch/$USER/apptainer_env/jupyter_config
 export JUPYTER_CONFIG_DIR=/scratch/$USER/apptainer_env/jupyter_config
+mkdir -p /scratch/$USER/apptainer_env/ipython_config
 export IPYTHONDIR=/scratch/$USER/apptainer_env/ipython_config
 pip install --no-cache-dir jupyter
 python -m ipykernel install --user --name=venv
