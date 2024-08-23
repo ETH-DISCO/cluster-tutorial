@@ -173,6 +173,7 @@ nvidia-smi
 
 # set a bunch of env variables
 mkdir -p /scratch/$USER/apptainer_env/{sandbox,home,pip_cache,site_packages,venv,jupyter_data,hf_cache,torch_cache,jupyter_config,ipython_config}
+mkdir -p /scratch/$USER/apptainer_env/venv/.local
 export TMPDIR=/scratch/$USER/apptainer_env/venv/.local
 export PYTHONUSERBASE=/scratch/$USER/apptainer_env/.local
 export PYTHONNOUSERSITE=1
