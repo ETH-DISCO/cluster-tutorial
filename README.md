@@ -183,7 +183,6 @@ export PYTHONPATH=$PYTHONPATH:/scratch/$USER/apptainer_env/site_packages
 pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages virtualenv
 /scratch/$USER/apptainer_env/site_packages/bin/virtualenv /scratch/$USER/apptainer_env/venv
 source /scratch/$USER/apptainer_env/venv/bin/activate
-pip install --upgrade pip
 
 # set environment variables for various caches and directories
 export JUPYTER_DATA_DIR=/scratch/$USER/apptainer_env/jupyter_data
@@ -193,6 +192,7 @@ export HUGGINGFACE_HUB_CACHE=/scratch/$USER/apptainer_env/hf_cache
 export TORCH_HOME=/scratch/$USER/apptainer_env/torch_cache
 
 # install example dependency
+pip install --upgrade pip
 pip install --no-cache-dir open_clip_torch --log /scratch/$USER/apptainer_env/piplog.txt
 
 # install and configure Jupyter
