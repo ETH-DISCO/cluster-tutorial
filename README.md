@@ -153,15 +153,14 @@ export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
 export APPTAINER_BINDPATH="/scratch/$USER:/scratch/$USER"
 export APPTAINER_CONTAIN=1
 
-# store dependencies locally
+# disable pip cache
 pip config set global.no-cache-dir false
-# export PYTHONUSERBASE=/scratch/$USER/.local
-# export PYTHONNOUSERSITE=1
-# export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
 
-# download sif
+# download apptainer sif
 # for .def files see: `https://cloud.sylabs.io/builder`
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
+
+# exec into apptainer
 apptainer shell --nv \
   --bind "/scratch/$USER:/scratch/$USER" \
   --home /scratch/$USER/.apptainer/home:/home/$USER \
