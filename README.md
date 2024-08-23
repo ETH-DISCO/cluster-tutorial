@@ -171,6 +171,7 @@ apptainer shell --nv \
 nvidia-smi
 
 # venv to store dependencies locally
+export TMPDIR=/scratch/$USER/venv/.local
 export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
 export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
@@ -183,6 +184,9 @@ pip install --upgrade pip
 export JUPYTER_CONFIG_DIR=/scratch/$USER/.jupyter
 export IPYTHONDIR=/scratch/$USER/.ipython
 pip install --no-cache-dir jupyter
+python -m ipykernel install --user --name=venv
+
+# access via public ports
 echo -e "replace 'hostname' in jupyter link with: '$(hostname -f):5998'"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
@@ -192,7 +196,6 @@ If you run out of storage when calling `pip install` make sure to use the `--log
 Some helpful commands to do so are:
 
 ```bash
-python -m ipykernel install --user --name=venv
 export JUPYTER_DATA_DIR=/scratch/$USER/venv/jupyter_dir
 export HF_HOME=/scratch/$USER/venv/HG_tmp
 export TRANSFORMERS_CACHE=/scratch/$USER/venv/HG_tmp
@@ -200,7 +203,7 @@ export HUGGINGFACE_HUB_CACHE=/scratch/$USER/venv/HG_tmp
 export TORCH_HOME=/scratch/$USER/venv/torch_tmp
 ```
 
-For Pytorch and Huggingface also see:
+Also see:
 
 - https://github.com/huggingface/pytorch-image-models/discussions/790
 - https://huggingface.co/docs/transformers/v4.38.1/en/installation#cache-setup
