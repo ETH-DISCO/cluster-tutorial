@@ -138,7 +138,7 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 # allocate 100GB of RAM and 1 GPU
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
-# clean up apptainer cache
+# clean user files and apptainer cache
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
 mkdir -p /scratch/$USER
@@ -156,9 +156,6 @@ export APPTAINER_CONTAIN=1
 # disable pip cache
 pip config set global.no-cache-dir false
 
-# make all necessary subdirs
-mkdir -p /scratch/$USER/apptainer_env/{sandbox,home,pip_cache,site_packages,venv,jupyter_data,hf_cache,torch_cache,jupyter_config,ipython_config}
-
 # download apptainer sif
 # for .def files see: `https://cloud.sylabs.io/builder`
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
@@ -170,9 +167,12 @@ apptainer shell --nv \
   --pwd /scratch/$USER \
   /scratch/$USER/cuda_sandbox \
   --containall
+
+# check if gpu is accessible
 nvidia-smi
 
 # set environment variables for various caches and directories for dependencies
+mkdir -p /scratch/$USER/apptainer_env/{sandbox,home,pip_cache,site_packages,venv,jupyter_data,hf_cache,torch_cache,jupyter_config,ipython_config}
 export TMPDIR=/scratch/$USER/apptainer_env/venv/.local
 export PYTHONUSERBASE=/scratch/$USER/apptainer_env/.local
 export PYTHONNOUSERSITE=1
