@@ -153,7 +153,7 @@ export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
 export APPTAINER_BINDPATH="/scratch/$USER:/scratch/$USER"
 export APPTAINER_CONTAIN=1
 
-# keep dependencies local
+# store dependencies locally
 pip config set global.no-cache-dir false
 export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
@@ -170,15 +170,25 @@ apptainer shell --nv \
   --containall
 nvidia-smi
 
-# venv to store dependencies locally
+# store dependencies locally
 export TMPDIR=/scratch/$USER/venv/.local
 export PYTHONUSERBASE=/scratch/$USER/.local
 export PYTHONNOUSERSITE=1
 export PIP_CACHE_DIR=/scratch/$USER/.pip_cache
 export PYTHONPATH=$PYTHONPATH:/scratch/$USER/site-packages
+
 pip install --no-cache-dir --target=/scratch/$USER/site-packages virtualenv
 /scratch/$USER/site-packages/bin/virtualenv ./venv
 pip install --upgrade pip
+
+
+
+
+# example dependency
+pip install open_clip_torch --log piplog.txt
+
+
+
 
 # run notebook
 export JUPYTER_CONFIG_DIR=/scratch/$USER/.jupyter
