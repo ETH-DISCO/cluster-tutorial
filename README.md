@@ -239,8 +239,10 @@ General documentation:
 - apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
 - apptainer example: https://gitlab.ethz.ch/disco/social/apptainer-examples/
 
-Thanks to:
+# Kudos
 
-- [@tkz10](https://github.com/TKZ10) for finding the pip redirection hack and for reviewing
+Huge thanks to:
+
+- [@tkz10](https://github.com/TKZ10) for making this tutorial with me and finding the dependency redirection hack
 - [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and for reviewing
 - [@ijorl](https://github.com/iJorl) for the initial slurm scripts
