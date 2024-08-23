@@ -172,24 +172,22 @@ apptainer shell --nv \
   --containall
 nvidia-smi
 
-# configure pip
+# set environment variables for various caches and directories for dependencies
 export TMPDIR=/scratch/$USER/apptainer_env/venv/.local
 export PYTHONUSERBASE=/scratch/$USER/apptainer_env/.local
 export PYTHONNOUSERSITE=1
 export PIP_CACHE_DIR=/scratch/$USER/apptainer_env/pip_cache
 export PYTHONPATH=$PYTHONPATH:/scratch/$USER/apptainer_env/site_packages
-
-# install virtualenv and create virtual environment
-pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages virtualenv
-/scratch/$USER/apptainer_env/site_packages/bin/virtualenv /scratch/$USER/apptainer_env/venv
-source /scratch/$USER/apptainer_env/venv/bin/activate
-
-# set environment variables for various caches and directories
 export JUPYTER_DATA_DIR=/scratch/$USER/apptainer_env/jupyter_data
 export HF_HOME=/scratch/$USER/apptainer_env/hf_cache
 export TRANSFORMERS_CACHE=/scratch/$USER/apptainer_env/hf_cache
 export HUGGINGFACE_HUB_CACHE=/scratch/$USER/apptainer_env/hf_cache
 export TORCH_HOME=/scratch/$USER/apptainer_env/torch_cache
+
+# install virtualenv and create virtual environment
+pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages virtualenv
+/scratch/$USER/apptainer_env/site_packages/bin/virtualenv /scratch/$USER/apptainer_env/venv
+source /scratch/$USER/apptainer_env/venv/bin/activate
 
 # install example dependency
 pip install --upgrade pip
