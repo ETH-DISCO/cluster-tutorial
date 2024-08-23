@@ -189,9 +189,9 @@ pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages v
 /scratch/$USER/apptainer_env/site_packages/bin/virtualenv /scratch/$USER/apptainer_env/venv
 source /scratch/$USER/apptainer_env/venv/bin/activate
 
-# install example dependency
+# example: install dependency with verbose output
 pip install --upgrade pip
-pip install --no-cache-dir open_clip_torch --log /scratch/$USER/apptainer_env/piplog.txt
+pip install --no-cache-dir open_clip_torch --log /scratch/$USER/piplog.txt
 
 # install and configure Jupyter
 export JUPYTER_CONFIG_DIR=/scratch/$USER/apptainer_env/jupyter_config
@@ -204,9 +204,7 @@ echo -e "\033[32mReplace 'hostname' in jupyter link with: '$(hostname -f):5998'\
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
-If you run out of storage when calling `pip install` make sure to use the `--log` flag to trace where additional dependencies get stored. You need to redirect them back to the current directory.
-
-Also see:
+For debugging also see:
 
 - https://github.com/huggingface/pytorch-image-models/discussions/790
 - https://huggingface.co/docs/transformers/v4.38.1/en/installation#cache-setup
