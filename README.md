@@ -187,7 +187,7 @@ pip install --no-cache-dir jupyter
 python -m ipykernel install --user --name=venv
 
 # access via public ports
-echo -e "replace 'hostname' in jupyter link with: '$(hostname -f):5998'"
+echo -e "\033[32mreplace 'hostname' in jupyter link with: '$(hostname -f):5998'\033[0m"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
