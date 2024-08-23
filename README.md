@@ -239,8 +239,6 @@ General documentation:
 - apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
 - apptainer example: https://gitlab.ethz.ch/disco/social/apptainer-examples/
 
-# Kudos
-
 Huge thanks to:
 
 - [@tkz10](https://github.com/TKZ10) for making this tutorial with me and finding the dependency redirection hack
