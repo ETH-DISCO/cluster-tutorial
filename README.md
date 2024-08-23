@@ -199,6 +199,7 @@ source /scratch/$USER/apptainer_env/venv/bin/activate
 
 # example: install a dependency with verbose output
 pip install --upgrade pip
+rm -rf /scratch/$USER/piplog.txt
 pip install --no-cache-dir open_clip_torch --log /scratch/$USER/piplog.txt
 
 # run jupyter notebook (accessible through public url)
