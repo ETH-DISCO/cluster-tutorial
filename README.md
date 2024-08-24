@@ -142,7 +142,7 @@ rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
 mkdir -p /scratch/$USER
 cd /scratch/$USER
-apptainer cache clean
+yes | apptainer cache clean
 rm -rf "$PWD/.apptainer/cache"
 rm -rf "$PWD/.apptainer/tmp"
 mkdir -p "$PWD/.apptainer/cache"
