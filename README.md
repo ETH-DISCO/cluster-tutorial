@@ -21,9 +21,6 @@ find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
 
-# clean up cached deps
-conda clean --all
-
 # fix locale issues
 unset LANG
 unset LANGUAGE
@@ -87,6 +84,8 @@ Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratc
 By running Slurm scripts you won't see the logs in real-time which can slow you down during development. For debugging or prototyping purposes it might make sense to attach your terminal to individual compute nodes and then execute scripts yourself. A jupyter notebook can also be convenient for this use-case:
 
 ```bash
+conda clean --all
+
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
