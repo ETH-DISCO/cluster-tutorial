@@ -223,6 +223,7 @@ python -m ipykernel install --user --name=venv
 pip install --upgrade notebook==6.4.12
 pip install traitlets==5.9.0
 pip install jupyter_contrib_nbextensions
+pip install --upgrade jupyter_nbextensions_configurator
 jupyter contrib nbextension install --user
 jupyter nbextension enable codefolding/main
 jupyter nbextension enable collapsible_headings/main
@@ -241,6 +242,7 @@ pip install xeus-python
 # access through public url
 echo "> http://$(hostname -f):5998"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
+jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
 This setup will hopefully enable you to be more productive on the cluster.
