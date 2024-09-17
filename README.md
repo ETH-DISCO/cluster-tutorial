@@ -210,8 +210,7 @@ import torch
 free_memory, total = torch.cuda.mem_get_info()
 print(f"CUDA available: {torch.cuda.is_available()}")
 EOF
-/scratch/$USER/apptainer_env/venv/bin/python3 demo.py
-python3 demo.py # also works
+python3 demo.py
 
 # run jupyter notebook (accessible through public url)
 mkdir -p /scratch/$USER/apptainer_env/jupyter_config
