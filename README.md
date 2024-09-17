@@ -201,10 +201,16 @@ pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages v
 /scratch/$USER/apptainer_env/site_packages/bin/virtualenv /scratch/$USER/apptainer_env/venv
 source /scratch/$USER/apptainer_env/venv/bin/activate
 
-# example: install a dependency with verbose output
+# full example
 pip install --upgrade pip
 rm -rf /scratch/$USER/piplog.txt
-pip install --no-cache-dir open_clip_torch --log /scratch/$USER/piplog.txt
+pip install --no-cache-dir --log /scratch/$USER/piplog.txt torch torchvision torchaudio
+cat << EOF > demo.py
+import torch
+free_memory, total = torch.cuda.mem_get_info()
+print(f"CUDA available: {torch.cuda.is_available()}")
+EOF
+/scratch/$USER/apptainer_env/venv/bin/python3 demo.py
 
 # run jupyter notebook (accessible through public url)
 mkdir -p /scratch/$USER/apptainer_env/jupyter_config
