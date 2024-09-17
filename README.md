@@ -201,7 +201,7 @@ pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages v
 /scratch/$USER/apptainer_env/site_packages/bin/virtualenv /scratch/$USER/apptainer_env/venv
 source /scratch/$USER/apptainer_env/venv/bin/activate
 
-# full example
+# full example: installing and running pytorch
 pip install --upgrade pip
 rm -rf /scratch/$USER/piplog.txt
 pip install --no-cache-dir --log /scratch/$USER/piplog.txt torch torchvision torchaudio
