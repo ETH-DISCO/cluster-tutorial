@@ -3,7 +3,7 @@ This guide will help you get started with the TIK cluster at ETH Zurich.
 First, enable your VPN connection to the ETH network.
 
 - VPN documentation: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
-- Based on my experience the openconnect CLI doesn't work. So I suggest downloading the the Cisco-Anyconnect client and using the following settings:
+- Based on my experience the openconnect CLI doesn't work. So I suggest downloading the the [Cisco-Anyconnect client](https://apps.apple.com/at/app/cisco-secure-client/id1135064690?l=en-GB) and using the following settings:
 	- server: `https://sslvpn.ethz.ch`
 	- username: `<username>@student-net.ethz.ch`
 	- password: your network password (also called Radius password, see: https://www.password.ethz.ch/)
