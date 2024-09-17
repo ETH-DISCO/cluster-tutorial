@@ -152,6 +152,9 @@ export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
 export APPTAINER_BINDPATH="/scratch/$USER:/scratch/$USER"
 export APPTAINER_CONTAIN=1
 
+# disable pip caching
+export PIP_NO_CACHE_DIR=false
+
 # download apptainer sif
 # for .def files see: `https://cloud.sylabs.io/builder`
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
@@ -167,8 +170,8 @@ apptainer shell --nv \
 # check if gpu is accessible
 nvidia-smi
 
-# disable pip cache
-pip config set global.no-cache-dir false
+# disable pip caching
+export PIP_NO_CACHE_DIR=false
 
 # set a bunch of env variables
 # see: https://github.com/huggingface/pytorch-image-models/discussions/790
