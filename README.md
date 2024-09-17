@@ -220,6 +220,8 @@ export IPYTHONDIR=/scratch/$USER/apptainer_env/ipython_config
 pip install --no-cache-dir jupyter
 python -m ipykernel install --user --name=venv
 # install jupyter dependencies
+pip install --upgrade notebook==6.4.12
+pip install traitlets==5.9.0
 pip install jupyter_contrib_nbextensions
 jupyter contrib nbextension install --user
 jupyter nbextension enable codefolding/main
