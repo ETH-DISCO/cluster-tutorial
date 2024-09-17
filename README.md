@@ -240,9 +240,6 @@ pip install jupyterthemes
 jt -t vscode
 pip install xeus-python
 # access through public url
-
-pip install --upgrade --force-reinstall jupyter_nbextensions_configurator
-
 echo "> http://$(hostname -f):5998"
 jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
