@@ -219,7 +219,7 @@ mkdir -p /scratch/$USER/apptainer_env/ipython_config
 export IPYTHONDIR=/scratch/$USER/apptainer_env/ipython_config
 pip install --no-cache-dir jupyter
 python -m ipykernel install --user --name=venv
-jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
+jupyter notebook --no-browser --port 5998 --ip $(hostname -f) && echo "> http://$(hostname -f):5998" # port range [5900-5999]
 ```
 
 This setup will hopefully enable you to be more productive on the cluster.
