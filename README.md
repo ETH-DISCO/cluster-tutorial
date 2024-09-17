@@ -212,38 +212,16 @@ print(f"CUDA available: {torch.cuda.is_available()}")
 EOF
 python3 demo.py
 
-# install jupyter 
+# install JupyterLab
 mkdir -p /scratch/$USER/apptainer_env/jupyter_config
 export JUPYTER_CONFIG_DIR=/scratch/$USER/apptainer_env/jupyter_config
 mkdir -p /scratch/$USER/apptainer_env/ipython_config
 export IPYTHONDIR=/scratch/$USER/apptainer_env/ipython_config
-pip install --no-cache-dir jupyter
+pip install --no-cache-dir jupyterlab jupyter
 python -m ipykernel install --user --name=venv
-# install jupyter dependencies
-pip install --upgrade notebook==6.4.12
-pip install traitlets==5.9.0
-pip install jupyter_contrib_nbextensions
-pip install --upgrade jupyter_nbextensions_configurator
-jupyter contrib nbextension install --user
-jupyter nbextension enable codefolding/main
-jupyter nbextension enable collapsible_headings/main
-jupyter nbextension enable execute_time/ExecuteTime
-jupyter nbextension enable spellchecker/main
-jupyter nbextension enable toggle_all_line_numbers/main
-jupyter nbextension enable varInspector/main
-pip install jupyterlab
-jupyter labextension install @jupyterlab/toc
-jupyter labextension install @jupyterlab/git
-jupyter labextension install @jupyterlab/debugger
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-pip install jupyterthemes
-jt -t vscode
-pip install xeus-python
-# access through public url
-echo "> http://$(hostname -f):5998"
-jupyter notebook --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
-jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 
+echo "> http://$(hostname -f):5998"
+jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
 This setup will hopefully enable you to be more productive on the cluster.
