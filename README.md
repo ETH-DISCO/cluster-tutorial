@@ -88,9 +88,6 @@ apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USE
 # check if gpu is accessible
 nvidia-smi
 
-# disable pip caching
-export PIP_NO_CACHE_DIR=false
-
 # set a bunch of env variables
 # see: https://github.com/huggingface/pytorch-image-models/discussions/790
 # see: https://huggingface.co/docs/transformers/v4.38.1/en/installation#cache-setup
