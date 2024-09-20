@@ -56,8 +56,7 @@ Here's how to spin up an Apptainer and start working within it:
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
-# attach to a tikgpu06 node assuming it's free
-# allocate 100GB of RAM and 1 GPU
+# attach to a tikgpu06 node (assuming it's free) and allocate 100GB of RAM and 1 GPU
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
 # clean user files and apptainer cache
