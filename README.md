@@ -243,8 +243,8 @@ General documentation:
 
 Huge thanks to:
 
-- [@tkz10](https://github.com/TKZ10) for making this tutorial with me and finding the dependency redirection hack
-- [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and for reviewing
+- [@tkz10](https://github.com/TKZ10) for finding the dependency redirection hack and reviewing
+- [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and reviewing
 - [@ijorl](https://github.com/iJorl) for the initial slurm scripts
 
 
