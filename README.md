@@ -50,7 +50,7 @@ Keep in mind:
 
 # a) Working within an Apptainer
 
-Here's how to use Apptainer:
+Here's how to spin up an Apptainer and start working within it:
 
 ```bash
 # check node availability
