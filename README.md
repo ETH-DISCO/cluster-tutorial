@@ -48,37 +48,7 @@ Keep in mind:
 - the A6000s with 48GB on `tikgpu08` need special privileges
 - set friendly `nice` values to your jobs, keep them small and preferably as array jobs
 
-# a) Running Slurm jobs
-
-First we will run our little MNIST example written with Pytorch using Slurm jobs.
-
-```bash
-# set slurm path
-export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
-
-# clone this repository
-cd /itet-stor/$USER/net_scratch/cluster
-git clone https://github.com/ETH-DISCO/cluster-tutorial/ .
-
-# install conda
-./conda_install.sh
-
-# replace the placeholders with your actual username
-sed 's/{{USERNAME}}/$USER/g' job.sh > job.sh
-sed 's/{{USERNAME}}/$USER/g' job_array.sh > job_array.sh
-
-# create job environment, dispatch job
-conda env create -f conda-environment.yml
-sbatch job.sh
-sbatch job_array.sh
-
-# check progress
-watch -n 1 "squeue | grep $USER"
-```
-
-Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. Each filepointer your script writes to (ie. stderr, stdout) will have its own file.
-
-# b) Using Apptainer 🔥
+# b) Working within an Apptainer
 
 Here's how to use Apptainer:
 
@@ -179,9 +149,41 @@ jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999
 
 This setup will hopefully enable you to be more productive on the cluster.
 
-Alternatively to this workflow you could also use [Conda environments](./conda-tutorial.md), but it is definitely not to be recommended.
+# b) Running Slurm jobs
+
+Alternatively you can also run larger tasks using Slurm jobs.
+
+Here's a quick demo using MNIST.
+
+```bash
+# set slurm path
+export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
+
+# clone this repository
+cd /itet-stor/$USER/net_scratch/cluster
+git clone https://github.com/ETH-DISCO/cluster-tutorial/ .
+
+# install conda
+./conda_install.sh
+
+# replace the placeholders with your actual username
+sed 's/{{USERNAME}}/$USER/g' job.sh > job.sh
+sed 's/{{USERNAME}}/$USER/g' job_array.sh > job_array.sh
+
+# create job environment, dispatch job
+conda env create -f conda-environment.yml
+sbatch job.sh
+sbatch job_array.sh
+
+# check progress
+watch -n 1 "squeue | grep $USER"
+```
+
+Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. Each filepointer your script writes to (ie. stderr, stdout) will have its own file.
 
 # Addendum
+
+There is a third workflow I'm aware of, using [Conda environments](./conda-tutorial.md), but it is definitely not to be recommended.
 
 General documentation:
 
