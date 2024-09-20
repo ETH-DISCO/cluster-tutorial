@@ -75,9 +75,6 @@ export APPTAINER_TMPDIR=/scratch/$USER/.apptainer/tmp
 export APPTAINER_BINDPATH="/scratch/$USER:/scratch/$USER"
 export APPTAINER_CONTAIN=1
 
-# disable pip caching
-export PIP_NO_CACHE_DIR=false
-
 # download apptainer sif
 # for .def files see: `https://cloud.sylabs.io/builder`
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
@@ -115,6 +112,7 @@ export TORCH_HOME=/scratch/$USER/apptainer_env/torch_cache
 pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages virtualenv
 /scratch/$USER/apptainer_env/site_packages/bin/virtualenv /scratch/$USER/apptainer_env/venv
 source /scratch/$USER/apptainer_env/venv/bin/activate
+export PIP_NO_CACHE_DIR=false
 
 # full example: installing and running pytorch
 pip install --upgrade pip
