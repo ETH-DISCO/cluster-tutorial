@@ -12,7 +12,7 @@ Then ssh just into the tik42 or j2tik login node and use your default password (
 ssh <username>@tik42x.ethz.ch
 ```
 
-For debugging purposes and convenience it's also recommended to run:
+You then might want to also run:
 
 ```bash
 # clean up storage
@@ -225,16 +225,19 @@ jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999
 
 This setup will hopefully enable you to be more productive on the cluster.
 
-# References
+# Addendum
 
-Fallback: If you're on a tight schedule and things aren't working out, you can always fall back to cloud GPU providers. The best free option is Google Colab with a Tesla T4 and 12 hours of runtime per session (as of August 2024).
+**Fallback:**
 
-Cloud GPU options include:
+- If you're on a tight schedule and things aren't working out, you can always fall back to cloud GPU providers.
+- The best free option is Google Colab with a Tesla T4 and 12 hours of runtime per session (as of August 2024).
 
-- https://cloud-gpus.com/
-- https://getdeploying.com/reference/cloud-gpu
+  Cloud GPU options include:
+  
+  - https://cloud-gpus.com/
+  - https://getdeploying.com/reference/cloud-gpu
 
-General documentation:
+**General documentation:**
 
 - vpn: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
 - best practices: https://computing.ee.ethz.ch/Services/HPCStorageIOBestPracticeGuidelines
@@ -246,7 +249,7 @@ General documentation:
 - apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
 - apptainer example: https://gitlab.ethz.ch/disco/social/apptainer-examples/
 
-Huge thanks to:
+**Huge thanks to:**
 
 - [@tkz10](https://github.com/TKZ10) for finding the dependency redirection hack and reviewing
 - [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and reviewing
