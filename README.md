@@ -48,7 +48,7 @@ Keep in mind:
 - the A6000s with 48GB on `tikgpu08` need special privileges
 - set friendly `nice` values to your jobs, keep them small and preferably as array jobs
 
-# b) Working within an Apptainer
+# a) Working within an Apptainer
 
 Here's how to use Apptainer:
 
