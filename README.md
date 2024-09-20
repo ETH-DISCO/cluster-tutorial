@@ -122,7 +122,7 @@ Fortunately, our admins provide Apptainer, a containerization tool similar to Do
 
 # c) Using Apptainer 🔥
 
-Here's how to use Apptainer on a single node:
+Here's how to use Apptainer:
 
 ```bash
 # check node availability
