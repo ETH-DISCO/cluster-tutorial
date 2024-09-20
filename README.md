@@ -232,6 +232,7 @@ Cloud GPU options include:
 
 General documentation:
 
+- vpn: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
 - best practices: https://computing.ee.ethz.ch/Services/HPCStorageIOBestPracticeGuidelines
 - outdated tutorial: https://hackmd.io/hYACdY2aR1-F3nRdU8q5dA
 - up-to-date tutorial: https://gitlab.ethz.ch/disco-students/cluster
@@ -247,7 +248,5 @@ Huge thanks to:
 - [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and reviewing
 - [@ijorl](https://github.com/iJorl) for the initial slurm scripts
 
-
-[^vpndocs]: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
 [^cisco]: Based on my experience the openconnect CLI doesn't work. So I suggest downloading the the [Cisco-Anyconnect client](https://apps.apple.com/at/app/cisco-secure-client/id1135064690?l=en-GB)
 [^netpass]: Also called Radius password, see: https://www.password.ethz.ch/
