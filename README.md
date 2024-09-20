@@ -6,11 +6,15 @@ First, enable your VPN connection to the ETH network through the Cisco-Anyconnec
 - username: `<username>@student-net.ethz.ch`
 - password: your network password[^netpass]
 
-Then ssh into the tik42 or j2tik login node and use your default password (also called LDAPS/AD password) and do some initial setup:
+Then ssh just into the tik42 or j2tik login node and use your default password (also called LDAPS/AD password):
 
 ```bash
 ssh <username>@tik42x.ethz.ch
+```
 
+And run some initialization code:
+
+```bash
 # set slurm path
 export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 
