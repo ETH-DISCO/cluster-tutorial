@@ -81,9 +81,6 @@ apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://n
 # exec into apptainer
 apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USER/.apptainer/home:/home/$USER --pwd /scratch/$USER /scratch/$USER/cuda_sandbox --containall
 
-# check if gpu is accessible
-nvidia-smi
-
 # set a bunch of env variables
 # see: https://github.com/huggingface/pytorch-image-models/discussions/790
 # see: https://huggingface.co/docs/transformers/v4.38.1/en/installation#cache-setup
@@ -122,7 +119,8 @@ import torch
 free_memory, total = torch.cuda.mem_get_info()
 print(f"CUDA available: {torch.cuda.is_available()}")
 EOF
-python3 demo.py
+nvidia-smi # sanity check
+python3 demo.py # should print true
 
 # install JupyterLab
 mkdir -p /scratch/$USER/apptainer_env/jupyter_config
