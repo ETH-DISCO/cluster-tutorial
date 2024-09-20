@@ -12,12 +12,9 @@ Then ssh just into the tik42 or j2tik login node and use your default password (
 ssh <username>@tik42x.ethz.ch
 ```
 
-And run some initialization code:
+For debugging purposes and convenience it's also recommended to run:
 
 ```bash
-# set slurm path
-export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
-
 # clean up storage
 find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
 rm -rf /scratch/$USER/*
@@ -56,6 +53,9 @@ Keep in mind:
 First we will run our little MNIST example written with Pytorch using Slurm jobs.
 
 ```bash
+# set slurm path
+export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
+
 # clone this repository
 cd /itet-stor/$USER/net_scratch/cluster
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ .
