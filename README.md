@@ -1,10 +1,10 @@
 This guide will help you get started with the TIK cluster at ETH Zurich.
 
-First, enable your VPN connection [^vpndocs] to the ETH network through the Cisco-Anyconnect client [^cisco] using the following settings:
+First, enable your VPN connection[^vpndocs] to the ETH network through the Cisco-Anyconnect client[^cisco] using the following settings:
 
 - server: `https://sslvpn.ethz.ch`
 - username: `<username>@student-net.ethz.ch`
-- password: your network password [^netpass]
+- password: your network password[^netpass]
 
 Then ssh into the tik42 or j2tik login node and use your default password (also called LDAPS/AD password) and do some initial setup:
 
