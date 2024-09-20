@@ -212,4 +212,3 @@ Huge thanks to:
 Footnotes:
 
 [^cisco]: Based on my experience the openconnect CLI doesn't work. So I suggest downloading the the [Cisco-Anyconnect client](https://apps.apple.com/at/app/cisco-secure-client/id1135064690?l=en-GB)
-
