@@ -1,12 +1,10 @@
 This guide will help you get started with the TIK cluster at ETH Zurich.
 
-First, enable your VPN connection to the ETH network.
+First, enable your VPN connection [^vpndocs] to the ETH network through the Cisco-Anyconnect client [^cisco] using the following settings
 
-- VPN documentation: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
-- Based on my experience the openconnect CLI doesn't work. So I suggest downloading the the [Cisco-Anyconnect client](https://apps.apple.com/at/app/cisco-secure-client/id1135064690?l=en-GB) and using the following settings:
-	- server: `https://sslvpn.ethz.ch`
-	- username: `<username>@student-net.ethz.ch`
-	- password: your network password (also called Radius password, see: https://www.password.ethz.ch/)
+- server: `https://sslvpn.ethz.ch`
+- username: `<username>@student-net.ethz.ch`
+- password: your network password (also called Radius password, see: https://www.password.ethz.ch/)
 
 Then ssh into the tik42 or j2tik login node and use your default password (also called LDAPS/AD password) and do some initial setup:
 
@@ -28,11 +26,8 @@ unset LC_ALL
 unset LC_CTYPE
 echo 'export LANG=C.UTF-8' >> ~/.bashrc
 export LANG=C.UTF-8
-```
 
-It's also recommended to use the following aliases to figure out which machines are still free. Add them to your `~/.bashrc.$USER` using the editor of your choice (ie. vim or nano). Don't forget to run `source ~/.bashrc.$USER` afterwards:
-
-```bash
+# aliases for ~/.bashrc.$USER
 alias smon_free="grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt"
 alias smon_mine="grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt"
 alias watch_smon_free="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt\""
@@ -251,3 +246,7 @@ Huge thanks to:
 - [@tkz10](https://github.com/TKZ10) for making this tutorial with me and finding the dependency redirection hack
 - [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and for reviewing
 - [@ijorl](https://github.com/iJorl) for the initial slurm scripts
+
+
+[^vpndocs]: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
+[^cisco]: Based on my experience the openconnect CLI doesn't work. So I suggest downloading the the [Cisco-Anyconnect client](https://apps.apple.com/at/app/cisco-secure-client/id1135064690?l=en-GB)
