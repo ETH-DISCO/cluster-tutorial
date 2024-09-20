@@ -4,7 +4,7 @@ First, enable your VPN connection [^vpndocs] to the ETH network through the Cisc
 
 - server: `https://sslvpn.ethz.ch`
 - username: `<username>@student-net.ethz.ch`
-- password: your network password (also called Radius password, see: https://www.password.ethz.ch/)
+- password: your network password [^netpass]
 
 Then ssh into the tik42 or j2tik login node and use your default password (also called LDAPS/AD password) and do some initial setup:
 
@@ -250,3 +250,4 @@ Huge thanks to:
 
 [^vpndocs]: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
 [^cisco]: Based on my experience the openconnect CLI doesn't work. So I suggest downloading the the [Cisco-Anyconnect client](https://apps.apple.com/at/app/cisco-secure-client/id1135064690?l=en-GB)
+[^netpass]: Also called Radius password, see: https://www.password.ethz.ch/
