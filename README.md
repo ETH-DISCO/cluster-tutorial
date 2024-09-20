@@ -83,12 +83,7 @@ export PIP_NO_CACHE_DIR=false
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 
 # exec into apptainer
-apptainer shell --nv \
-  --bind "/scratch/$USER:/scratch/$USER" \
-  --home /scratch/$USER/.apptainer/home:/home/$USER \
-  --pwd /scratch/$USER \
-  /scratch/$USER/cuda_sandbox \
-  --containall
+apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USER/.apptainer/home:/home/$USER --pwd /scratch/$USER /scratch/$USER/cuda_sandbox --containall
 
 # check if gpu is accessible
 nvidia-smi
