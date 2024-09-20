@@ -179,6 +179,8 @@ jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999
 
 This setup will hopefully enable you to be more productive on the cluster.
 
+Alternatively to this workflow you could also use [Conda environments](./conda-tutorial.md), but it is definitely not to be recommended.
+
 # Addendum
 
 Fallback:
