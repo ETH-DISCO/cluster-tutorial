@@ -183,13 +183,6 @@ Alternatively to this workflow you could also use [Conda environments](./conda-t
 
 # Addendum
 
-Fallback:
-
-- If you're on a tight schedule and things aren't working out, you can always fall back to cloud GPU providers. 
-
-  - https://cloud-gpus.com/ → The best free option is Google Colab with a Tesla T4 and 12 hours of runtime per session (as of August 2024).
-  - https://getdeploying.com/reference/cloud-gpu
-
 General documentation:
 
 - vpn: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
@@ -201,6 +194,11 @@ General documentation:
 - jupyter notebook docs: https://computing.ee.ethz.ch/FAQ/JupyterNotebook?highlight=%28notebook%29
 - apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
 - apptainer example: https://gitlab.ethz.ch/disco/social/apptainer-examples/
+
+Cloud GPU as fallback:
+
+- https://cloud-gpus.com/
+- https://getdeploying.com/reference/cloud-gpu
 
 Huge thanks to:
 
