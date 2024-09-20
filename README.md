@@ -1,6 +1,6 @@
 This guide will help you get started with the TIK cluster at ETH Zurich.
 
-First, enable your VPN connection[^vpndocs] to the ETH network through the Cisco-Anyconnect client[^cisco] using the following settings:
+First, enable your VPN connection to the ETH network through the Cisco-Anyconnect client[^cisco] using the following settings:
 
 - server: `https://sslvpn.ethz.ch`
 - username: `<username>@student-net.ethz.ch`
