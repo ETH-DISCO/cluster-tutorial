@@ -227,7 +227,7 @@ This setup will hopefully enable you to be more productive on the cluster.
 
 # Addendum
 
-**Fallback:**
+Fallback:
 
 - If you're on a tight schedule and things aren't working out, you can always fall back to cloud GPU providers.
 - The best free option is Google Colab with a Tesla T4 and 12 hours of runtime per session (as of August 2024).
@@ -237,7 +237,7 @@ This setup will hopefully enable you to be more productive on the cluster.
   - https://cloud-gpus.com/
   - https://getdeploying.com/reference/cloud-gpu
 
-**General documentation:**
+General documentation:
 
 - vpn: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
 - best practices: https://computing.ee.ethz.ch/Services/HPCStorageIOBestPracticeGuidelines
@@ -249,11 +249,13 @@ This setup will hopefully enable you to be more productive on the cluster.
 - apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
 - apptainer example: https://gitlab.ethz.ch/disco/social/apptainer-examples/
 
-**Huge thanks to:**
+Huge thanks to:
 
 - [@tkz10](https://github.com/TKZ10) for finding the dependency redirection hack and reviewing
 - [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and reviewing
 - [@ijorl](https://github.com/iJorl) for the initial slurm scripts
+
+Footnotes:
 
 [^cisco]: Based on my experience the openconnect CLI doesn't work. So I suggest downloading the the [Cisco-Anyconnect client](https://apps.apple.com/at/app/cisco-secure-client/id1135064690?l=en-GB)
 [^netpass]: Also called Radius password, see: https://www.password.ethz.ch/
