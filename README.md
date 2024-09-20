@@ -1,12 +1,12 @@
 This guide will help you get started with the TIK cluster at ETH Zurich.
 
-First, enable your VPN connection to the ETH network through the Cisco-Anyconnect client[^cisco] using the following configuration:
+First, enable your VPN connection to the ETH network through a client of your choice (preferably the Cisco-Anyconnect client[^cisco]) using the following configuration:
 
 - server: `https://sslvpn.ethz.ch`
 - username: `<username>@student-net.ethz.ch`
-- password: your network password[^netpass]
+- password: your network password (Radius password)
 
-Then just ssh into the tik42 or j2tik login node using your default password[^defpass]:
+Then just ssh into the tik42 or j2tik login node using your default password (LDAPS/AD password):
 
 ```bash
 ssh <username>@tik42x.ethz.ch
@@ -186,6 +186,7 @@ Alternatively to this workflow you could also use [Conda environments](./conda-t
 General documentation:
 
 - vpn: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
+- passwords: https://www.password.ethz.ch/
 - best practices: https://computing.ee.ethz.ch/Services/HPCStorageIOBestPracticeGuidelines
 - outdated tutorial: https://hackmd.io/hYACdY2aR1-F3nRdU8q5dA
 - up-to-date tutorial: https://gitlab.ethz.ch/disco-students/cluster
@@ -209,5 +210,4 @@ Huge thanks to:
 Footnotes:
 
 [^cisco]: Based on my experience the openconnect CLI doesn't work. So I suggest downloading the the [Cisco-Anyconnect client](https://apps.apple.com/at/app/cisco-secure-client/id1135064690?l=en-GB)
-[^netpass]: Also called Radius password, see: https://www.password.ethz.ch/
-[^defpass]: Also called LDAPS/AD password, see: https://www.password.ethz.ch/
+
