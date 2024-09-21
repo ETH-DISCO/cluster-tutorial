@@ -53,6 +53,9 @@ Keep in mind:
 Here's how to spin up an Apptainer and start working within it:
 
 ```bash
+# set slurm path
+export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
+
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
