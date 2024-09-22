@@ -164,7 +164,7 @@ sed -i 's/{{USERNAME}}/'$USER'/g' job.sh
 # dispatch job
 sbatch job.sh
 
-# show progress
+# check if job is running
 watch -n 1 "squeue | grep $USER"
 
 # clean up
