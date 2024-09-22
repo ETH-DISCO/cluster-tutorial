@@ -35,10 +35,9 @@ echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 conda activate base
 
 # ------------------------------------------------ run the job
-cd /itet-stor/${USER}/net_scratch/cluster-tutorial
-conda env create --file environment.yml
+conda env create --file /itet-stor/${USER}/net_scratch/cluster-tutorial/environment.yml
 conda activate con
-python mnist.py
+python /itet-stor/${USER}/net_scratch/cluster-tutorial/mnist.py
 
 echo "finished at: $(date)"
 exit 0
