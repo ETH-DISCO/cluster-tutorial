@@ -17,7 +17,7 @@ dependencies:
 - networkx=3.3
 - numpy=2.1.1
 - pillow=10.4.0
-- sympy=1.13.3
-- torch=2.4.1
+- sympy
+- torch
 - torchvision=0.19.1
 - typing-extensions=4.12.2
