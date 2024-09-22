@@ -142,7 +142,7 @@ This setup will hopefully enable you to be more productive on the cluster.
 
 # b) Running Slurm jobs
 
-Alternatively you can also run larger tasks using Slurm jobs.
+Alternatively you can also run longer running tasks using Slurm jobs. Slurm jobs can run 72h while standard compute node processes can only live 12h.
 
 Here's a quick demo using MNIST.
 
