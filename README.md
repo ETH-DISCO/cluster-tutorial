@@ -161,6 +161,8 @@ sbatch job.sh
 
 # check if job is running
 watch -n 1 "squeue | grep $USER"
+
+# check output
 ls /itet-stor/$USER/net_scratch/slurm/
 for file in /itet-stor/$USER/net_scratch/slurm/*; do
     if [ -f "$file" ]; then
