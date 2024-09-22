@@ -164,13 +164,7 @@ watch -n 1 "squeue | grep $USER"
 
 # check output
 ls /itet-stor/$USER/net_scratch/slurm/
-for file in /itet-stor/$USER/net_scratch/slurm/*; do
-    if [ -f "$file" ]; then
-        echo -e "\e[32m$(basename "$file")\e[0m"
-        cat "$file"
-        echo -e "\n-----------------------------------\n"
-    fi
-done
+for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "\e[32m$(basename "$file")\e[0m"; cat "$file"; echo -e "\n----------\n"; fi; done
 
 # clean up
 conda activate base
