@@ -1,14 +1,13 @@
 name: con
+name: con
 channels:
-- rusty1s
-- pytorch
-- nvidia
-- anaconda
-- conda-forge
-- defaults
+  - pytorch
+  - nvidia
+  - anaconda
+  - conda-forge
+  - defaults
 dependencies:
-- python=3.11
-- torch
-- torchvision
-- torchaudio
-- cudatoolkit=11.3
+  - python=3.11
+  - pytorch::torch
+  - pytorch::torchvision
+  - pytorch::torchaudio
