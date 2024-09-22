@@ -149,10 +149,9 @@ Here's a quick demo using MNIST.
 
 ```bash
 # clone this repository
-rm -rf /itet-stor/$USER/net_scratch/demo
-mkdir -p /itet-stor/$USER/net_scratch/demo
-cd /itet-stor/$USER/net_scratch/demo
-git clone https://github.com/ETH-DISCO/cluster-tutorial/ .
+cd /itet-stor/$USER/net_scratch/
+git clone https://github.com/ETH-DISCO/cluster-tutorial/
+cd cluster-tutorial
 
 # install conda
 chmod +x ./install-conda.sh
