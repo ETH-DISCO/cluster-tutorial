@@ -165,7 +165,8 @@ chmod +x ./install-conda.sh
 sed 's/{{USERNAME}}/$USER/g' job.sh > job.sh
 
 # dispatch job
-conda env create -f environment.yml
+conda activate base
+conda env create --file environment.yml
 sbatch job.sh
 
 # show progress
