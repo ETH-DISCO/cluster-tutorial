@@ -12,18 +12,7 @@
 #CommentSBATCH --constraint='titan_rtx|tesla_v100|titan_xp|a100_80gb' # example: specify a gpu
 
 mkdir -p /itet-stor/${USER}/net_scratch/slurm
-
 set -o errexit # exit on error
-
-# TMPDIR=$(mktemp -d) # create a temp directory for the job
-# if [[ ! -d ${TMPDIR} ]]; then
-#   echo 'Failed to create temp directory' >&2
-#   exit 1
-# fi
-# trap "exit 1" HUP INT TERM # exit on interrupt
-# trap 'rm -rf "${TMPDIR}"' EXIT # cleanup on exit
-# export TMPDIR
-# cd "${TMPDIR}"
 
 echo "running on node: $(hostname)"
 echo "in directory: $(pwd)"
@@ -33,13 +22,8 @@ echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 [[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)" # load conda
 conda activate base
 
-# ------------------------------------------------ run the job
-if conda env list | grep -q "^con "; then
-    conda remove --yes --name con --all
-fi
-conda env create --file /itet-stor/${USER}/net_scratch/cluster-tutorial/environment.yml
 conda activate con
-python /itet-stor/${USER}/net_scratch/cluster-tutorial/mnist.py
+python mnist.py
 
 echo "finished at: $(date)"
 exit 0
