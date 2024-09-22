@@ -1,5 +1,10 @@
 name: con
 channels:
+- rusty1s
+- pytorch
+- nvidia
+- anaconda
+- conda-forge
 - defaults
 dependencies:
 - filelock=3.16.1
