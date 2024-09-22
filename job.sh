@@ -19,7 +19,7 @@ echo "in directory: $(pwd)"
 echo "starting on: $(date)"
 echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 
-[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)" # load conda
+[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 conda activate con
 python3 mnist.py
 
