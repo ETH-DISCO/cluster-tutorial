@@ -33,7 +33,7 @@ echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 [[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"
 
 # ---------------- run the job ----------------
-conda activate con
+conda activate demo
 python mnist.py
 # ---------------------------------------------
 
