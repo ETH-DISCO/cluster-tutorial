@@ -6,7 +6,6 @@ channels:
 - anaconda
 - conda-forge
 - defaults
-channel_priority: flexible
 dependencies:
 - python=3.11
 - filelock=3.16.1
