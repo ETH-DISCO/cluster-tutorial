@@ -1,5 +1,4 @@
 name: con
-name: con
 channels:
   - pytorch
   - nvidia
