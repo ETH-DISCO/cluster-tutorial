@@ -15,6 +15,9 @@ ssh <username>@tik42x.ethz.ch
 You then might want to also run:
 
 ```bash
+# set slurm path
+export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
+
 # clean up storage
 find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
 rm -rf /scratch/$USER/*
@@ -54,9 +57,6 @@ Keep in mind:
 Here's how to spin up an Apptainer and start working within it:
 
 ```bash
-# set slurm path
-export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
-
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
@@ -148,9 +148,6 @@ Alternatively you can also run longer running tasks using Slurm jobs. Slurm jobs
 Here's a quick demo using MNIST.
 
 ```bash
-# set slurm path
-export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
-
 # clone this repository
 rm -rf /itet-stor/$USER/net_scratch/demo
 mkdir -p /itet-stor/$USER/net_scratch/demo
