@@ -103,7 +103,7 @@ CONDA_ENV_DIR="${CONDA_BASE_DIR}/conda_envs"
 if [[ -d "${CONDA_INSTALL_DIR}" ]]; then
     if [[ -z "$(find "${CONDA_INSTALL_DIR}" -maxdepth 0 -type d -empty 2>/dev/null)" ]]; then
         title 'Checking installation path'
-        echo "The installation path '${CONDA_INSTALL_DIR}' is not empty."
+        echo "Already installed. The installation path '${CONDA_INSTALL_DIR}' is not empty."
         echo 'Aborting installation.'
         exit 1
     fi
