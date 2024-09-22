@@ -1,4 +1,4 @@
-name: demo
+name: con
 channels:
   - rusty1s
   - pytorch
