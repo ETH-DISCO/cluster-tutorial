@@ -1,4 +1,4 @@
-name: cluster-tutorial
+name: demo
 channels:
   - rusty1s
   - pytorch
