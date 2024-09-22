@@ -1,12 +1,10 @@
 name: con
 channels:
   - pytorch
-  - nvidia
-  - anaconda
   - conda-forge
   - defaults
 dependencies:
   - python=3.11
-  - pytorch::torch
-  - pytorch::torchvision
-  - pytorch::torchaudio
+  - pytorch
+  - torchvision
+  - torchaudio
