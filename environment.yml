@@ -1,18 +1,17 @@
 name: con
 channels:
-  - rusty1s
-  - pytorch
-  - nvidia
-  - anaconda
-  - conda-forge
-  - defaults
+- defaults
 dependencies:
-  - python=3.9.0
-  - pytorch=2.0.1
-  - torchvision
-  - torchaudio
-  - pytorch-cuda=11.7
-  - pip
-  - pip:
-      - wandb
-      - pynvml
+- filelock=3.16.1
+- fsspec=2024.9.0
+- jinja2=3.1.4
+- markupsafe=2.1.5
+- mpmath=1.3.0
+- networkx=3.3
+- numpy=2.1.1
+- pillow=10.4.0
+- sympy=1.13.3
+- torch=2.4.1
+- torchvision=0.19.1
+- typing-extensions=4.12.2
+- python=3.11
