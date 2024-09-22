@@ -30,10 +30,13 @@ echo "in directory: $(pwd)"
 echo "starting on: $(date)"
 echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 
-[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"
+[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)" # load conda
+conda activate base
 
 # ---------------- run the job ----------------
-conda activate demo
+conda activate base
+conda env create --file environment.yml
+conda activate con
 python mnist.py
 # ---------------------------------------------
 
