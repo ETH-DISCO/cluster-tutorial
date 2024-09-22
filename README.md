@@ -155,9 +155,13 @@ git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
 
 sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
-chmod +x ./install-conda.sh && ./install-conda.sh # install conda
 rm -rf /itet-stor/$USER/net_scratch/slurm # clean up
-conda env create --file environment.yml # create conda env
+
+# create conda env
+chmod +x ./install-conda.sh && ./install-conda.sh
+rm -rf /itet-stor/yjabary/net_scratch/conda_envs/con
+conda remove --yes --name con --all || true
+conda env create --file environment.yml
 
 # dispatch job
 sbatch job.sh
