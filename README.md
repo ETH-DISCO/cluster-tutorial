@@ -165,11 +165,11 @@ chmod +x ./install-conda.sh
 # replace the placeholders with your actual username
 sed 's/{{USERNAME}}/$USER/g' job.sh > job.sh
 
-# create job environment, dispatch job
-conda env create -f conda-environment.yml
+# dispatch job
+conda env create -f environment.yml
 sbatch job.sh
 
-# check progress
+# show progress
 watch -n 1 "squeue | grep $USER"
 ```
 
