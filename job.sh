@@ -11,8 +11,8 @@
 #CommentSBATCH --account=tik-internal # example: charge a specific account
 #CommentSBATCH --constraint='titan_rtx|tesla_v100|titan_xp|a100_80gb' # example: specify a gpu
 
-mkdir -p /itet-stor/${USER}/net_scratch/slurm
 set -o errexit # exit on error
+mkdir -p /itet-stor/${USER}/net_scratch/slurm
 
 echo "running on node: $(hostname)"
 echo "in directory: $(pwd)"
