@@ -6,7 +6,7 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=4
 #SBATCH --gres=gpu:1
-#SBATCH --exclude=tikgpu10,tikgpu[06-09]
+#SBATCH --exclude=tikgpu[08-10]
 #CommentSBATCH --nodelist=tikgpu01 # example: specify a node
 #CommentSBATCH --account=tik-internal # example: charge a specific account
 #CommentSBATCH --constraint='titan_rtx|tesla_v100|titan_xp|a100_80gb' # example: specify a gpu
