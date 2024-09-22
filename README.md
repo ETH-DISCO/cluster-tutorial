@@ -150,6 +150,7 @@ Here's a quick demo using MNIST.
 ```bash
 # clone this repository
 cd /itet-stor/$USER/net_scratch/
+rm -rf /itet-stor/$USER/net_scratch/cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
 
