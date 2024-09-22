@@ -168,7 +168,6 @@ conda activate con
 python3 -c "import torch; print(torch.__version__)"
 conda deactivate
 
-
 # dispatch job
 sbatch job.sh
 
