@@ -157,6 +157,7 @@ cd /itet-stor/$USER/net_scratch/cluster
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ .
 
 # install conda
+chmod +x ./conda_install.sh
 ./conda_install.sh
 
 # replace the placeholders with your actual username
