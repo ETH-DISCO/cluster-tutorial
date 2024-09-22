@@ -168,6 +168,8 @@ sbatch job.sh
 watch -n 1 "squeue | grep $USER"
 
 # clean up
+conda activate base
+conda remove --yes --name con --all
 rm -rf /itet-stor/$USER/net_scratch/*
 ```
 
