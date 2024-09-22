@@ -13,9 +13,8 @@
 
 # ------------------------------------------ end of configuration ------------------------------------------
 
-PROJECT_NAME=cluster
-DIRECTORY=/itet-stor/${USER}/net_scratch/${PROJECT_NAME}
-CONDA_ENVIRONMENT=cluster-tutorial
+DIRECTORY=/itet-stor/${USER}/net_scratch/demo
+CONDA_ENVIRONMENT=demo
 mkdir -p ${DIRECTORY}/jobs
 
 # Exit on errors
@@ -37,9 +36,9 @@ cd "${TMPDIR}" || exit 1
 
 # Send some noteworthy information to the output log
 
-echo "Running on node: $(hostname)"
-echo "In directory: $(pwd)"
-echo "Starting on: $(date)"
+echo "running on node: $(hostname)"
+echo "in directory: $(pwd)"
+echo "starting on: $(date)"
 echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 
 
@@ -48,11 +47,7 @@ conda activate ${CONDA_ENVIRONMENT}
 echo "Conda activated"
 cd ${DIRECTORY}
 
-# Execute your code
 python job.py
 
-# Send more noteworthy information to the output log
-echo "Finished at: $(date)"
-
-# End the script with exit code 0
+echo "finished at: $(date)"
 exit 0
