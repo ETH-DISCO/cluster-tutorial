@@ -138,7 +138,8 @@ echo "> http://$(hostname -f):5998"
 jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
-This setup will hopefully enable you to be more productive on the cluster.
+Note: Do not use Conda to work in compute nodes. You will run out of memory quickly and each memory related instruction can take multiple hours to execute since they will be executed on the distributed NFS4 filesystem. The EXT4 filesystem used by Apptainer which is significantly faster.
+
 
 # b) Running Slurm jobs
 
@@ -174,8 +175,6 @@ watch -n 1 "squeue | grep $USER"
 Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. Each filepointer your script writes to (ie. stderr, stdout) will have its own file.
 
 # Addendum
-
-There is a third workflow I'm aware of, using [Conda environments](./conda-tutorial.md), but it is definitely not to be recommended.
 
 General documentation:
 
