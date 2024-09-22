@@ -10,3 +10,5 @@ dependencies:
 - python=3.11
 - torch
 - torchvision
+- torchaudio
+- cudatoolkit=11.3
