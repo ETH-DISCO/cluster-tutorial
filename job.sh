@@ -14,11 +14,7 @@
 rm -rf /itet-stor/${USER}/net_scratch/slurm
 mkdir -p /itet-stor/${USER}/net_scratch/slurm
 
-echo "ONE"
-
 set -o errexit # exit on error
-
-echo "TWO"
 
 TMPDIR=$(mktemp -d) # create a temp directory for the job
 if [[ ! -d ${TMPDIR} ]]; then
@@ -29,8 +25,6 @@ trap "exit 1" HUP INT TERM # exit on interrupt
 trap 'rm -rf "${TMPDIR}"' EXIT # cleanup on exit
 export TMPDIR
 cd "${TMPDIR}"
-
-echo "THREE"
 
 echo "running on node: $(hostname)"
 echo "in directory: $(pwd)"
