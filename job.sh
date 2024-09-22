@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --mail-type=NONE # disable email notifications can be [NONE, BEGIN, END, FAIL, REQUEUE, ALL]
-#SBATCH --output=/itet-stor/{{USERNAME}}/net_scratch/slurm/output/%j.out # redirection of stdout (%j is the job id)
-#SBATCH --error=/itet-stor/{{USERNAME}}/net_scratch/slurm/output/%j.err # redirection of stderr
+#SBATCH --output=/itet-stor/{{USERNAME}}/net_scratch/slurm/%j.out # redirection of stdout (%j is the job id)
+#SBATCH --error=/itet-stor/{{USERNAME}}/net_scratch/slurm/%j.err # redirection of stderr
 #SBATCH --mem=100G
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=4
@@ -11,9 +11,10 @@
 #CommentSBATCH --account=tik-internal # example: charge a specific account
 #CommentSBATCH --constraint='titan_rtx|tesla_v100|titan_xp|a100_80gb' # example: specify a gpu
 
+rm -rf /itet-stor/${USER}/net_scratch/slurm
+mkdir -p /itet-stor/${USER}/net_scratch/slurm
+
 set -o errexit # exit on error
-rm -rf /itet-stor/${USER}/net_scratch/slurm/output
-mkdir -p /itet-stor/${USER}/net_scratch/slurm/output
 
 TMPDIR=$(mktemp -d) # create a temp directory for the job
 if [[ ! -d ${TMPDIR} ]]; then
