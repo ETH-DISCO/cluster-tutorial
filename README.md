@@ -19,6 +19,7 @@ You then might want to also run:
 find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
+rm -rf /itet-stor/$USER/net_scratch/* # unless you're waiting for slurm results
 
 # fix locale issues
 unset LANG
@@ -170,9 +171,6 @@ sbatch job.sh
 
 # check progress
 watch -n 1 "squeue | grep $USER"
-
-# clean everything up
-rm -rf /itet-stor/$USER/net_scratch/*
 ```
 
 Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. Each filepointer your script writes to (ie. stderr, stdout) will have its own file.
