@@ -153,7 +153,7 @@ cd /itet-stor/$USER/net_scratch/
 rm -rf /itet-stor/$USER/net_scratch/cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
-sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # fix templating
+sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
 
 # install conda
 chmod +x ./install-conda.sh
