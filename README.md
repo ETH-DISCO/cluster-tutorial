@@ -159,7 +159,7 @@ chmod +x ./install-conda.sh
 ./install-conda.sh
 
 # replace the placeholders with your actual username
-sed 's/{{USERNAME}}/$USER/g' job.sh > job.sh
+sed -i 's/{{USERNAME}}/'$USER'/g' job.sh
 
 # dispatch job
 conda activate base
