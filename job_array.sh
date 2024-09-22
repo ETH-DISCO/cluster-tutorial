@@ -17,7 +17,7 @@ ETH_USERNAME={{USERNAME}}
 # ------------------------------------------ end of configuration ------------------------------------------
 
 PROJECT_NAME=cluster
-DIRECTORY=/itet-stor/${ETH_USERNAME}/net_scratch/${PROJECT_NAME}
+DIRECTORY=/itet-stor/$USER/net_scratch/${PROJECT_NAME}
 CONDA_ENVIRONMENT=cluster-tutorial
 mkdir -p ${DIRECTORY}/jobs
 
@@ -46,7 +46,7 @@ echo "Starting on: $(date)"
 echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 echo "SLURM_ARRAY_TASK_ID: ${SLURM_ARRAY_TASK_ID}"
 
-[[ -f /itet-stor/${ETH_USERNAME}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${ETH_USERNAME}/net_scratch/conda/bin/conda shell.bash hook)"
+[[ -f /itet-stor/$USER/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)"
 conda activate ${CONDA_ENVIRONMENT}
 echo "Conda activated"
 cd ${DIRECTORY}
