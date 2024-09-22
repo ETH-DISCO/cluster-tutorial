@@ -151,6 +151,7 @@ Here's a quick demo using MNIST.
 export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 
 # clone this repository
+mkdir -p /itet-stor/$USER/net_scratch/cluster
 cd /itet-stor/$USER/net_scratch/cluster
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ .
 
