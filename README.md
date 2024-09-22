@@ -138,7 +138,7 @@ echo "> http://$(hostname -f):5998"
 jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
-Note: Do not use Conda to work in compute nodes. You will run out of memory quickly and each memory related instruction can take multiple hours to execute since they will be executed on the distributed NFS4 filesystem. The EXT4 filesystem used by Apptainer which is significantly faster.
+Note: Do not use Conda to work in compute nodes. You will run out of memory quickly and each memory related instruction can take multiple hours to execute since they will be executed on the distributed NFS4 filesystem. The EXT4 filesystem used by Apptainer is significantly faster.
 
 
 # b) Running Slurm jobs
