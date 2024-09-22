@@ -158,8 +158,8 @@ cd /itet-stor/$USER/net_scratch/cluster
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ .
 
 # install conda
-chmod +x ./conda_install.sh
-./conda_install.sh
+chmod +x ./install-conda.sh
+./install-conda.sh
 
 # replace the placeholders with your actual username
 sed 's/{{USERNAME}}/$USER/g' job.sh > job.sh
