@@ -157,6 +157,7 @@ cd cluster-tutorial
 sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
 chmod +x ./install-conda.sh && ./install-conda.sh # install conda
 rm -rf /itet-stor/$USER/net_scratch/slurm # clean up
+conda env create --file environment.yml # create conda env
 
 # dispatch job
 sbatch job.sh
