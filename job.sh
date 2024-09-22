@@ -23,7 +23,7 @@ echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 conda activate base
 
 conda activate con
-python mnist.py
+python3 mnist.py
 
 echo "finished at: $(date)"
 exit 0
