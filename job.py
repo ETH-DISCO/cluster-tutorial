@@ -1,7 +1,3 @@
-"""
-just a quick MNIST demo script
-"""
-
 from __future__ import print_function
 
 import torch
