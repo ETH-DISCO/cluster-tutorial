@@ -15,15 +15,15 @@ mkdir -p /itet-stor/${USER}/net_scratch/slurm
 
 set -o errexit # exit on error
 
-TMPDIR=$(mktemp -d) # create a temp directory for the job
-if [[ ! -d ${TMPDIR} ]]; then
-  echo 'Failed to create temp directory' >&2
-  exit 1
-fi
-trap "exit 1" HUP INT TERM # exit on interrupt
-trap 'rm -rf "${TMPDIR}"' EXIT # cleanup on exit
-export TMPDIR
-cd "${TMPDIR}"
+# TMPDIR=$(mktemp -d) # create a temp directory for the job
+# if [[ ! -d ${TMPDIR} ]]; then
+#   echo 'Failed to create temp directory' >&2
+#   exit 1
+# fi
+# trap "exit 1" HUP INT TERM # exit on interrupt
+# trap 'rm -rf "${TMPDIR}"' EXIT # cleanup on exit
+# export TMPDIR
+# cd "${TMPDIR}"
 
 echo "running on node: $(hostname)"
 echo "in directory: $(pwd)"
@@ -34,7 +34,9 @@ echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 conda activate base
 
 # ------------------------------------------------ run the job
-conda remove --yes --name con --all
+if conda env list | grep -q "^con "; then
+    conda remove --yes --name con --all
+fi
 conda env create --file /itet-stor/${USER}/net_scratch/cluster-tutorial/environment.yml
 conda activate con
 python /itet-stor/${USER}/net_scratch/cluster-tutorial/mnist.py
