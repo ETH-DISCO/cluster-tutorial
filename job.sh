@@ -43,7 +43,7 @@ conda activate base
 # ------------------------------------------------ run the job
 conda env create --file /itet-stor/${USER}/net_scratch/cluster-tutorial/environment.yml
 conda activate con
-python /itet-stor/${USER}/net_scratch/cluster-tutorial/mnist.py > python_output.log 2>&1
+python /itet-stor/${USER}/net_scratch/cluster-tutorial/mnist.py
 
 echo "finished at: $(date)"
 exit 0
