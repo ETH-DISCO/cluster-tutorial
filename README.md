@@ -162,11 +162,8 @@ conda env create --file environment.yml # create conda env
 # dispatch job
 sbatch job.sh
 
-# check if job is running
+# check results
 watch -n 1 "squeue | grep $USER"
-
-# check output
-ls /itet-stor/$USER/net_scratch/slurm/
 for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "\e[32m$(basename "$file")\e[0m"; cat "$file"; echo -e "\n----------\n"; fi; done
 
 # clean up
