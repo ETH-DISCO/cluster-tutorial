@@ -34,6 +34,7 @@ echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 conda activate base
 
 # ------------------------------------------------ run the job
+conda remove --yes --name con --all
 conda env create --file /itet-stor/${USER}/net_scratch/cluster-tutorial/environment.yml
 conda activate con
 python /itet-stor/${USER}/net_scratch/cluster-tutorial/mnist.py
