@@ -29,6 +29,7 @@ echo 'export LANG=C.UTF-8' >> ~/.bashrc
 export LANG=C.UTF-8
 
 # convenience aliases for ~/.bashrc.$USER
+alias ll="ls -alF"
 alias smon_free="grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt"
 alias smon_mine="grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt"
 alias watch_smon_free="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt\""
