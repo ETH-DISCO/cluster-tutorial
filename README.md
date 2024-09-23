@@ -108,9 +108,6 @@ export HUGGINGFACE_HUB_CACHE=/scratch/$USER/apptainer_env/hf_cache
 mkdir -p /scratch/$USER/apptainer_env/torch_cache
 export TORCH_HOME=/scratch/$USER/apptainer_env/torch_cache
 
-# convenience
-alias ll="ls -alF"
-
 # make venv
 pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages virtualenv
 /scratch/$USER/apptainer_env/site_packages/bin/virtualenv /scratch/$USER/apptainer_env/venv
