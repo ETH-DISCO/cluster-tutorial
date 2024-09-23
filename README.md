@@ -126,7 +126,11 @@ pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages v
 source /scratch/$USER/apptainer_env/venv/bin/activate
 export PIP_NO_CACHE_DIR=false
 
-# full example: installing and running pytorch
+#
+# demo
+#
+
+# installing and running pytorch
 pip install --upgrade pip
 rm -rf /scratch/$USER/piplog.txt
 pip install --no-cache-dir --log /scratch/$USER/piplog.txt torch torchvision torchaudio
@@ -137,6 +141,10 @@ print(f"CUDA available: {torch.cuda.is_available()}")
 EOF
 nvidia-smi # sanity check
 python3 demo.py # should print true
+
+#
+# jupyterlab for convenience
+#
 
 # install JupyterLab
 mkdir -p /scratch/$USER/apptainer_env/jupyter_config
