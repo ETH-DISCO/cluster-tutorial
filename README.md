@@ -100,6 +100,7 @@ apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USE
 # set a bunch of env variables
 # see: https://github.com/huggingface/pytorch-image-models/discussions/790
 # see: https://huggingface.co/docs/transformers/v4.38.1/en/installation#cache-setup
+alias ll="ls -alF"
 mkdir -p /scratch/$USER/apptainer_env/venv/.local
 export TMPDIR=/scratch/$USER/apptainer_env/venv/.local
 mkdir -p /scratch/$USER/apptainer_env/.local
