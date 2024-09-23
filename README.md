@@ -122,6 +122,16 @@ mkdir -p /scratch/$USER/apptainer_env/hf_cache
 export HUGGINGFACE_HUB_CACHE=/scratch/$USER/apptainer_env/hf_cache
 mkdir -p /scratch/$USER/apptainer_env/torch_cache
 export TORCH_HOME=/scratch/$USER/apptainer_env/torch_cache
+mkdir -p /scratch/$USER/apptainer_env/lightning_logs
+export LIGHTNING_LOGS=/scratch/$USER/apptainer_env/lightning_logs
+mkdir -p /scratch/$USER/apptainer_env/checkpoints
+export PL_CHECKPOINT_DIR=/scratch/$USER/apptainer_env/checkpoints
+mkdir -p /scratch/$USER/apptainer_env/tensorboard_logs
+export TENSORBOARD_LOGDIR=/scratch/$USER/apptainer_env/tensorboard_logs
+mkdir -p /scratch/$USER/apptainer_env/cuda_cache
+export CUDA_CACHE_PATH=/scratch/$USER/apptainer_env/cuda_cache
+export OMP_NUM_THREADS=1 # avoid oversubcription in multigpu
+export MKL_NUM_THREADS=1 # avoid oversubcription in multigpu
 
 # make venv
 pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages virtualenv
