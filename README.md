@@ -63,9 +63,6 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 # attach to a tikgpu06 node (assuming it's free) and allocate 100GB of RAM and 1 GPU
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
-# convenience
-alias ll="ls -alF"
-
 # clean user files and apptainer cache
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
@@ -110,6 +107,9 @@ mkdir -p /scratch/$USER/apptainer_env/hf_cache
 export HUGGINGFACE_HUB_CACHE=/scratch/$USER/apptainer_env/hf_cache
 mkdir -p /scratch/$USER/apptainer_env/torch_cache
 export TORCH_HOME=/scratch/$USER/apptainer_env/torch_cache
+
+# convenience
+alias ll="ls -alF"
 
 # make venv
 pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages virtualenv
