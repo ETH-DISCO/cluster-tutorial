@@ -67,6 +67,9 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 # attach to a tikgpu06 node (assuming it's free) and allocate 100GB of RAM and 1 GPU
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
+# check numm allocated gpus
+nvidia-smi
+
 #
 # step 2
 #
@@ -140,7 +143,6 @@ import torch
 free_memory, total = torch.cuda.mem_get_info()
 print(f"CUDA available: {torch.cuda.is_available()}")
 EOF
-nvidia-smi # sanity check
 python3 demo.py # should print true
 
 #
