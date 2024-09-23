@@ -67,6 +67,10 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 # attach to a tikgpu06 node (assuming it's free) and allocate 100GB of RAM and 1 GPU
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu06 --pty bash -i
 
+#
+# step 2
+#
+
 # clean user files and apptainer cache
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
@@ -87,7 +91,7 @@ export APPTAINER_CONTAIN=1
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 
 #
-# step 2
+# step 3
 #
 
 # exec into apptainer
