@@ -22,6 +22,7 @@ export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
+rm -rf /itet-stor/$USER/net_scratch/* # unless you've been using slurm
 
 # fix locale issues
 unset LANG
