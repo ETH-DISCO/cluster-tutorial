@@ -57,6 +57,10 @@ Keep in mind:
 Here's how to spin up an Apptainer and start working within it:
 
 ```bash
+#
+# step 1
+#
+
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
@@ -81,6 +85,10 @@ export APPTAINER_CONTAIN=1
 # download apptainer sif
 # for .def files see: `https://cloud.sylabs.io/builder`
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
+
+#
+# step 2
+#
 
 # exec into apptainer
 apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USER/.apptainer/home:/home/$USER --pwd /scratch/$USER /scratch/$USER/cuda_sandbox --containall
