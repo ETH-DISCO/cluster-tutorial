@@ -210,7 +210,7 @@ watch -n 1 "squeue | grep $USER"
 for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "\e[32m$(basename "$file")\e[0m"; cat "$file"; echo -e "\n----------\n"; fi; done
 
 # clean up
-conda activate base
+[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 conda remove --yes --name con --all
 rm -rf /itet-stor/$USER/net_scratch/* # wipes everything including conda install
 ```
