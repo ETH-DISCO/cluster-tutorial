@@ -181,14 +181,13 @@ Here's a quick demo using MNIST.
 
 ```bash
 cd /itet-stor/$USER/net_scratch/
+rm -rf /itet-stor/$USER/net_scratch/slurm # clean up previous slurm output
 
 # clone this repository
 rm -rf cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
-
 sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
-rm -rf /itet-stor/$USER/net_scratch/slurm # clean up
 
 # install conda
 chmod +x ./install-conda.sh && ./install-conda.sh
