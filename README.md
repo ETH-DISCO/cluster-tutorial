@@ -182,7 +182,7 @@ Here's a quick demo using MNIST.
 ```bash
 # clone this repository
 cd /itet-stor/$USER/net_scratch/
-rm -rf /itet-stor/$USER/net_scratch/cluster-tutorial
+rm -rf /itet-stor/$USER/net_scratch/*
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
 
@@ -192,9 +192,8 @@ rm -rf /itet-stor/$USER/net_scratch/slurm # clean up
 # create conda env
 chmod +x ./install-conda.sh && ./install-conda.sh
 rm -rf /itet-stor/yjabary/net_scratch/conda_envs/con
-[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)" # load conda
-conda activate base
-conda remove --yes --name con --all || true
+[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
+conda remove --yes --name con --all || true # remove if exists
 conda env create --file environment.yml
 conda activate con
 python3 -c "import torch; print(torch.__version__)"
