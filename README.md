@@ -181,8 +181,8 @@ Here's a quick demo using MNIST.
 
 ```bash
 # clone this repository
+rm -rf /itet-stor/$USER/net_scratch/cluster-tutorial/
 cd /itet-stor/$USER/net_scratch/
-rm -rf /itet-stor/$USER/net_scratch/*
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
 
@@ -209,7 +209,7 @@ for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then ech
 # clean up
 conda activate base
 conda remove --yes --name con --all
-rm -rf /itet-stor/$USER/net_scratch/*
+rm -rf /itet-stor/$USER/net_scratch/* # wipes everything including conda install
 ```
 
 Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. Each filepointer your script writes to (ie. stderr, stdout) will have its own file.
