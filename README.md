@@ -180,9 +180,10 @@ Alternatively you can also run longer running tasks using Slurm jobs. Slurm jobs
 Here's a quick demo using MNIST.
 
 ```bash
-# clone this repository
-rm -rf /itet-stor/$USER/net_scratch/cluster-tutorial/
 cd /itet-stor/$USER/net_scratch/
+
+# clone this repository
+rm -rf cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
 
