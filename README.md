@@ -42,6 +42,7 @@ alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"g
 
 <details>
 <summary> <i> How does it work? </i> </summary>
+<br>
 
 Once you're in you'll have access to:
 
