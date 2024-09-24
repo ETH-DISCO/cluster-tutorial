@@ -26,6 +26,7 @@ dependencies:
       - networkx==3.3
       - numpy==2.1.1
       - pillow==10.4.0
+      - pynvml==11.5.3
       - sympy==1.13.3
       - torch==2.4.1
       - torchvision==0.19.1
