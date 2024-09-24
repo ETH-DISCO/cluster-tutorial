@@ -40,10 +40,6 @@ alias watch_smon_free="watch --interval 300 --no-title --differences --color \"g
 alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt\""
 ```
 
-<details>
-<summary> <i> How does it work? </i> </summary>
-<br>
-
 Once you're in you'll have access to:
 
 - Compute: You can use compute-nodes for computation. The login-node is only for file management and job submission. Do not run any computation on the login-node.
@@ -56,20 +52,6 @@ Keep in mind:
 - the A100s with 80GB on `tikgpu10` need special privileges
 - the A6000s with 48GB on `tikgpu08` need special privileges
 - set friendly `nice` values to your jobs, keep them small and preferably as array jobs
-
-General documentation:
-
-- best practices: https://computing.ee.ethz.ch/Services/HPCStorageIOBestPracticeGuidelines
-- outdated tutorial: https://hackmd.io/hYACdY2aR1-F3nRdU8q5dA
-- up-to-date tutorial: https://gitlab.ethz.ch/disco-students/cluster
-- conda install: https://computing.ee.ethz.ch/Programming/Languages/Conda
-- slurm docs: https://computing.ee.ethz.ch/Services/SLURM
-- jupyter notebook docs: https://computing.ee.ethz.ch/FAQ/JupyterNotebook?highlight=%28notebook%29
-- apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
-- apptainer example: https://gitlab.ethz.ch/disco/social/apptainer-examples/
-- cloud GPU as fallback: https://cloud-gpus.com/ and https://getdeploying.com/reference/cloud-gpu
-
-</details>
 
 # a) Working within an Apptainer
 
@@ -235,11 +217,23 @@ Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratc
 
 # Footnotes
 
-> Huge thanks to:
-> 
-> - [@tkz10](https://github.com/TKZ10) for finding the dependency redirection hack and reviewing
-> - [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and reviewing
-> - [@ijorl](https://github.com/iJorl) for the initial slurm scripts
+General documentation:
+
+- best practices: https://computing.ee.ethz.ch/Services/HPCStorageIOBestPracticeGuidelines
+- outdated tutorial: https://hackmd.io/hYACdY2aR1-F3nRdU8q5dA
+- up-to-date tutorial: https://gitlab.ethz.ch/disco-students/cluster
+- conda install: https://computing.ee.ethz.ch/Programming/Languages/Conda
+- slurm docs: https://computing.ee.ethz.ch/Services/SLURM
+- jupyter notebook docs: https://computing.ee.ethz.ch/FAQ/JupyterNotebook?highlight=%28notebook%29
+- apptainer docs: https://computing.ee.ethz.ch/Services/Apptainer
+- apptainer example: https://gitlab.ethz.ch/disco/social/apptainer-examples/
+- cloud GPU as fallback: https://cloud-gpus.com/ and https://getdeploying.com/reference/cloud-gpu
+
+Thanks to:
+ 
+- [@tkz10](https://github.com/TKZ10) for finding the dependency redirection hack and reviewing
+- [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and reviewing
+- [@ijorl](https://github.com/iJorl) for the initial slurm scripts
 
 [^vpn]: See: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
 [^pwd]: See: https://www.password.ethz.ch/
