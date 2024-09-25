@@ -79,7 +79,7 @@ You can run longer running tasks using Slurm jobs. Here's a quick demo using MNI
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
-# attach to a node (assuming it's free) and allocate 100GB of RAM and 1 GPU
+# attach to a node (assuming it's free)
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 
 # clean up memory
@@ -103,8 +103,8 @@ conda deactivate
 # dispatch job
 rm -rf ./job.sh
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # only keep job.sh
-sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
-sed -i 's/{{NODE}}/'tikgpu07'/g' job.sh # insert node name into template
+sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # template username
+sed -i 's/{{NODE}}/'tikgpu07'/g' job.sh # template node name
 sbatch job.sh ./mnist.py
 
 # check status
