@@ -86,7 +86,6 @@ srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 # clone and choose script
 #
 
-# wipe working dir
 cd /scratch/$USER
 rm -rf ./*
 
