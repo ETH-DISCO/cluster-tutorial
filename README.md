@@ -191,12 +191,9 @@ sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
 
 # install conda
 chmod +x ./install-conda.sh && ./install-conda.sh
-eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"
-echo '[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"' >> /home/$USER/.bashrc
-
-# create conda env
 [[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
-rm -rf /itet-stor/$USER/net_scratch/conda_envs/con && conda remove --yes --name con --all || true # remove if exists
+rm -rf /itet-stor/$USER/net_scratch/conda_envs/con
+conda remove --yes --name con --all || true # remove previous env if exists
 conda env create --file environment.yml
 conda activate con
 python3 -c "import torch; print(torch.__version__)"
