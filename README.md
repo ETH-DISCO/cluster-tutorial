@@ -57,7 +57,7 @@ alias smon_mine="grep --color=always --extended-regexp '${USER}|$' /home/sladmit
 alias watch_smon_free="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt\""
 alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt\""
 
-# install conda
+# install conda (only run once)
 rm -rf /itet-stor/$USER/net_scratch/* # slow memory, limited to 8gb
 cd /itet-stor/$USER/net_scratch/
 rm -rf ./install-conda.sh
