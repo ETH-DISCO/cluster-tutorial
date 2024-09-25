@@ -87,7 +87,6 @@ cd /scratch/$USER
 rm -rf ./*
 
 # clone project
-rm -rf cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
 
