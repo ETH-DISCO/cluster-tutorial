@@ -87,28 +87,28 @@ cd /scratch/$USER
 rm -rf ./*
 
 # clone project
-git clone https://github.com/ETH-DISCO/cluster-tutorial/
-cd cluster-tutorial
+git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 
-# create env
+FILEPATH="./mnist.py"
+
+# ---
+
+# create conda env from environment.yml
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 rm -rf /itet-stor/$USER/net_scratch/conda_envs/con && conda remove --yes --name con --all || true
 conda info --envs
 conda env create --file environment.yml
-conda activate con
-python3 -c "import torch; print(f'pytorch version: {torch.__version__}')"
-conda deactivate
 
 # dispatch job
-rm -rf ./job.sh
-git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # only keep job.sh
+git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # get job.sh
 sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # template username
-sed -i 's/{{NODE}}/'tikgpu07'/g' job.sh # template node name
-sbatch job.sh ./mnist.py
+sed -i 's/{{NODE}}/'tikgpu07'/g' job.sh # template node
+sbatch job.sh $FILEPATH
 
 # check status
 watch -n 1 "squeue | grep $USER"
 ls -v cd /scratch/$USER/slurm/* | tail -n 1 | xargs cat
+
 ```
 
 # b) Prototyping within an Apptainer
