@@ -189,10 +189,12 @@ Here's a quick demo using MNIST.
 ```bash
 cd /itet-stor/$USER/net_scratch/
 
-# get python script and conda yaml file
+# clone project
 rm -rf cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
+
+# ––––––
 
 # remove previous env if exists
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
