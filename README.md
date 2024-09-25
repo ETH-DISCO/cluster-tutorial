@@ -172,11 +172,11 @@ jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999
 
 Do not use Conda to work in compute nodes. You will run out of memory quickly and each memory related instruction can take multiple hours to execute since they will be executed on the distributed NFS4 filesystem. The EXT4 filesystem used by Apptainer is significantly faster.
 
-Also beware that all background processes will be killed as soon you log out of that node.
+Also beware that all background processes will be killed as soon you log out of that node. Even if you manage to get longer running sessions, they're just constrained to 12h, while SLURM processes can run 72h.
 
 # b) Running Slurm jobs
 
-Alternatively you can also run longer running tasks using Slurm jobs. Slurm jobs can run 72h while standard compute node processes can only live 12h.
+Alternatively you can also run longer running tasks using Slurm jobs.
 
 Here's a quick demo using MNIST.
 
