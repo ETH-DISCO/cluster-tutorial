@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --mail-type=NONE # disable email notifications can be [NONE, BEGIN, END, FAIL, REQUEUE, ALL]
-#SBATCH --output=/itet-stor/{{USERNAME}}/net_scratch/slurm/%j.out # redirection of stdout (%j is the job id)
-#SBATCH --error=/itet-stor/{{USERNAME}}/net_scratch/slurm/%j.err # redirection of stderr
+#SBATCH --output=/scratch/{{USERNAME}}/slurm/%j.out # redirection of stdout (%j is the job id)
+#SBATCH --error=/scratch/{{USERNAME}}/slurm/%j.err # redirection of stderr
 #SBATCH --nodelist={{NODE}} # choose specific node
 #SBATCH --exclude=tikgpu[08-10]
 #SBATCH --mem=100G
@@ -12,7 +12,7 @@
 #CommentSBATCH --constraint='titan_rtx|tesla_v100|titan_xp|a100_80gb' # example: specify a gpu
 
 set -o errexit # exit on error
-mkdir -p /itet-stor/${USER}/net_scratch/slurm
+mkdir -p /scratch/$USER/slurm
 
 echo "running on node: $(hostname)"
 echo "in directory: $(pwd)"
