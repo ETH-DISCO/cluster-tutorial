@@ -202,6 +202,7 @@ conda info --envs
 # create new env
 conda env create --file environment.yml
 conda activate con
+python3 -c "import torch; print(f'pytorch version: {torch.__version__}')"
 conda deactivate
 
 # dispatch job
