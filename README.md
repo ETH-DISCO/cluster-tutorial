@@ -82,16 +82,21 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 # attach to a node (assuming it's free)
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 
+#
+# clone project, choose file
+#
+
 # clean up memory
 cd /scratch/$USER
 rm -rf ./*
 
 # clone project
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
-
 FILEPATH="./mnist.py"
 
-# ---
+#
+# dispatch job
+#
 
 # create environment.yml
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
@@ -122,10 +127,6 @@ ls -v cd /scratch/$USER/slurm/* | tail -n 1 | xargs cat
 Here's how to spin up an Apptainer and start working within it:
 
 ```bash
-#
-# step 1
-#
-
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
@@ -133,7 +134,7 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 
 #
-# step 2
+# step 1
 #
 
 # clean user files and apptainer cache
@@ -156,7 +157,7 @@ export APPTAINER_CONTAIN=1
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 
 #
-# step 3
+# step 2
 #
 
 # exec into apptainer
