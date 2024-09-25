@@ -50,8 +50,12 @@ echo '[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-s
 
 Once you're in you'll have access to:
 
-- Compute: You can use compute-nodes for computation. The login-node is only for file management and job submission. Do not run any computation on the login-node.
-- Storage: Use `/scratch/$USER` on the compute-nodes for temporary storage. Try to avoid using `/itet-stor/$USER/net_scratch` on the login-node.
+- The login node:
+        - Compute: Not permitted. The login-node is only for file management and job submission. Do not run any computation on the login-node.
+        - Storage: Slow and small but non-volatile. Accessible through `/scratch/$USER`. Limited to just 8GB and uses the NFS4 instead of the EXT4 filesystem which is slower by a wide margin.
+- The compute nodes:
+        - Compute: Intended for compute. But bewared that sessions are limited to just 12h in interactive shells and background processes will be killed as soon you log out. Make sure to run long running processes via SLURM batch jobs, which can run 72h.
+        - Storage: Fast and large but volatile. Accessible through `/itet-stor/$USER/net_scratch` (requires your shell to be attached). Uses the EXT4 filesystem.
 
 Keep in mind:
 
@@ -60,6 +64,7 @@ Keep in mind:
 - the A100s with 80GB on `tikgpu10` need special privileges
 - the A6000s with 48GB on `tikgpu08` need special privileges
 - set friendly `nice` values to your jobs, keep them small and preferably as array jobs
+
 
 # a) Prototyping within an Apptainer
 
@@ -177,10 +182,6 @@ python -m ipykernel install --user --name=venv
 echo "> http://$(hostname -f):5998"
 jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
-
-Do not use Conda to work in compute nodes. You will run out of memory quickly and each memory related instruction can take multiple hours to execute since they will be executed on the distributed NFS4 filesystem. The EXT4 filesystem used by Apptainer is significantly faster.
-
-Also beware that all background processes will be killed as soon you log out of that node. Even if you manage to get longer running sessions, they're just constrained to 12h, while SLURM processes can run 72h.
 
 # b) Running Slurm jobs
 
