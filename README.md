@@ -71,7 +71,42 @@ if [ ! -d "/itet-stor/${USER}/net_scratch/conda" ] && [ ! -d "/itet-stor/${USER}
 fi
 ```
 
-# a) Prototyping within an Apptainer
+# a) Running Slurm jobs
+
+You can run longer running tasks using Slurm jobs. Here's a quick demo using MNIST.
+
+```bash
+cd /itet-stor/$USER/net_scratch/ # only limited to 8GB and pretty slow, use compute node memory instead
+
+# clone project
+rm -rf cluster-tutorial
+git clone https://github.com/ETH-DISCO/cluster-tutorial/
+cd cluster-tutorial
+
+# ---
+
+# create env
+eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
+rm -rf /itet-stor/$USER/net_scratch/conda_envs/con && conda remove --yes --name con --all || true
+conda info --envs
+conda env create --file environment.yml
+conda activate con
+python3 -c "import torch; print(f'pytorch version: {torch.__version__}')"
+conda deactivate
+
+# dispatch job
+rm -rf ./job.sh
+git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # only keep job.sh
+sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
+sbatch job.sh ./mnist.py
+
+# check status
+watch -n 1 "squeue | grep $USER"
+for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "\e[32m$(basename "$file")\e[0m"; cat "$file"; echo -e "\n----------\n"; fi; done
+watch -n 0.5 'for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "$(basename "$file")"; cat "$file"; echo -e "\n----------\n"; fi; done'
+```
+
+# b) Prototyping within an Apptainer
 
 Here's how to spin up an Apptainer and start working within it:
 
@@ -186,43 +221,6 @@ python -m ipykernel install --user --name=venv
 
 echo "> http://$(hostname -f):5998"
 jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
-```
-
-# b) Running Slurm jobs
-
-Alternatively you can also run longer running tasks using Slurm jobs.
-
-Here's a quick demo using MNIST.
-
-```bash
-cd /itet-stor/$USER/net_scratch/ # only limited to 8GB and pretty slow, use compute node memory instead
-
-# clone project
-rm -rf cluster-tutorial
-git clone https://github.com/ETH-DISCO/cluster-tutorial/
-cd cluster-tutorial
-
-# ---
-
-# create env
-eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
-rm -rf /itet-stor/$USER/net_scratch/conda_envs/con && conda remove --yes --name con --all || true
-conda info --envs
-conda env create --file environment.yml
-conda activate con
-python3 -c "import torch; print(f'pytorch version: {torch.__version__}')"
-conda deactivate
-
-# dispatch job
-rm -rf ./job.sh
-git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # only keep job.sh
-sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
-sbatch job.sh ./mnist.py
-
-# check status
-watch -n 1 "squeue | grep $USER"
-for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "\e[32m$(basename "$file")\e[0m"; cat "$file"; echo -e "\n----------\n"; fi; done
-watch -n 0.5 'for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "$(basename "$file")"; cat "$file"; echo -e "\n----------\n"; fi; done'
 ```
 
 # Footnotes
