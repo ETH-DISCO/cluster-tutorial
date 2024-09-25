@@ -196,13 +196,10 @@ git clone https://github.com/ETH-DISCO/cluster-tutorial/
 mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # only keep job.sh
 sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
 
-
-
-# clone this repository
+# get python script and conda yaml file
 rm -rf cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
-
 
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 
