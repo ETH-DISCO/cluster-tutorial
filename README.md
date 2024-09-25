@@ -73,7 +73,6 @@ srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 #
 
 apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USER/.apptainer/home:/home/$USER --pwd /scratch/$USER /scratch/$USER/cuda_sandbox --containall
-/scratch/$USER/apptainer_env/site_packages/bin/virtualenv /scratch/$USER/apptainer_env/venv
 
 #
 # step 2
