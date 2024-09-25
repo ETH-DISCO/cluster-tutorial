@@ -205,6 +205,7 @@ python3 -c "import torch; print(f'pytorch version: {torch.__version__}')"
 conda deactivate
 
 # dispatch job
+rm -rf ./job.sh
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # only keep job.sh
 sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
 sbatch job.sh ./mnist.py
