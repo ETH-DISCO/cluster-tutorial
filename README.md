@@ -12,7 +12,26 @@ Then just ssh into the tik42 or j2tik login node using your default password (LD
 ssh <username>@tik42x.ethz.ch
 ```
 
-And then run:
+Once you're in you'll have access to:
+
+- The login node:
+	- Compute: Not permitted. The login-node is only for file management and job submission. Do not run any computation on the login-node.
+	- Storage: Slow and small but non-volatile. Accessible through `/scratch/$USER`. Limited to just 8GB and uses the NFS4 instead of the EXT4 filesystem which is slower by a wide margin.
+- The compute nodes:
+	- Compute: Intended for compute. But bewared that sessions are limited to just 12h in interactive shells and background processes will be killed as soon you log out. Make sure to run long running processes via SLURM batch jobs, which can run 72h.
+	- Storage: Fast and large but volatile. Accessible through `/itet-stor/$USER/net_scratch` (requires your shell to be attached). Uses the EXT4 filesystem.
+
+Keep in mind:
+
+- to use >8 GPUs you need your supervisor's permission and must reserve the nodes in advance in the shared calendar
+- only submit jobs to `arton[01-08]`
+- the A100s with 80GB on `tikgpu10` need special privileges
+- the A6000s with 48GB on `tikgpu08` need special privileges
+- set friendly `nice` values to your jobs, keep them small and preferably as array jobs
+
+# Initialization
+
+To set everything up, run:
 
 ```bash
 # set slurm path
@@ -47,24 +66,6 @@ chmod +x ./install-conda.sh && ./install-conda.sh
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 echo '[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"' >> ~/.bashrc # add to bashrc
 ```
-
-Once you're in you'll have access to:
-
-- The login node:
-	- Compute: Not permitted. The login-node is only for file management and job submission. Do not run any computation on the login-node.
-	- Storage: Slow and small but non-volatile. Accessible through `/scratch/$USER`. Limited to just 8GB and uses the NFS4 instead of the EXT4 filesystem which is slower by a wide margin.
-- The compute nodes:
-	- Compute: Intended for compute. But bewared that sessions are limited to just 12h in interactive shells and background processes will be killed as soon you log out. Make sure to run long running processes via SLURM batch jobs, which can run 72h.
-	- Storage: Fast and large but volatile. Accessible through `/itet-stor/$USER/net_scratch` (requires your shell to be attached). Uses the EXT4 filesystem.
-
-Keep in mind:
-
-- to use >8 GPUs you need your supervisor's permission and must reserve the nodes in advance in the shared calendar
-- only submit jobs to `arton[01-08]`
-- the A100s with 80GB on `tikgpu10` need special privileges
-- the A6000s with 48GB on `tikgpu08` need special privileges
-- set friendly `nice` values to your jobs, keep them small and preferably as array jobs
-
 
 # a) Prototyping within an Apptainer
 
