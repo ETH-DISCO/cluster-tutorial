@@ -62,7 +62,6 @@ shopt -s extglob
 rm -rf !("conda"|"conda_pkgs")
 shopt -u extglob
 if [ ! -d "/itet-stor/${USER}/net_scratch/conda" ] && [ ! -d "/itet-stor/${USER}/net_scratch/conda_pkgs" ]; then
-	echo "hello world"
 	cd /itet-stor/$USER/net_scratch/
 	rm -rf ./install-conda.sh
 	git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/install-conda.sh . && rm -rf cluster-tutorial # only keep install-conda.sh
