@@ -53,7 +53,7 @@ Keep in mind:
 - the A6000s with 48GB on `tikgpu08` need special privileges
 - set friendly `nice` values to your jobs, keep them small and preferably as array jobs
 
-# a) Working within an Apptainer
+# a) Prototyping within an Apptainer
 
 Here's how to spin up an Apptainer and start working within it:
 
@@ -67,12 +67,6 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
 # attach to a tikgpu06 node (assuming it's free) and allocate 100GB of RAM and 1 GPU
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
-
-#
-# optional: continue where you left off
-#
-
-apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USER/.apptainer/home:/home/$USER --pwd /scratch/$USER /scratch/$USER/cuda_sandbox --containall
 
 #
 # step 2
@@ -176,7 +170,9 @@ echo "> http://$(hostname -f):5998"
 jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
-Note: Do not use Conda to work in compute nodes. You will run out of memory quickly and each memory related instruction can take multiple hours to execute since they will be executed on the distributed NFS4 filesystem. The EXT4 filesystem used by Apptainer is significantly faster.
+Do not use Conda to work in compute nodes. You will run out of memory quickly and each memory related instruction can take multiple hours to execute since they will be executed on the distributed NFS4 filesystem. The EXT4 filesystem used by Apptainer is significantly faster.
+
+Also beware that all background processes will be killed as soon you log out of that node.
 
 # b) Running Slurm jobs
 
