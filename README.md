@@ -76,14 +76,28 @@ fi
 You can run longer running tasks using Slurm jobs. Here's a quick demo using MNIST.
 
 ```bash
-cd /itet-stor/$USER/net_scratch/ # only limited to 8GB and pretty slow, use compute node memory instead
+#
+# step 1
+#
+
+# check node availability
+grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
+
+# attach to a node (assuming it's free) and allocate 100GB of RAM and 1 GPU
+srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
+
+# --------------- run code ---------------
+
+# clean up memory
+cd /scratch/$USER
+rm -rf ./*
 
 # clone project
 rm -rf cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
 
-# ---
+# ----------------------------------------
 
 # create env
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
@@ -152,7 +166,7 @@ apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://n
 # exec into apptainer
 apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USER/.apptainer/home:/home/$USER --pwd /scratch/$USER /scratch/$USER/cuda_sandbox --containall
 
-# set a bunch of env variables
+# set env variables
 # see: https://github.com/huggingface/pytorch-image-models/discussions/790
 # see: https://huggingface.co/docs/transformers/v4.38.1/en/installation#cache-setup
 alias ll="ls -alF"
