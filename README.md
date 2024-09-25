@@ -189,29 +189,15 @@ Here's a quick demo using MNIST.
 ```bash
 cd /itet-stor/$USER/net_scratch/
 
-#
-# step 1
-#
-
 # get python script and conda yaml file
 rm -rf cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
 
-#
-# step 2
-#
-
-# get job submission file
-cd /itet-stor/$USER/net_scratch/
-rm -rf ./job.sh
-git clone https://github.com/ETH-DISCO/cluster-tutorial/
-mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # only keep job.sh
-sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
-
 # remove previous env if exists
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 rm -rf /itet-stor/$USER/net_scratch/conda_envs/con && conda remove --yes --name con --all || true
+conda info --envs
 
 # create new env
 conda env create --file environment.yml
@@ -219,6 +205,7 @@ conda activate con
 conda deactivate
 
 # dispatch job
+sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
 sbatch job.sh ./mnist.py
 
 # check if running
