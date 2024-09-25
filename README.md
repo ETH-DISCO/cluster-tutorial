@@ -51,11 +51,11 @@ echo '[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-s
 Once you're in you'll have access to:
 
 - The login node:
-        - Compute: Not permitted. The login-node is only for file management and job submission. Do not run any computation on the login-node.
-        - Storage: Slow and small but non-volatile. Accessible through `/scratch/$USER`. Limited to just 8GB and uses the NFS4 instead of the EXT4 filesystem which is slower by a wide margin.
+	- Compute: Not permitted. The login-node is only for file management and job submission. Do not run any computation on the login-node.
+	- Storage: Slow and small but non-volatile. Accessible through `/scratch/$USER`. Limited to just 8GB and uses the NFS4 instead of the EXT4 filesystem which is slower by a wide margin.
 - The compute nodes:
-        - Compute: Intended for compute. But bewared that sessions are limited to just 12h in interactive shells and background processes will be killed as soon you log out. Make sure to run long running processes via SLURM batch jobs, which can run 72h.
-        - Storage: Fast and large but volatile. Accessible through `/itet-stor/$USER/net_scratch` (requires your shell to be attached). Uses the EXT4 filesystem.
+	- Compute: Intended for compute. But bewared that sessions are limited to just 12h in interactive shells and background processes will be killed as soon you log out. Make sure to run long running processes via SLURM batch jobs, which can run 72h.
+	- Storage: Fast and large but volatile. Accessible through `/itet-stor/$USER/net_scratch` (requires your shell to be attached). Uses the EXT4 filesystem.
 
 Keep in mind:
 
