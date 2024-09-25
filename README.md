@@ -37,14 +37,6 @@ alias smon_free="grep --color=always --extended-regexp 'free|$' /home/sladmitet/
 alias smon_mine="grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt"
 alias watch_smon_free="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt\""
 alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"grep --color=always --extended-regexp '${USER}|$' /home/sladmitet/smon.txt\""
-
-# install conda
-cd /itet-stor/$USER/net_scratch/
-rm -rf ./install-conda.sh
-git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/install-conda.sh . && rm -rf cluster-tutorial # only keep install-conda.sh
-chmod +x ./install-conda.sh && ./install-conda.sh
-eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
-echo '[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"' >> ~/.bashrc # add to bashrc
 ```
 
 Once you're in you'll have access to:
@@ -194,6 +186,14 @@ git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
 
 # ---
+
+# install conda
+cd /itet-stor/$USER/net_scratch/
+rm -rf ./install-conda.sh
+git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/install-conda.sh . && rm -rf cluster-tutorial # only keep install-conda.sh
+chmod +x ./install-conda.sh && ./install-conda.sh
+eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
+echo '[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"' >> ~/.bashrc # add to bashrc
 
 # create env
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
