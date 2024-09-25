@@ -199,7 +199,7 @@ rm -rf /itet-stor/$USER/net_scratch/conda_envs/con && conda remove --yes --name 
 # create new env
 conda env create --file environment.yml
 conda activate con
-python3 -c "import torch; print(torch.__version__)"
+python3 -c "import torch; print(torch.__version__)" # sanity check
 conda deactivate
 
 # dispatch job
