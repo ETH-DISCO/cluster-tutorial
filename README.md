@@ -40,6 +40,7 @@ alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"g
 
 # install conda
 cd /itet-stor/$USER/net_scratch/
+rm -rf ./install-conda.sh
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 mv cluster-tutorial/install-conda.sh . && rm -rf cluster-tutorial # only keep install-conda.sh
 chmod +x ./install-conda.sh && ./install-conda.sh
@@ -187,15 +188,21 @@ Here's a quick demo using MNIST.
 
 ```bash
 cd /itet-stor/$USER/net_scratch/
-rm -rf /itet-stor/$USER/net_scratch/slurm # clean up previous slurm output
+
+# get job submission file
+cd /itet-stor/$USER/net_scratch/
+rm -rf ./job.sh
+git clone https://github.com/ETH-DISCO/cluster-tutorial/
+mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # only keep job.sh
+sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
+
+
 
 # clone this repository
 rm -rf cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
 
-# get job file
-sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
 
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 
@@ -207,7 +214,6 @@ rm -rf /itet-stor/$USER/net_scratch/conda_envs/con && conda remove --yes --name 
 # create new env
 conda env create --file environment.yml
 conda activate con
-python3 -c "import torch; print(torch.__version__)" # sanity check
 conda deactivate
 
 # dispatch job
