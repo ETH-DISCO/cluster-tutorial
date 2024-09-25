@@ -189,17 +189,25 @@ Here's a quick demo using MNIST.
 ```bash
 cd /itet-stor/$USER/net_scratch/
 
+#
+# step 1
+#
+
+# get python script and conda yaml file
+rm -rf cluster-tutorial
+git clone https://github.com/ETH-DISCO/cluster-tutorial/
+cd cluster-tutorial
+
+#
+# step 2
+#
+
 # get job submission file
 cd /itet-stor/$USER/net_scratch/
 rm -rf ./job.sh
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # only keep job.sh
 sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
-
-# get python script and conda yaml file
-rm -rf cluster-tutorial
-git clone https://github.com/ETH-DISCO/cluster-tutorial/
-cd cluster-tutorial
 
 # remove previous env if exists
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
@@ -219,8 +227,6 @@ watch -n 1 "squeue | grep $USER"
 # check results
 for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "\e[32m$(basename "$file")\e[0m"; cat "$file"; echo -e "\n----------\n"; fi; done
 ```
-
-Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. Each filepointer your script writes to (ie. stderr, stdout) will have its own file.
 
 # Footnotes
 
