@@ -22,7 +22,6 @@ export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
-# rm -rf /itet-stor/$USER/net_scratch/* # also wipes conda
 
 # fix locale issues
 unset LANG
@@ -180,7 +179,6 @@ jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999
 
 Note: Do not use Conda to work in compute nodes. You will run out of memory quickly and each memory related instruction can take multiple hours to execute since they will be executed on the distributed NFS4 filesystem. The EXT4 filesystem used by Apptainer is significantly faster.
 
-
 # b) Running Slurm jobs
 
 Alternatively you can also run longer running tasks using Slurm jobs. Slurm jobs can run 72h while standard compute node processes can only live 12h.
@@ -195,14 +193,11 @@ rm -rf /itet-stor/$USER/net_scratch/slurm # clean up previous slurm output
 rm -rf cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
+
+# get job file
 sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
 
-# install conda
-chmod +x ./install-conda.sh && ./install-conda.sh
-eval "$(/itet-stor/yjabary/net_scratch/conda/bin/conda shell.bash hook)"
-echo '[[ -f /itet-stor/yjabary/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/yjabary/net_scratch/conda/bin/conda shell.bash hook)"' >> /home/yjabary/.bashrc
-
-
+eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 
 
 # remove previous env (if exists)
