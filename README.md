@@ -191,9 +191,12 @@ sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
 
 # install conda
 chmod +x ./install-conda.sh && ./install-conda.sh
+
+# remove previous env (if exists)
 [[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
-rm -rf /itet-stor/$USER/net_scratch/conda_envs/con
-conda remove --yes --name con --all || true # remove previous env if exists
+rm -rf /itet-stor/$USER/net_scratch/conda_envs/con && conda remove --yes --name con --all || true # remove previous env if exists
+
+# create new env
 conda env create --file environment.yml
 conda activate con
 python3 -c "import torch; print(torch.__version__)"
@@ -207,9 +210,7 @@ watch -n 1 "squeue | grep $USER"
 for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "\e[32m$(basename "$file")\e[0m"; cat "$file"; echo -e "\n----------\n"; fi; done
 
 # clean up
-[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
-conda remove --yes --name con --all
-rm -rf /itet-stor/$USER/net_scratch/* # wipes everything including conda install
+rm -rf /itet-stor/$USER/net_scratch/conda_envs/con && conda remove --yes --name con --all || true # remove previous env if exists
 ```
 
 Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. Each filepointer your script writes to (ie. stderr, stdout) will have its own file.
