@@ -186,7 +186,7 @@ Alternatively you can also run longer running tasks using Slurm jobs. Slurm jobs
 Here's a quick demo using MNIST.
 
 ```bash
-cd /itet-stor/$USER/net_scratch/
+cd /itet-stor/$USER/net_scratch/ # only limited to 8GB and pretty slow, use compute node memory instead
 
 # clone project
 rm -rf cluster-tutorial
