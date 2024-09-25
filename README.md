@@ -208,9 +208,6 @@ sbatch job.sh
 # check results
 watch -n 1 "squeue | grep $USER"
 for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "\e[32m$(basename "$file")\e[0m"; cat "$file"; echo -e "\n----------\n"; fi; done
-
-# clean up
-rm -rf /itet-stor/$USER/net_scratch/conda_envs/con && conda remove --yes --name con --all || true # remove previous env if exists
 ```
 
 Once you're done you can check the output in `/itet-stor/{{USERNAME}}/net_scratch/cluster/jobs/`. Each filepointer your script writes to (ie. stderr, stdout) will have its own file.
