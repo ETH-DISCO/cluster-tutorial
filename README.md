@@ -98,6 +98,7 @@ conda deactivate
 rm -rf ./job.sh
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # only keep job.sh
 sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # insert username into template
+sed -i 's/{{NODE}}/'tikgpu07'/g' job.sh # insert node name into template
 sbatch job.sh ./mnist.py
 
 # check status
@@ -118,7 +119,7 @@ Here's how to spin up an Apptainer and start working within it:
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
-# attach to a tikgpu06 node (assuming it's free) and allocate 100GB of RAM and 1 GPU
+# attach to a node (assuming it's free) and allocate 100GB of RAM and 1 GPU
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 
 #
