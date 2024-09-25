@@ -203,7 +203,7 @@ python3 -c "import torch; print(torch.__version__)" # sanity check
 conda deactivate
 
 # dispatch job
-sbatch job.sh
+sbatch job.sh ./mnist.py
 
 # check results
 watch -n 1 "squeue | grep $USER"
