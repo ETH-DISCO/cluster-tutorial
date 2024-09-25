@@ -41,8 +41,7 @@ alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"g
 # install conda
 cd /itet-stor/$USER/net_scratch/
 rm -rf ./install-conda.sh
-git clone https://github.com/ETH-DISCO/cluster-tutorial/
-mv cluster-tutorial/install-conda.sh . && rm -rf cluster-tutorial # only keep install-conda.sh
+git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/install-conda.sh . && rm -rf cluster-tutorial # only keep install-conda.sh
 chmod +x ./install-conda.sh && ./install-conda.sh
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 echo '[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"' >> ~/.bashrc # add to bashrc
