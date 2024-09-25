@@ -82,8 +82,6 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 # attach to a node (assuming it's free) and allocate 100GB of RAM and 1 GPU
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 
-# --------------- run code ---------------
-
 # clean up memory
 cd /scratch/$USER
 rm -rf ./*
@@ -92,8 +90,6 @@ rm -rf ./*
 rm -rf cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/
 cd cluster-tutorial
-
-# ----------------------------------------
 
 # create env
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
