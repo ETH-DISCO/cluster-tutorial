@@ -82,13 +82,13 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 # attach to a node (assuming it's free)
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 
+#
+# clone and choose script
+#
+
 # wipe working dir
 cd /scratch/$USER
 rm -rf ./*
-
-#
-# clone project, choose file
-#
 
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 FILEPATH="./mnist.py"
