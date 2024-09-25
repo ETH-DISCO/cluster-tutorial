@@ -76,10 +76,6 @@ fi
 You can run longer running tasks using Slurm jobs. Here's a quick demo using MNIST.
 
 ```bash
-#
-# step 1
-#
-
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
