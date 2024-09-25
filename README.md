@@ -113,8 +113,9 @@ sed -i 's/{{NODE}}/'tikgpu07'/g' job.sh # template node
 sbatch job.sh $FILEPATH
 
 # check status
-watch -n 1 "squeue | grep $USER"
-ls -v cd /scratch/$USER/slurm/* | tail -n 1 | xargs cat
+watch -n 0.5 "squeue | grep $USER"
+ls -v /scratch/$USER/slurm/*.out 2>/dev/null | tail -n 1 | xargs -r cat
+ls -v /scratch/$USER/slurm/*.err 2>/dev/null | tail -n 1 | xargs -r cat
 ```
 
 # b) Prototyping within an Apptainer
