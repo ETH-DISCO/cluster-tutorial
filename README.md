@@ -12,7 +12,7 @@ Then just ssh into the tik42 or j2tik login node using your default password (LD
 ssh <username>@tik42x.ethz.ch
 ```
 
-You then might want to also run:
+And then run:
 
 ```bash
 # set slurm path
