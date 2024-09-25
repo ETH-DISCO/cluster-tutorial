@@ -41,6 +41,10 @@ export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 find /home/$USER -mindepth 1 -maxdepth 1 ! -name 'public_html' -exec rm -rf {} +
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
+cd /itet-stor/$USER/net_scratch/
+shopt -s extglob
+rm -rf !("conda"|"conda_pkgs")
+shopt -u extglob
 
 # fix locale issues
 unset LANG
@@ -59,9 +63,6 @@ alias watch_smon_mine="watch --interval 300 --no-title --differences --color \"g
 
 # install conda
 cd /itet-stor/$USER/net_scratch/
-shopt -s extglob
-rm -rf !("conda"|"conda_pkgs")
-shopt -u extglob
 if [ ! -d "/itet-stor/${USER}/net_scratch/conda" ] && [ ! -d "/itet-stor/${USER}/net_scratch/conda_pkgs" ]; then
   git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/install-conda.sh . && rm -rf cluster-tutorial # only keep install-conda.sh
   chmod +x ./install-conda.sh && ./install-conda.sh
