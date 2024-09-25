@@ -213,6 +213,7 @@ sbatch job.sh ./mnist.py
 # check status
 watch -n 1 "squeue | grep $USER"
 for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "\e[32m$(basename "$file")\e[0m"; cat "$file"; echo -e "\n----------\n"; fi; done
+watch -n 0.5 'for file in /itet-stor/$USER/net_scratch/slurm/*; do if [ -f "$file" ]; then echo -e "$(basename "$file")"; cat "$file"; echo -e "\n----------\n"; fi; done'
 ```
 
 # Footnotes
