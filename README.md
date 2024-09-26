@@ -43,7 +43,7 @@ rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
 cd /itet-stor/$USER/net_scratch/
 shopt -s extglob
-rm -rf !("conda"|"conda_pkgs")
+rm -rf !("conda"|"conda_envs"|"conda_pkgs")
 shopt -u extglob
 
 # fix locale issues
