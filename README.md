@@ -82,6 +82,7 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 # attach to a node (assuming it's free)
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 
+# set env variable
 alias ll="ls -alF"
 
 #
