@@ -81,6 +81,7 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
 # attach to a node (assuming it's free)
 srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
+
 alias ll="ls -alF"
 
 #
@@ -88,8 +89,8 @@ alias ll="ls -alF"
 #
 
 cd /scratch/$USER
-rm -rf ./*
 
+rm -rf ./*
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 FILEPATH="./mnist.py"
 
@@ -99,7 +100,7 @@ FILEPATH="./mnist.py"
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 conda info --envs
 if conda env list | grep -q "^con "; then
-    read -p "the 'con' environment already exists. do you want to remove and recreate it? (y/n): " answer
+    read -p "the 'con' environment already exists. recreate? (y/n): " answer
     if [[ $answer =~ ^[Yy]$ ]]; then
         conda remove --yes --name con --all
         rm -rf /itet-stor/$USER/net_scratch/conda_envs/con && conda remove --yes --name con --all || true
