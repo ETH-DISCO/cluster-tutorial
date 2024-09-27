@@ -4,7 +4,7 @@
 #SBATCH --error=/scratch/{{USERNAME}}/slurm/%j.err # redirection of stderr
 #SBATCH --nodelist={{NODE}} # choose specific node
 #SBATCH --exclude=tikgpu[08-10]
-#SBATCH --mem=100G
+#SBATCH --mem=150G
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
 #CommentSBATCH --cpus-per-task=4
