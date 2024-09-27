@@ -82,20 +82,21 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 # attach to a node (assuming it's free)
 srun --mem=150GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 
-# set env variable
+# convenience
 alias ll="ls -alF"
 
 #
-# clone and choose script
+# clone and run script
 #
 
+rm -rf .cd /scratch/$USER/* # start from scratch
 cd /scratch/$USER
 
 rm -rf ./*
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 FILEPATH="./mnist.py"
 
-# ------------------- dispatch job
+# ----- dispatch job
 
 # create environment.yml
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
