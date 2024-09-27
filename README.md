@@ -82,19 +82,21 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 # attach to a node (assuming it's free)
 srun --mem=150GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 
-# convenience
-alias ll="ls -alF"
-
 #
 # clone and run script
 #
+
+# ----- config -----
 
 cd /scratch/$USER
 rm -rf ./*
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 FILEPATH="./mnist.py"
 
-# ----- dispatch job
+# -----------------
+
+# convenience
+alias ll="ls -alF"
 
 # create environment.yml
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
@@ -118,6 +120,7 @@ sbatch job.sh $FILEPATH
 watch -n 0.5 "squeue -u $USER --states=R"
 tail -f $(ls -v /scratch/$USER/slurm/*.err 2>/dev/null | tail -n 300)
 tail -f $(ls -v /scratch/$USER/slurm/*.out 2>/dev/null | tail -n 300)
+
 ```
 
 # b) Prototyping within an Apptainer
