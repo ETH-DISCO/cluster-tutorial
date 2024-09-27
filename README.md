@@ -90,9 +90,9 @@ alias ll="ls -alF"
 #
 
 rm -rf .cd /scratch/$USER/* # start from scratch
-cd /scratch/$USER
 
-rm -rf ./*
+cd /scratch/$USER
+rm -rf /scratch/$USER/cluster-tutorial
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 FILEPATH="./mnist.py"
 
