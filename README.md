@@ -34,6 +34,10 @@ Keep in mind:
 To set everything up, run:
 
 ```bash
+#
+# set up
+#
+
 # set slurm path
 export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 
@@ -69,6 +73,16 @@ if [ ! -d "/itet-stor/${USER}/net_scratch/conda" ] && [ ! -d "/itet-stor/${USER}
   eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
   echo '[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"' >> ~/.bashrc # add to bashrc
 fi
+
+#
+# attach to node
+#
+
+# check node availability
+grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
+
+# attach to a node (assuming it's free) and allocate 100GB of RAM and 1 GPU
+srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 ```
 
 # a) Running Slurm jobs
@@ -76,24 +90,12 @@ fi
 You can run longer running tasks using Slurm jobs. Here's a quick demo using MNIST.
 
 ```bash
-# check node availability
-grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
-
-# attach to a node (assuming it's free)
-srun --mem=150GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
-
-#
-# clone and run script
-#
-
-# ----- config -----
-
 cd /scratch/$USER
 rm -rf ./*
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 FILEPATH="./mnist.py"
 
-# -----------------
+# --------- end of config
 
 # convenience
 alias ll="ls -alF"
@@ -128,12 +130,6 @@ tail -f $(ls -v /scratch/$USER/slurm/*.out 2>/dev/null | tail -n 300)
 Here's how to spin up an Apptainer and start working within it:
 
 ```bash
-# check node availability
-grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
-
-# attach to a node (assuming it's free) and allocate 100GB of RAM and 1 GPU
-srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
-
 #
 # step 1
 #
