@@ -24,7 +24,19 @@ conda activate con
 
 filepath=$1
 echo "running script: $filepath"
-python3 $filepath
+# python3 $filepath
 
-echo "finished at: $(date)"
-exit 0
+# restart on failure
+attempts=5
+for attempt in $(seq 1 $attempts); do
+    python3 $filepath
+    if [ $? -eq 0 ]; then
+        echo "finished at: $(date)"
+        exit 0
+    else
+        echo "Attempt $attempt failed."
+        sleep 60
+    fi
+done
+echo "job failed after $attempts attempts"
+exit 1
