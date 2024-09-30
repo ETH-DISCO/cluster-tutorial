@@ -27,7 +27,7 @@ echo "running script: $filepath"
 # python3 $filepath
 
 # restart on failure
-attempts=5
+attempts=25
 for attempt in $(seq 1 $attempts); do
     python3 $filepath
     if [ $? -eq 0 ]; then
