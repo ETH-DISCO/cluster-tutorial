@@ -135,8 +135,8 @@ Here's how to spin up an Apptainer and start working within it:
 #
 
 # clean user files and apptainer cache
-rm -rf /scratch/$USER/* # dangerous
-rm -rf /scratch_net/$USER/* # dangerous
+rm -rf /scratch/$USER/*
+rm -rf /scratch_net/$USER/*
 mkdir -p /scratch/$USER
 cd /scratch/$USER
 yes | apptainer cache clean
