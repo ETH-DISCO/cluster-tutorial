@@ -127,13 +127,11 @@ tail -f $(ls -v /scratch/$USER/slurm/*.out 2>/dev/null | tail -n 300)
 
 # b) Prototyping within an Apptainer
 
-Here's how to spin up an Apptainer and start working within it:
+Here's how to spin up an Apptainer and start working within it.
+
+The first stage is to build an apptainer:
 
 ```bash
-#
-# step 1
-#
-
 # clean user files and apptainer cache
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
@@ -152,11 +150,11 @@ export APPTAINER_CONTAIN=1
 # download apptainer sif
 # for .def files see: `https://cloud.sylabs.io/builder`
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
+```
 
-#
-# step 2
-#
+The second stage is to exec into the apptainer:
 
+```bash
 # exec into apptainer
 apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USER/.apptainer/home:/home/$USER --pwd /scratch/$USER /scratch/$USER/cuda_sandbox --containall
 
