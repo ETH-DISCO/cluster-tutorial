@@ -92,11 +92,11 @@ You can run longer running tasks using Slurm jobs. Here's a quick demo using MNI
 ```bash
 rm -rf /scratch/$USER/*
 
-# --------- config ::
 cd /scratch/$USER
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 FILEPATH="./mnist.py"
-# --------- :: config
+
+# ---
 
 # convenience
 alias ll="ls -alF"
