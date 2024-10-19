@@ -129,9 +129,11 @@ tail -f $(ls -v /scratch/$USER/slurm/*.out 2>/dev/null | tail -n 300)
 
 Here's how to spin up an Apptainer and start working within it.
 
-The first stage is to build an apptainer:
-
 ```bash
+#
+# step 1
+#
+
 # clean user files and apptainer cache
 rm -rf /scratch/$USER/*
 rm -rf /scratch_net/$USER/*
@@ -150,18 +152,18 @@ export APPTAINER_CONTAIN=1
 # download apptainer sif
 # for .def files see: `https://cloud.sylabs.io/builder`
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
-```
 
-And after execing into the apptainer:
+#
+# step 2
+#
 
-```bash
 # exec into apptainer
 apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USER/.apptainer/home:/home/$USER --pwd /scratch/$USER /scratch/$USER/cuda_sandbox --containall
-```
 
-You can run anything you want:
+#
+# step 3
+#
 
-```bash
 # set env variables
 # see: https://github.com/huggingface/pytorch-image-models/discussions/790
 # see: https://huggingface.co/docs/transformers/v4.38.1/en/installation#cache-setup
