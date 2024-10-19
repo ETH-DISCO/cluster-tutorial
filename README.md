@@ -200,11 +200,7 @@ pip install --no-cache-dir --target=/scratch/$USER/apptainer_env/site_packages v
 source /scratch/$USER/apptainer_env/venv/bin/activate
 export PIP_NO_CACHE_DIR=false
 
-#
-# demo
-#
-
-# installing and running pytorch
+# demo: installing and running pytorch
 pip install --upgrade pip
 rm -rf /scratch/$USER/piplog.txt
 pip install --no-cache-dir --log /scratch/$USER/piplog.txt torch torchvision torchaudio
@@ -216,18 +212,13 @@ EOF
 echo "number of GPUs: $(nvidia-smi --list-gpus | wc -l)" # sanity check
 python3 demo.py # should print true
 
-#
-# jupyterlab for convenience
-#
-
-# install JupyterLab
+# demo: jupyterlab for convenience
 mkdir -p /scratch/$USER/apptainer_env/jupyter_config
 export JUPYTER_CONFIG_DIR=/scratch/$USER/apptainer_env/jupyter_config
 mkdir -p /scratch/$USER/apptainer_env/ipython_config
 export IPYTHONDIR=/scratch/$USER/apptainer_env/ipython_config
 pip install --no-cache-dir jupyterlab jupyter
 python -m ipykernel install --user --name=venv
-
 echo "> http://$(hostname -f):5998"
 jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
