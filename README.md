@@ -152,12 +152,16 @@ export APPTAINER_CONTAIN=1
 apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://nvcr.io/nvidia/pytorch:23.08-py3
 ```
 
-The second stage is to exec into the apptainer:
+And after execing into the apptainer:
 
 ```bash
 # exec into apptainer
 apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USER/.apptainer/home:/home/$USER --pwd /scratch/$USER /scratch/$USER/cuda_sandbox --containall
+```
 
+You can run anything you want:
+
+```bash
 # set env variables
 # see: https://github.com/huggingface/pytorch-image-models/discussions/790
 # see: https://huggingface.co/docs/transformers/v4.38.1/en/installation#cache-setup
