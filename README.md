@@ -157,7 +157,9 @@ apptainer build --disable-cache --sandbox /scratch/$USER/cuda_sandbox docker://n
 
 # exec into apptainer
 apptainer shell --nv --bind "/scratch/$USER:/scratch/$USER" --home /scratch/$USER/.apptainer/home:/home/$USER --pwd /scratch/$USER /scratch/$USER/cuda_sandbox --containall
+```
 
+```bash
 #
 # step 2
 #
