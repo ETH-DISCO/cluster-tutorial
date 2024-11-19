@@ -90,7 +90,7 @@ srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
 You can run longer running tasks using Slurm jobs. Here's a quick demo using MNIST.
 
 ```bash
-rm -rf /scratch/$USER/*
+rm -rf /scratch/$USER/* # will also clean slurm results! 
 
 cd /scratch/$USER
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
