@@ -98,7 +98,7 @@ FILEPATH="./mnist.py"
 
 # ---
 
-# create environment.yml
+# create 'con' environment from environment.yml
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 conda info --envs
 if conda env list | grep -q "^con "; then
@@ -112,8 +112,8 @@ conda env create --file environment.yml
 
 # dispatch job
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # get job.sh
-sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # template username
-sed -i 's/{{NODE}}/'tikgpu07'/g' job.sh # template node
+sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # update username in template
+sed -i 's/{{NODE}}/'tikgpu07'/g' job.sh # update node in template
 sbatch job.sh $FILEPATH
 
 # check status
