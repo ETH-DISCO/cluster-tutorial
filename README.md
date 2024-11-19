@@ -31,7 +31,7 @@ Keep in mind:
 
 # Initialization
 
-To set everything up, run:
+You have to set everything up and attach to a node first:
 
 ```bash
 #
