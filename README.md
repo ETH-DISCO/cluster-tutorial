@@ -98,9 +98,6 @@ FILEPATH="./mnist.py"
 
 # ---
 
-# convenience
-alias ll="ls -alF"
-
 # create environment.yml
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 conda info --envs
