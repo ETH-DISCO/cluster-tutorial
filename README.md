@@ -31,7 +31,7 @@ Keep in mind:
 
 # Initialization
 
-You have to set everything up and attach to a node first:
+You have to set everything up and attach to a node first, independent of your workflow:
 
 ```bash
 #
