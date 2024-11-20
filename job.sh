@@ -3,7 +3,6 @@
 #SBATCH --output=/scratch/{{USERNAME}}/slurm/%j.out # redirection of stdout (%j is the job id)
 #SBATCH --error=/scratch/{{USERNAME}}/slurm/%j.err # redirection of stderr
 #SBATCH --nodelist={{NODE}} # choose specific node
-#SBATCH --exclude=tikgpu[08-10]
 #SBATCH --mem=150G
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
