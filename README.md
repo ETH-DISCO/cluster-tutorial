@@ -82,7 +82,7 @@ fi
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
 # attach to a node (assuming it's free) and allocate 100GB of RAM and 1 GPU
-srun --mem=100GB --gres=gpu:01 --nodelist tikgpu07 --pty bash -i
+srun --mem=100GB --gres=gpu:01 --nodelist artongpu01 --pty bash -i
 ```
 
 # a) Running Slurm jobs
@@ -112,9 +112,11 @@ conda env create --file environment.yml
 
 # dispatch job
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # get job.sh
-sed -i 's/{{USERNAME}}/'$USER'/g' job.sh # update username in template
-sed -i 's/{{NODE}}/'artongpu01'/g' job.sh # update node in template
+sed -i 's/{{USERNAME}}/'$USER'/g' job.sh
+sed -i 's/{{NODE}}/'artongpu01'/g' job.sh # <-- update based on node you've attached to
 sbatch job.sh $FILEPATH
+
+# ---
 
 # check status
 watch -n 0.5 "squeue -u $USER --states=R"
