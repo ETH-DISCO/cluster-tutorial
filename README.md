@@ -90,13 +90,18 @@ srun --mem=100GB --gres=gpu:01 --nodelist artongpu01 --pty bash -i
 You can run longer running tasks using Slurm jobs. Here's a quick demo using MNIST.
 
 ```bash
-rm -rf /scratch/$USER/* # will also clean slurm results! 
+#
+# config
+#
 
 cd /scratch/$USER
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 FILEPATH="./mnist.py"
+NODE="artongpu01"
 
-# ---
+#
+# dispatch
+#
 
 # create 'con' environment from environment.yml
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
@@ -113,12 +118,13 @@ conda env create --file environment.yml
 # dispatch job
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # get job.sh
 sed -i 's/{{USERNAME}}/'$USER'/g' job.sh
-sed -i 's/{{NODE}}/'artongpu01'/g' job.sh # <-- update based on node you've attached to
+sed -i 's/{{NODE}}/'$NODE'/g' job.sh
 sbatch job.sh $FILEPATH
 
-# ---
+#
+# monitoring
+#
 
-# check status
 watch -n 0.5 "squeue -u $USER --states=R"
 tail -f $(ls -v /scratch/$USER/slurm/*.err 2>/dev/null | tail -n 300)
 tail -f $(ls -v /scratch/$USER/slurm/*.out 2>/dev/null | tail -n 300)
