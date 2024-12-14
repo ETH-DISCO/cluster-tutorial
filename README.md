@@ -103,7 +103,7 @@ NODE="artongpu01"
 # dispatch
 #
 
-# create 'con' environment from environment.yml
+# needs conda `environment.yml` for your project
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 conda info --envs
 if conda env list | grep -q "^con "; then
