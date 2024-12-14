@@ -125,6 +125,10 @@ sbatch job.sh $FILEPATH
 watch -n 0.5 "squeue -u $USER --states=R"
 tail -f $(ls -v /scratch/$USER/slurm/*.err 2>/dev/null | tail -n 300)
 tail -f $(ls -v /scratch/$USER/slurm/*.out 2>/dev/null | tail -n 300)
+
+# alternatively:
+# $ srun --mem=100GB --gres=gpu:01 --nodelist tikgpu08 --pty bash -i
+# $ salloc --nodelist=tikgpu10
 ```
 
 # b) Prototyping within an Apptainer
