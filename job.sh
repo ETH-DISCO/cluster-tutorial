@@ -6,7 +6,7 @@
 #SBATCH --mem=150G
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
-#SBATCH --time=72:00:00 # pls work ;-;
+#SBATCH --time=72:00:00 # (this might not work)
 #CommentSBATCH --cpus-per-task=4
 #CommentSBATCH --account=tik-internal # example: charge a specific account
 #CommentSBATCH --constraint='titan_rtx|tesla_v100|titan_xp|a100_80gb' # example: specify a gpu
