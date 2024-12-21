@@ -95,6 +95,7 @@ git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 
 FILEPATH="./mnist.py"
 NODE="artongpu01"
+JOB_NUM="1"
 
 #
 # dispatch
@@ -114,6 +115,7 @@ conda env create --file environment.yml
 
 # dispatch job
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # get job.sh
+sed -i 's/{{JOB_NUM}}/'$JOB_NUM'/g' job.sh
 sed -i 's/{{USERNAME}}/'$USER'/g' job.sh
 sed -i 's/{{NODE}}/'$NODE'/g' job.sh
 sbatch job.sh $FILEPATH
@@ -123,8 +125,8 @@ sbatch job.sh $FILEPATH
 #
 
 watch -n 0.5 "squeue -u $USER --states=R"
-tail -f $(ls -v /scratch/$USER/slurm/*.err 2>/dev/null | tail -n 300)
-tail -f $(ls -v /scratch/$USER/slurm/*.out 2>/dev/null | tail -n 300)
+tail -f $(ls -v /scratch/$USER/slurm/$JOB_NUM/*.err 2>/dev/null | tail -n 300)
+tail -f $(ls -v /scratch/$USER/slurm/$JOB_NUM/*.out 2>/dev/null | tail -n 300)
 ```
 
 # b) Prototyping within an Apptainer
