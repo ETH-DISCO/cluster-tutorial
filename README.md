@@ -101,7 +101,7 @@ JOB_NUM="1"
 # dispatch
 #
 
-# needs conda `environment.yml` for your project
+# needs conda `environment.yml` in project
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 conda info --envs
 if conda env list | grep -q "^con "; then
