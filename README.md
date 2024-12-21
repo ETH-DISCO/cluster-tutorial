@@ -82,7 +82,7 @@ fi
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
 # attach to a node (assuming it's free) and allocate 100GB of RAM and 1 GPU
-srun --mem=100GB --gres=gpu:01 --nodelist artongpu01 --pty bash -i
+srun --mem=100GB --gres=gpu:01 --nodelist artongpu07 --pty bash -i
 ```
 
 # a) Running Slurm jobs
@@ -94,7 +94,7 @@ cd /scratch/$USER
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 
 FILEPATH="./mnist.py"
-NODE="artongpu01"
+NODE="tikgpu07"
 JOB_NUM="1"
 
 #
