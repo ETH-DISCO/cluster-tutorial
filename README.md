@@ -231,7 +231,7 @@ echo "> http://$(hostname -f):5998"
 jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999]
 ```
 
-# Footnotes
+# Addendum
 
 General documentation:
 
