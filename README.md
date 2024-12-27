@@ -124,6 +124,7 @@ sbatch job.sh $FILEPATH
 # monitoring
 #
 
+salloc --mem=100GB --nodelist=tikgpu07
 watch -n 0.5 "squeue -u $USER --states=R"
 tail -f $(ls -v /scratch/$USER/slurm/job-$JOB_NUM/*.err 2>/dev/null | tail -n 300)
 tail -f $(ls -v /scratch/$USER/slurm/job-$JOB_NUM/*.out 2>/dev/null | tail -n 300)
