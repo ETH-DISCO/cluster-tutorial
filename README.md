@@ -90,7 +90,7 @@ sbatch \
     --mem=150G \
     --nodes=1 \
     --gres=gpu:1 \
-    --wrap="bash -c 'set -ex && source /itet-stor/${USER}/net_scratch/conda/etc/profile.d/conda.sh && conda activate con && python3 $(pwd)/demo_mnist.py'" 
+    --wrap="bash -c 'source /itet-stor/${USER}/net_scratch/conda/etc/profile.d/conda.sh && conda activate con && python3 $(pwd)/demo_mnist.py'" 
 
 sbatch --array=0-2 \
     --output=$(pwd)/%A_%a.out \
@@ -98,7 +98,7 @@ sbatch --array=0-2 \
     --mem=150G \
     --nodes=1 \
     --gres=gpu:1 \
-    --wrap="bash -c 'set -ex && source /itet-stor/${USER}/net_scratch/conda/etc/profile.d/conda.sh && conda activate con && python3 $(pwd)/demo_array.py \$SLURM_ARRAY_TASK_ID'"
+    --wrap="bash -c 'source /itet-stor/${USER}/net_scratch/conda/etc/profile.d/conda.sh && conda activate con && python3 $(pwd)/demo_array.py \$SLURM_ARRAY_TASK_ID'"
 
 #
 # monitoring
