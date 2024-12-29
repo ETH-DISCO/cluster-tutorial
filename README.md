@@ -70,18 +70,11 @@ srun --mem=100GB --gres=gpu:01 --nodelist artongpu07 --pty bash -i
 -->
 
 ```bash
+# clone project
 cd /scratch/$USER
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 
-FILEPATH="./mnist.py"
-NODE="tikgpu07"
-JOB_NUM="1"
-
-#
-# dispatch
-#
-
-# needs conda `environment.yml` in project
+# create conda `environment.yml` from project
 eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
 conda info --envs
 if conda env list | grep -q "^con "; then
@@ -93,12 +86,13 @@ if conda env list | grep -q "^con "; then
 fi
 conda env create --file environment.yml
 
-# dispatch job
-git clone https://github.com/ETH-DISCO/cluster-tutorial/ && mv cluster-tutorial/job.sh . && rm -rf cluster-tutorial # get job.sh
-sed -i 's/{{JOB_NUM}}/'$JOB_NUM'/g' job.sh
-sed -i 's/{{USERNAME}}/'$USER'/g' job.sh
-sed -i 's/{{NODE}}/'$NODE'/g' job.sh
-sbatch job.sh $FILEPATH
+#
+# dispatch
+#
+
+FILEPATH="./mnist.py"
+NODE="tikgpu07"
+JOB_NUM="1"
 
 #
 # monitoring
