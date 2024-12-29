@@ -80,6 +80,9 @@ conda env create --file environment.yml
 # dispatch
 #
 
+rm -rf ./*.out
+rm -rf ./*.err
+
 sbatch \
     --output=$(pwd)/%j.out \
     --error=$(pwd)/%j.err \
@@ -89,18 +92,23 @@ sbatch \
     --gres=gpu:1 \
     --wrap="bash -c 'source /itet-stor/${USER}/net_scratch/conda/etc/profile.d/conda.sh && conda activate con && python3 $(pwd)/demo_mnist.py'" 
 
+
+
 sbatch --array=0-3 \
-       --mail-type=NONE \
-       --output=/scratch/$USER/slurm/job-%A_%a.out \
-       --error=/scratch/$USER/slurm/job-%A_%a.err \
-       --nodelist=$(hostname) \
-       --mem=150G \
-       --nodes=1 \
-       --gres=gpu:1 \
-       --wrap="mkdir -p /scratch/$USER/slurm && \
-               eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" && \
-               conda activate con && \
-               python3 ./demo_array.py \$SLURM_ARRAY_TASK_ID"
+    --output=$(pwd)/output.out \
+    --error=$(pwd)/output.err \
+    --mem=150G \
+    --nodes=1 \
+    --gres=gpu:1 \
+    --wrap="bash -c 'source /itet-stor/${USER}/net_scratch/conda/etc/profile.d/conda.sh && conda activate con && python3 $(pwd)/demo_array.py \$SLURM_ARRAY_TASK_ID'"
+
+sbatch --array=0-3 \
+    --output=$(pwd)/%A_%a.out \
+    --error=$(pwd)/%A_%a.err \
+    --mem=150G \
+    --nodes=1 \
+    --gres=gpu:1 \
+    --wrap="bash -c 'source /itet-stor/${USER}/net_scratch/conda/etc/profile.d/conda.sh && conda activate con && python3 $(pwd)/demo_array.py \$SLURM_ARRAY_TASK_ID'"
 
 #
 # monitoring
