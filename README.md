@@ -87,8 +87,7 @@ sbatch \
     --mem=150G \
     --nodes=1 \
     --gres=gpu:1 \
-    --wrap="eval \"$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)\" && conda activate con && python3 $(pwd)/demo_mnist.py"
-
+    --wrap="bash -c 'source /itet-stor/${USER}/net_scratch/conda/etc/profile.d/conda.sh && conda activate con && python3 $(pwd)/demo_mnist.py'" 
 
 sbatch --array=0-3 \
        --mail-type=NONE \
