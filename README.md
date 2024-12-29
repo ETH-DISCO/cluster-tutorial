@@ -70,7 +70,10 @@ srun --mem=100GB --gres=gpu:01 --nodelist artongpu07 --pty bash -i
 -->
 
 ```bash
+rm -rf /scratch/$USER
+
 # clone project
+mkdir -p /scratch/$USER
 cd /scratch/$USER
 git clone https://github.com/ETH-DISCO/cluster-tutorial/ && cd cluster-tutorial
 
@@ -87,12 +90,22 @@ fi
 conda env create --file environment.yml
 
 #
-# dispatch
+# dispatch array job
 #
 
 FILEPATH="./mnist.py"
-NODE="tikgpu07"
-JOB_NUM="1"
+
+sbatch --array=0-3 \
+       --mail-type=NONE \
+       --output=/scratch/$USER/slurm/job-%A_%a.out \
+       --error=/scratch/$USER/slurm/job-%A_%a.err \
+       --nodelist=$(hostname) \
+       --mem=150G \
+       --nodes=1 \
+       --gres=gpu:1 \
+       --wrap="mkdir -p /scratch/$USER/slurm && \
+               eval \"$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)\" && conda activate con && \
+               python3 $1 \$SLURM_ARRAY_TASK_ID"
 
 #
 # monitoring
