@@ -101,9 +101,10 @@ sbatch --mail-type=NONE \
        --mem=150G \
        --nodes=1 \
        --gres=gpu:1 \
-       --wrap="mkdir -p /scratch/$USER/slurm && \
-               eval \"$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)\" && conda activate con && \
-               python3 ./demo_mnist.py"
+       --wrap='mkdir -p /scratch/$USER/slurm && \
+               eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" && \
+               conda activate con && \
+               python3 ./demo_mnist.py'
 
 sbatch --array=0-3 \
        --mail-type=NONE \
@@ -114,7 +115,8 @@ sbatch --array=0-3 \
        --nodes=1 \
        --gres=gpu:1 \
        --wrap="mkdir -p /scratch/$USER/slurm && \
-               eval \"$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)\" && conda activate con && \
+               eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" && \
+               conda activate con && \
                python3 ./demo_array.py \$SLURM_ARRAY_TASK_ID"
 
 #
