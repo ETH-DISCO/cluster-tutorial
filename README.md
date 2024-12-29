@@ -54,7 +54,7 @@ grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 srun --mem=100GB --gres=gpu:01 --nodelist artongpu07 --pty bash -i
 ```
 
-# a) SLURM jobs
+# a) Jobs
 
 ```bash
 rm -rf /scratch/$USER
