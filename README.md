@@ -56,20 +56,6 @@ srun --mem=100GB --gres=gpu:01 --nodelist artongpu07 --pty bash -i
 
 # a) SLURM jobs
 
-<!--
-#!/bin/bash
-#SBATCH --mail-type=NONE # disable email notifications can be [NONE, BEGIN, END, FAIL, REQUEUE, ALL]
-#SBATCH --output=/scratch/{{USERNAME}}/slurm/job-{{JOB_NUM}}/%j.out # redirection of stdout (%j is the job id)
-#SBATCH --error=/scratch/{{USERNAME}}/slurm/job-{{JOB_NUM}}/%j.err # redirection of stderr
-#SBATCH --nodelist={{NODE}} # choose specific node
-#SBATCH --mem=150G
-#SBATCH --nodes=1
-#SBATCH --gres=gpu:1
-#CommentSBATCH --cpus-per-task=4
-#CommentSBATCH --account=tik-internal # example: charge a specific account
-#CommentSBATCH --constraint='titan_rtx|tesla_v100|titan_xp|a100_80gb' # example: specify a gpu
--->
-
 ```bash
 rm -rf /scratch/$USER
 
@@ -95,25 +81,13 @@ conda env create --file environment.yml
 #
 
 sbatch --mail-type=NONE \
-    --output=$(pwd)/%j.out \
+    --output=$(pwd)/cluster-tutorial/%j.out \
     --error=$(pwd)/%j.err \
     --nodelist=$(hostname) \
     --mem=150G \
     --nodes=1 \
     --gres=gpu:1 \
-    --wrap="eval \"$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)\" && conda activate con && python3 ./mnist.py"
-
-sbatch --mail-type=NONE \
-       --output=/scratch/$USER/slurm/job-%j.out \
-       --error=/scratch/$USER/slurm/job-%j.err \
-       --nodelist=$NODE \
-       --mem=150G \
-       --nodes=1 \
-       --gres=gpu:1 \
-       --wrap='mkdir -p /scratch/$USER/slurm && \
-               eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" && \
-               conda activate con && \
-               python3 ./demo_mnist.py'
+    --wrap="eval \"$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)\" && conda activate con && python3 $(pwd)/mnist.py"
 
 sbatch --array=0-3 \
        --mail-type=NONE \
