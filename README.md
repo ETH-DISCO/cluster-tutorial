@@ -47,7 +47,7 @@ fi
 #
 
 # check node availability
-grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
+watch -n 0.1 -c "grep --color=always --perl-regexp '[\x{1f600}-\x{1fb00}]|free|$' /home/sladmitet/smon.txt"
 
 # attach to a node and allocate 100GB of RAM and 1 GPU (assuming it's free)
 # to just access memory run: `salloc --mem=10GB --nodelist=artongpu07`
