@@ -95,6 +95,15 @@ conda env create --file environment.yml
 #
 
 sbatch --mail-type=NONE \
+    --output=$(pwd)/%j.out \
+    --error=$(pwd)/%j.err \
+    --nodelist=$(hostname) \
+    --mem=150G \
+    --nodes=1 \
+    --gres=gpu:1 \
+    --wrap="eval \"$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)\" && conda activate con && python3 ./mnist.py"
+
+sbatch --mail-type=NONE \
        --output=/scratch/$USER/slurm/job-%j.out \
        --error=/scratch/$USER/slurm/job-%j.err \
        --nodelist=$NODE \
