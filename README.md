@@ -80,9 +80,6 @@ conda env create --file environment.yml
 # dispatch
 #
 
-rm -rf ./*.out
-rm -rf ./*.err
-
 sbatch \
     --output=$(pwd)/%j.out \
     --error=$(pwd)/%j.err \
