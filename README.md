@@ -50,6 +50,7 @@ fi
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
 # attach to a node and allocate 100GB of RAM and 1 GPU (assuming it's free)
+# to just access memory run: `salloc --mem=10GB --nodelist=artongpu07`
 srun --mem=100GB --gres=gpu:01 --nodelist artongpu07 --pty bash -i
 ```
 
@@ -93,8 +94,6 @@ conda env create --file environment.yml
 # dispatch array job
 #
 
-FILEPATH="./mnist.py"
-
 sbatch --array=0-3 \
        --mail-type=NONE \
        --output=/scratch/$USER/slurm/job-%A_%a.out \
@@ -105,14 +104,14 @@ sbatch --array=0-3 \
        --gres=gpu:1 \
        --wrap="mkdir -p /scratch/$USER/slurm && \
                eval \"$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)\" && conda activate con && \
-               python3 $1 \$SLURM_ARRAY_TASK_ID"
+               python3 ./array.py \$SLURM_ARRAY_TASK_ID"
 
 #
 # monitoring
 #
 
-salloc --mem=10GB --nodelist=tikgpu07
 watch -n 0.5 "squeue -u $USER --states=R"
+
 tail -f $(ls -v /scratch/$USER/slurm/job-$JOB_NUM/*.err 2>/dev/null | tail -n 300)
 tail -f $(ls -v /scratch/$USER/slurm/job-$JOB_NUM/*.out 2>/dev/null | tail -n 300)
 ```
