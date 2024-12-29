@@ -76,10 +76,7 @@ if conda env list | grep -q "^con "; then
 fi
 conda env create --file environment.yml
 
-#
 # dispatch
-#
-
 sbatch \
     --output=$(pwd)/%j.out \
     --error=$(pwd)/%j.err \
@@ -89,10 +86,7 @@ sbatch \
     --gres=gpu:1 \
     --wrap="bash -c 'source /itet-stor/${USER}/net_scratch/conda/etc/profile.d/conda.sh && conda activate con && python3 $(pwd)/demo_mnist.py'"
 
-#
-# monitoring
-#
-
+# monitor
 watch -n 0.5 "squeue -u $USER --states=R"
 tail -f $(ls -v $(pwd)/*.err 2>/dev/null | tail -n 300)
 tail -f $(ls -v $(pwd)/*.out 2>/dev/null | tail -n 300)
