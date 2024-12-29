@@ -1,11 +1,43 @@
-This guide will help you get started quickly with the TIK cluster.
+This guide will help you get started with the TIK cluster at ETH Zurich.
 
-All work on the cluster is managed through the SLURM interface. You can choose between two types of workflows: (a) Submitting traditional SLURM batch jobs, which can run for up to 72 hours. (b) Interactive sessions using Apptainer/Jupyter notebooks within an interactive SLURM session. This approach closely resembles working locally and is more convenient, but sessions are limited to a maximum of 12 hours.
+First, enable your VPN connection[^vpn] to the ETH network through a client of your choice (preferably the Cisco-Anyconnect client[^cisco]) using the following configuration:
 
-Note that all work must be performed on the compute nodes, not the login node. The first step for both workflows is to connect to a free compute node, like so:
+- server: `https://sslvpn.ethz.ch`
+- username: `<username>@student-net.ethz.ch`
+- password: your network password (Radius password[^pwd])
 
+Then just ssh into the tik42 or j2tik login node using your default password (LDAPS/AD password):
 
 ```bash
+ssh <username>@tik42x.ethz.ch
+```
+
+Once you're in you'll have access to:
+
+- The login node:
+	- Compute: Not permitted. The login-node is only for file management and job submission. Do not run any computation on the login-node (or you will get in trouble!).
+	- Storage: Slow and small but non-volatile. Accessible through `/scratch/$USER`. Limited to just 8GB and uses the NFS4 instead of the EXT4 filesystem which is slower by a wide margin.
+- The compute nodes:
+	- Compute: Intended for compute. But bewared that sessions are limited to just 12h in interactive shells and background processes will be killed as soon you log out. Make sure to run long running processes via SLURM batch jobs, which can run 72h.
+	- Storage: Fast and large but volatile. Accessible through `/itet-stor/$USER/net_scratch` (requires your shell to be attached). Uses the EXT4 filesystem.
+
+Keep in mind:
+
+- to use >8 GPUs you need your supervisor's permission and must reserve the nodes in advance in the shared calendar
+- only submit jobs to `arton[01-08]`
+- the A100s with 80GB on `tikgpu10` need special privileges
+- the A6000s with 48GB on `tikgpu08` need special privileges
+- set friendly `nice` values to your jobs, keep them small and preferably as array jobs
+
+# Initialization
+
+You have to set everything up and attach to a node first, independent of your workflow:
+
+```bash
+#
+# set up
+#
+
 # set slurm path
 export SLURM_CONF=/home/sladmitet/slurm/slurm.conf
 
@@ -49,25 +81,13 @@ fi
 # check node availability
 grep --color=always --extended-regexp 'free|$' /home/sladmitet/smon.txt
 
-# attach to a node and allocate 100GB of RAM and 1 GPU (assuming it's free)
+# attach to a node (assuming it's free) and allocate 100GB of RAM and 1 GPU
 srun --mem=100GB --gres=gpu:01 --nodelist artongpu07 --pty bash -i
 ```
 
-# a) SLURM jobs
+# a) Running Slurm jobs
 
-<!--
-#!/bin/bash
-#SBATCH --mail-type=NONE # disable email notifications can be [NONE, BEGIN, END, FAIL, REQUEUE, ALL]
-#SBATCH --output=/scratch/{{USERNAME}}/slurm/job-{{JOB_NUM}}/%j.out # redirection of stdout (%j is the job id)
-#SBATCH --error=/scratch/{{USERNAME}}/slurm/job-{{JOB_NUM}}/%j.err # redirection of stderr
-#SBATCH --nodelist={{NODE}} # choose specific node
-#SBATCH --mem=150G
-#SBATCH --nodes=1
-#SBATCH --gres=gpu:1
-#CommentSBATCH --cpus-per-task=4
-#CommentSBATCH --account=tik-internal # example: charge a specific account
-#CommentSBATCH --constraint='titan_rtx|tesla_v100|titan_xp|a100_80gb' # example: specify a gpu
--->
+You can run longer running tasks using Slurm jobs. Here's a quick demo using MNIST.
 
 ```bash
 cd /scratch/$USER
@@ -110,7 +130,9 @@ tail -f $(ls -v /scratch/$USER/slurm/job-$JOB_NUM/*.err 2>/dev/null | tail -n 30
 tail -f $(ls -v /scratch/$USER/slurm/job-$JOB_NUM/*.out 2>/dev/null | tail -n 300)
 ```
 
-# b) Interactive Sessions
+# b) Prototyping within an Apptainer
+
+Here's how to spin up an Apptainer and start working within it.
 
 ```bash
 #
@@ -212,28 +234,7 @@ jupyter lab --no-browser --port 5998 --ip $(hostname -f) # port range [5900-5999
 
 # Addendum
 
-Authentication:
-
-1. Connect to the ETH network via a VPN
-  - Openconnect isn't reliable. We recommend the Cisco-Anyconnect client: https://apps.apple.com/at/app/cisco-secure-client/id1135064690?l=en-GB
-  - Documentation: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
-  - Configuration:
-    - server: `https://sslvpn.ethz.ch`
-    - username: `<username>@student-net.ethz.ch`
-    - password: your network password / Radius password: https://www.password.ethz.ch/
-2. SSH into the tik42 or j2tik login node using your default password (LDAPS/AD password):
-  - For example: `ssh <username>@tik42x.ethz.ch`
-
-Node types:
-
-- The login node:
-	- Compute: Not permitted. The login-node is only for file management and job submission. Do not run any computation on the login-node (or you will get in trouble!).
-	- Storage: Slow and small but non-volatile. Accessible through `/scratch/$USER`. Limited to just 8GB and uses the NFS4 instead of the EXT4 filesystem which is slower by a wide margin.
-- The compute nodes:
-	- Compute: Intended for compute. But bewared that sessions are limited to just 12h in interactive shells and background processes will be killed as soon you log out. Make sure to run long running processes via SLURM batch jobs, which can run 72h.
-	- Storage: Fast and large but volatile. Accessible through `/itet-stor/$USER/net_scratch` (requires your shell to be attached). Uses the EXT4 filesystem.
-
-Further reading:
+General documentation:
 
 - best practices: https://computing.ee.ethz.ch/Services/HPCStorageIOBestPracticeGuidelines
 - outdated tutorial: https://hackmd.io/hYACdY2aR1-F3nRdU8q5dA
@@ -250,3 +251,7 @@ Thanks to:
 - [@tkz10](https://github.com/TKZ10) for finding the dependency redirection hack and reviewing
 - [@aplesner](https://github.com/aplesner) for the initial apptainer scripts and reviewing
 - [@ijorl](https://github.com/iJorl) for the initial slurm scripts
+
+[^vpn]: See: https://www.isg.inf.ethz.ch/Main/ServicesNetworkVPN
+[^pwd]: See: https://www.password.ethz.ch/
+[^cisco]: Based on my experience the openconnect CLI doesn't work. So I suggest downloading the the [Cisco-Anyconnect client](https://apps.apple.com/at/app/cisco-secure-client/id1135064690?l=en-GB)
