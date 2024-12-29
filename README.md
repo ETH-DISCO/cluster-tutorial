@@ -87,23 +87,8 @@ sbatch \
     --mem=150G \
     --nodes=1 \
     --gres=gpu:1 \
-    --wrap="python3 $(pwd)/demo_mnist.py"
+    --wrap="eval \"$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)\" && conda activate con && python3 $(pwd)/demo_mnist.py"
 
-eval "$(/itet-stor/$USER/net_scratch/conda/bin/conda shell.bash hook)" # conda activate base
-conda activate con
-
-filepath=$1
-
-
-
-sbatch --mail-type=NONE \
-    --output=$(pwd)/cluster-tutorial/%j.out \
-    --error=$(pwd)/%j.err \
-    --nodelist=$(hostname) \
-    --mem=150G \
-    --nodes=1 \
-    --gres=gpu:1 \
-    --wrap="eval \"$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)\" && conda activate con && python3 $(pwd)/mnist.py"
 
 sbatch --array=0-3 \
        --mail-type=NONE \
