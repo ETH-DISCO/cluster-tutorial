@@ -1,4 +1,3 @@
-import os
 import sys
 
 job_id = sys.argv[1]
